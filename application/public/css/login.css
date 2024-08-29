@@ -16,7 +16,7 @@ body {
 .image {
   width: 100%;
   height: 100%;
-  background-image: url("/assets/image 9.png");
+  background-image: url("/application/assets/image 9.png");
   background-repeat: no-repeat;
   position: relative;
   z-index: 0;

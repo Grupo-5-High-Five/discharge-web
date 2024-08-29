@@ -27,7 +27,8 @@ nav {
 }
 
 .atom {
-  padding: 2rem 2rem;
+  height: auto;
+  padding: 2rem;
 }
 
 .nav__links {
@@ -41,7 +42,7 @@ nav {
   list-style-type: none;
   display: flex;
   gap: 8rem;
-  padding: 3rem 2rem;
+  padding: 1.5rem;
 }
 
 .nav__links ul li {
@@ -65,6 +66,7 @@ nav {
   text-decoration: none;
   cursor: pointer;
   color: var(--azulEscuro);
+  padding: 1rem;
 }
 
 .container {
@@ -73,7 +75,7 @@ nav {
 }
 .container .banner {
   height: 90vh;
-  background-image: url("/assets/banner-background.jpg");
+  background-image: url("/application/assets/banner-background.jpg");
   background-size: cover;
   opacity: 80%;
 }
