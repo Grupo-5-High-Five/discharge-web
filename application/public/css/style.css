@@ -1,12 +1,15 @@
 :root {
   --azulEscuro: #011526;
   --amareloPrincipal: #f2c029;
+  --azulEscuroTexto: #011526;
+  --amareloDischarge: #F2AE2E;
+  --brancoBackground: #F2F2F2;
 }
 
 * {
-  padding: 0;
   margin: 0;
-  box-sizing: border-box;
+  padding: 0;
+  overflow-x: hidden;
 }
 
 body {
@@ -43,11 +46,12 @@ nav {
   display: flex;
   gap: 8rem;
   padding: 1.5rem;
+  cursor: pointer;
 }
 
 .nav__links ul li {
   color: var(--amareloPrincipal);
-  font-size: 36px;
+  font-size: 30px;
   font-weight: 600;
   text-transform: uppercase;
   font-style: none;
@@ -60,12 +64,12 @@ nav {
   align-items: center;
   justify-content: center;
   font-family: "poppins", sans-serif;
-  font-size: 40px;
+  font-size: 35px;
   font-weight: 600;
   text-transform: uppercase;
   text-decoration: none;
   cursor: pointer;
-  color: var(--azulEscuro);
+  color: var(--azulEscuroTexto);
   padding: 1rem;
 }
 
@@ -73,9 +77,128 @@ nav {
   height: auto;
   width: auto;
 }
+
+.banner{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
 .container .banner {
   height: 90vh;
   background-image: url("/application/assets/banner-background.jpg");
   background-size: cover;
-  opacity: 80%;
 }
+
+.container-banner{
+  display: flex;
+  flex-direction: column;
+  margin-left: 10rem;
+  color: var(--azulEscuroTexto);
+}
+
+.container-banner h1{
+  font-size: 72px;
+} 
+
+.container-banner h2{
+  font-size: 32px;
+}
+
+.nosso-negocio{
+  display: flex;
+  padding: 2rem;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: var(--brancoBackground);
+  height: auto;
+}
+
+.nosso-negocio .container{
+  width: 90vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.negocio{
+  display: flex;
+  gap: 8rem;
+}
+
+.texto-negocio{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 30vw;
+  gap: 1rem;
+  text-align: center;
+}
+
+.texto-negocio h1{
+  color: var(--azulEscuroTexto);
+  font-size: 55px;
+}
+
+.texto-negocio p{
+  font-size: 20px;
+
+  .discharge{
+    color: var(--amareloDischarge);
+    font-weight: bold;
+  }
+}
+
+.img-negocio{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+
+  img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.cards-negocio{
+  display: flex;
+  width: 80vw;
+  justify-content: center;
+  gap: 2rem;
+  height: 60vh;
+  
+}
+
+.cards-negocio .card{
+  display: flex;
+  background-color: #ffffff;
+  width: 40%;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 5%;
+  padding: 1rem;
+  
+  p{
+    font-size: 20px;
+  }
+
+  h1{
+    color: var(--azulEscuroTexto);
+    font-size: 30px;
+  }
+
+  h2{
+    color: var(--azulEscuroTexto);
+    
+  }
+}
+
+
+
