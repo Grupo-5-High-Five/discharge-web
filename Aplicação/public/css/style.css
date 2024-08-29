@@ -20,6 +20,10 @@ nav {
   height: 10vh;
   background-color: var(--azulEscuro);
   justify-content: space-between;
+
+  a {
+    text-decoration: none;
+  }
 }
 
 .atom {
@@ -53,12 +57,14 @@ nav {
   height: 10vh;
   display: flex;
   align-items: center;
-  width: 18.5%;
   justify-content: center;
   font-family: "poppins", sans-serif;
-  font-size: 45px;
+  font-size: 40px;
   font-weight: 600;
   text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  color: var(--azulEscuro);
 }
 
 .container {
