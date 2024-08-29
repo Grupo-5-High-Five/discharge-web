@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    font-family: "Poppins", sans-serif;
+    font-style: normal;
+    color: #011526;
+}
+
+.containerFormulario {
+    width: 60%;
+    height: 100%;
+    background-color: #fff;
+    clip-path: polygon(100% 0%, 75% 50%, 100% 100%, 0 100%, 0% 50%, 0 0);
+    z-index: 1;
+    position: relative;
+    padding: 30px;
+}
+
+.fundo {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: right;
+    z-index: 0;
+    position: absolute;
+}
+
+.formulario {
+    width: 60%;
+    height: 45%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 150px;
+    padding-left: 100px;
+}
+
+input {
+    width: 370px;
+    height: 40px;
+    border: solid black 2px;
+    border-radius: 100px;
+    padding: 1rem;
+    background-color: #D9D9D9;
+    position: relative;
+    font-size: 20px;
+    border: none;
+}
+
+label{
+    width: 350px;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2%;
+    flex-direction: column;
+}
+
+.icone {
+    height: 40px;
+    display: flex;
+    position: absolute;
+    padding-left: 320px;
+    padding-top: 30px;
+    cursor: text;
+}
+
+.botaoCadastrar {
+    width: 170px;
+    height: 55px;
+    color: #011526;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-size: large;
+    background-color: #01152667;
+    border-radius: 100px;
+    border: none;
+    cursor: pointer;
+}
+
+.icone img {
+    height: 40px;
+}
+
+input:focus{
+    outline: 0;
+}
+
+.nomeInput{
+    width: 100%;
+    height: 35px;
+    display: flex;
+    justify-content: left;
+}
+
+span{
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-size: large;
+}

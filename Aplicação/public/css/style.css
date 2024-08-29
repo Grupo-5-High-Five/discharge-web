@@ -1,0 +1,73 @@
+:root {
+  --azulEscuro: #011526;
+  --amareloPrincipal: #f2c029;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "poppins", sans-serif;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  width: 100vw;
+  height: 10vh;
+  background-color: var(--azulEscuro);
+  justify-content: space-between;
+}
+
+.atom {
+  padding: 2rem 2rem;
+}
+
+.nav__links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.nav__links ul {
+  list-style-type: none;
+  display: flex;
+  gap: 8rem;
+  padding: 3rem 2rem;
+}
+
+.nav__links ul li {
+  color: var(--amareloPrincipal);
+  font-size: 36px;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-style: none;
+}
+
+.btn-cadastro {
+  background-color: var(--amareloPrincipal);
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  width: 18.5%;
+  justify-content: center;
+  font-family: "poppins", sans-serif;
+  font-size: 45px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.container {
+  height: auto;
+  width: auto;
+}
+.container .banner {
+  height: 90vh;
+  background-image: url("/assets/banner-background.jpg");
+  background-size: cover;
+  opacity: 80%;
+}
