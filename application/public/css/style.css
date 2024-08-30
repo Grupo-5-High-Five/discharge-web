@@ -4,6 +4,7 @@
   --azulEscuroTexto: #011526;
   --amareloDischarge: #F2AE2E;
   --brancoBackground: #F2F2F2;
+  --azulBackground: #011526;
 }
 
 * {
@@ -55,6 +56,7 @@ nav {
   font-weight: 600;
   text-transform: uppercase;
   font-style: none;
+  text-shadow:red;
 }
 
 .btn-cadastro {
@@ -146,6 +148,7 @@ nav {
 
 .texto-negocio p{
   font-size: 20px;
+  text-align: justify;
 
   .discharge{
     color: var(--amareloDischarge);
@@ -179,7 +182,7 @@ nav {
   display: flex;
   background-color: #ffffff;
   width: 40%;
-  text-align: center;
+  text-align: justify;
   align-items: center;
   flex-direction: column;
   border-radius: 5%;
@@ -198,7 +201,69 @@ nav {
     color: var(--azulEscuroTexto);
     
   }
+
 }
+
+.beneficios{
+  height: 100vh;
+  background-color: var(--azulEscuro);
+  display: flex;
+  overflow: hidden;
+}
+
+.beneficios-esq{
+  width: 50vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  
+  /* Checar com o grupo se tem como fazer sem margem */
+  .texto-beneficios{ 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    color: #ffffff;
+    max-width: 90%;
+    height: fit-content;
+    text-align: start;
+    margin-top: 10%;
+    margin-left: 10%;
+
+    h1{
+      font-size: 64px;
+      width: 38rem;
+    }
+
+    h2{
+      font-size: 32px;
+      width: 38rem;
+    }
+
+    p{
+    width: 38rem;
+    font-size: 24px;
+    color: #ffffff;
+    }
+  }
+
+}
+
+.beneficios-dir{
+  width: 50vw;
+  height: 100vh;
+  overflow: hidden;
+
+
+  img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    clip-path: polygon(100% 0%, 100% 50%, 100% 100%, 30% 99%, 0 49%, 30% 0);
+  }
+}
+
+
 
 
 
