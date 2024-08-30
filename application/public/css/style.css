@@ -265,7 +265,28 @@ nav {
 
 .contato{
   height: 100vh;
-  background-color: var(--brancoBackground);
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+
+  .container{
+    display: flex;
+    height: 80vh;
+    width: 90vw;
+    background-color: var(--brancoBackground);
+
+
+    .container-esq{
+      width: 50vw; 
+      background-image: url(/application/assets/contato.png);
+         
+    }
+    .container-dir{
+      width: 50vw;
+    }
+  }
 }
 
 .footer{
