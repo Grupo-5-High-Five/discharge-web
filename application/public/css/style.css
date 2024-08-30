@@ -24,6 +24,7 @@ nav {
   height: 10vh;
   background-color: var(--azulEscuro);
   justify-content: space-between;
+  overflow: hidden;
 
   a {
     text-decoration: none;
