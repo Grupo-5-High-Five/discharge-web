@@ -263,6 +263,16 @@ nav {
   }
 }
 
+.contato{
+  height: 100vh;
+  background-color: var(--brancoBackground);
+}
+
+.footer{
+  height: 55vh;
+  background-color: var(--azulBackground);
+}
+
 
 
 
