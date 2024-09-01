@@ -4,23 +4,37 @@
   --azulEscuroTexto: #011526;
   --amareloDischarge: #F2AE2E;
   --brancoBackground: #F2F2F2;
+  --branco: #FFFFFF;
   --azulBackground: #011526;
+  --cinza: #D9D9D9;
 }
+
+/* Configurações globais */
 
 * {
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+.main-content {
+  width: 100%; 
+}
+
+.container {
+  width: 1300px;
 }
 
 body {
-  font-family: "poppins", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
+
+/* Header */
 
 nav {
   display: flex;
   align-items: center;
-  width: 100vw;
+  width: 100%;
   height: 10vh;
   background-color: var(--azulEscuro);
   justify-content: space-between;
@@ -34,6 +48,11 @@ nav {
 .atom {
   height: auto;
   padding: 2rem;
+  transition: all 0.5s ease-in;
+}
+
+.atom:hover {
+  transform: scale(1.05);
 }
 
 .nav__links {
@@ -57,15 +76,34 @@ nav {
   font-weight: 600;
   text-transform: uppercase;
   font-style: none;
-  text-shadow:red;
+  transition: all 0.5s;
 }
 
-.btn-cadastro {
-  background-color: var(--amareloPrincipal);
-  height: 10vh;
+.nav__links ul li:hover {
+  color: var(--amareloDischarge);
+  transform: scale(1.05);
+}
+
+.background-btn-cadastro {
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: var(--amareloPrincipal);
+  height: 100%;
+  padding: 0.5rem;
+  transition: all 0.5s;
+}
+
+.background-btn-cadastro:hover {
+  background-color: var(--amareloDischarge);
+  transform: scale(1.05);
+}
+
+.background-btn-cadastro:hover .btn-cadastro{
+  color: var(--branco);
+}
+
+.btn-cadastro {
   font-family: "poppins", sans-serif;
   font-size: 35px;
   font-weight: 600;
@@ -73,113 +111,95 @@ nav {
   text-decoration: none;
   cursor: pointer;
   color: var(--azulEscuroTexto);
-  padding: 1rem;
+  transition: all 0.5s;
 }
 
-.container {
-  height: auto;
-  width: auto;
-}
+/* Banner */
 
-.banner{
+.banner {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
-}
-
-.container .banner {
   height: 90vh;
-  background-image: url("/application/assets/banner-background.jpg");
+  background-image: url("../../assets/banner-background.jpg");
   background-size: cover;
-}
-
-.container-banner{
-  display: flex;
-  flex-direction: column;
-  margin-left: 10rem;
   color: var(--azulEscuroTexto);
+
+  h1 {
+    font-size: 72px;
+  }
+
+  h2 {
+    font-size: 32px;
+  }
 }
 
-.container-banner h1{
-  font-size: 72px;
-} 
+/* Sobre Nós */
 
-.container-banner h2{
-  font-size: 32px;
-}
-
-.nosso-negocio{
+.nosso-negocio {
   display: flex;
-  padding: 2rem;
+  height: 100vh;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   background-color: var(--brancoBackground);
-  height: auto;
 }
 
-.nosso-negocio .container{
-  width: 90vw;
-  height: 100vh;
+.box-negocio {
   display: flex;
-  align-items: center;
   flex-direction: column;
-  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
 }
 
-.negocio{
+.negocio {
   display: flex;
-  gap: 8rem;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.texto-negocio{
+.img-negocio {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  object-fit: cover;
+}
+
+.texto-negocio {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 30vw;
+  width: 40%;
   gap: 1rem;
   text-align: center;
 }
 
-.texto-negocio h1{
+.texto-negocio h1 {
   color: var(--azulEscuroTexto);
   font-size: 55px;
 }
 
-.texto-negocio p{
+.texto-negocio p {
   font-size: 20px;
   text-align: justify;
 
-  .discharge{
+  .discharge {
     color: var(--amareloDischarge);
     font-weight: bold;
   }
 }
 
-.img-negocio{
+.cards-negocio {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-
-  img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-}
-
-.cards-negocio{
-  display: flex;
-  width: 80vw;
-  justify-content: center;
+  justify-content: space-between;
+  width: 100%;
   gap: 2rem;
-  height: 60vh;
-  
 }
 
-.cards-negocio .card{
+.cards-negocio .card {
   display: flex;
   background-color: #ffffff;
   width: 40%;
@@ -188,167 +208,244 @@ nav {
   flex-direction: column;
   border-radius: 5%;
   padding: 1rem;
-  
-  p{
+
+  p {
     font-size: 20px;
   }
 
-  h1{
+  h1 {
     color: var(--azulEscuroTexto);
     font-size: 30px;
   }
 
-  h2{
+  h2 {
     color: var(--azulEscuroTexto);
-    
+
   }
 
 }
 
-.beneficios{
+/* Beneficios */
+
+.beneficios {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 100vh;
   background-color: var(--azulEscuro);
-  display: flex;
-  overflow: hidden;
+  position: relative;
 }
 
-.beneficios-esq{
-  width: 50vw;
-  height: 100vh;
+.beneficios::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 50%; /* Ajusta a posição inicial do fundo */
+  background-image: url('../../assets/metalurgica.png'); /* Caminho para a sua imagem */
+  background-size: cover;
+  background-position: center;
+  clip-path: polygon(100% 0%, 100% 50%, 100% 100%, 30% 100%, 0 50%, 30% 0);
+  z-index: 1;
+}
+
+.box-beneficios {
   display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.beneficios-esq {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
-  
+  width: 50%;
+
   /* Checar com o grupo se tem como fazer sem margem */
-  .texto-beneficios{ 
+  .texto-beneficios {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 2rem;
     color: #ffffff;
-    max-width: 90%;
-    height: fit-content;
     text-align: start;
-    margin-top: 10%;
-    margin-left: 10%;
 
-    h1{
+    h2 {
       font-size: 64px;
-      width: 38rem;
+      width: 100%;
     }
 
-    h2{
+    h3 {
       font-size: 32px;
-      width: 38rem;
+      width: 100%;
     }
 
-    p{
-    width: 38rem;
-    font-size: 24px;
-    color: #ffffff;
+    p {
+      width: 100%;
+      font-size: 24px;
+      color: #ffffff;
     }
   }
 
 }
 
-.beneficios-dir{
-  width: 50vw;
+/* Contate-nos */
+
+.contato {
   height: 100vh;
-  overflow: hidden;
-
-
-  img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    clip-path: polygon(100% 0%, 100% 50%, 100% 100%, 30% 100%, 0 50%, 30% 0);
-  }
-}
-
-.contato{
-  height: 100vh;
-  background-color: #ffffff;
+  background-color: var(--brancoBackground);
   display: flex;
   justify-content: center;
   align-items: center;
-
-
-  .container{
-    display: flex;
-    height: 80vh;
-    width: 90vw;
-    background-color: var(--brancoBackground);
-
-
-    .container-esq{
-      width: 50vw; 
-      background-image: url(/application/assets/contato.png);
-         
-    }
-    .container-dir{
-      width: 50vw;
-    }
-  }
 }
 
-.footer{
+.box-contato {
+  display: flex;
+  height: 80vh;
+  width: 100%;
+  background-color: var(--branco);
+  padding: 2rem;
+  border-radius: 10px;
+}
+
+.image-form {
+  width: 50%;
+  background-image: url(../../assets/contato.png);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 1rem;
+  width: 50%;
+
+  h2 {
+    color: var(--azulEscuroTexto);
+    font-size: 48px;
+    font-weight: 800;
+  }
+
+  label {
+    width: 100%;
+  }
+
+  .div__input__name {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    gap: 1rem;
+  }
+
+}
+
+input {
+
+}
+
+.formulario__input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-color: var(--cinza);
+  border-radius: 10px;
+  padding: 2rem;
+  border: none;
+  outline: none;
+  transition: all 0.5s;
+}
+
+.formulario__input:hover {
+  outline: 1px solid var(--azulEscuroTexto);
+}
+
+.formulario__input::placeholder {
+  font-size: 20px;
+  font-family: "poppins", sans-serif;
+}
+
+.formulario__button {
+  padding: 1rem;
+  border-radius: 10px;
+  border: none;
+  background-color: var(--amareloDischarge);
+  font-size: 32px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--branco);
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+.formulario__button:hover {
+  background-color: var(--amareloPrincipal);
+}
+
+/* Footer */
+
+.footer {
   height: 40vh;
   background-color: var(--azulBackground);
   display: flex;
   justify-content: space-between;
   padding: 5%;
 
-  .discharge{
+  .discharge {
     color: var(--amareloDischarge);
     font-size: 36px;
   }
-  
+
+  ul {
+    text-decoration: none;
+    list-style: none;
+    color: var(--branco);
+  }
 
   /*Checar também se é possível fazer sem margem ou se é necessário */
-  h1{
+  h2 {
     display: flex;
-    font-size: 32px;
+    font-size: 28px;
     color: #ffffff;
     margin-bottom: 1.2rem;
   }
 
-  p{
+  p {
     font-size: 24px;
     color: #ffffff;
   }
 
-  .topicos{
+  .topicos {
     display: flex;
     flex-direction: column;
   }
-  
+
 }
 
-.separacao-footer{
-  width: 100vw;
+.separacao-footer {
+  width: 100%;
   height: 0.5vh;
   background-color: #ffffff;
 }
 
-.copyright{
+.copyright {
   height: 15vh;
   background-color: var(--azulBackground);
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  
-  h1{
+
+  h1 {
     color: #ffffff;
     font-size: 32px;
     font-weight: 500;
   }
 
-  
-
 
 }
-
-
-
-
-

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Discharge</title>
-    <link rel="stylesheet" href="/application/public/css/style.css" />
+    <link rel="stylesheet" href="../css/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -12,13 +12,14 @@
       rel="stylesheet"
     />
   </head>
+
   <body>
     <header>
       <nav>
         <div class="nav__links">
           <a href="">
             <figure class="atom">
-              <img src="/application/assets/LOGO.svg" alt="Imagem de átomo" />
+              <img src="../../assets/LOGO.svg" alt="Imagem de átomo" />
             </figure>
           </a>
           <ul>
@@ -27,130 +28,185 @@
             <li>Sobre nós</li>
           </ul>
         </div>
-        <a href="/application/public/html/cadastro.html">
+        <a href="./cadastro.html" class="background-btn-cadastro">
           <div class="btn-cadastro">Cadastro</div>
         </a>
       </nav>
     </header>
-    <main class="container">
+
+    <main class="main-content">
       <section class="banner">
-        <div class="container-banner">
+        <div class="container">
           <h1>Gestão de energia</h1>
           <h2>Reduza seus custos de energia agora mesmo!</h2>
           <div class="banner-icons">
-            <img src="/application/assets/raio.svg" alt="icon raio" /><img
-              src="/application/assets/economia.svg"
+            <img src="../../assets/raio.svg" alt="icon raio" /><img
+              src="../../assets/economia.svg"
               alt="icon porco"
-            /><img src="/application/assets/graph.svg" alt="icon grafico" /><img
-              src="/application/assets/sustentabilidade.svg"
+            /><img src="../../assets/graph.svg" alt="icon grafico" /><img
+              src="../../assets/sustentabilidade.svg"
               alt="icon sustentabilidade"
             />
           </div>
         </div>
       </section>
+
       <section class="nosso-negocio">
         <div class="container">
-          <div class="negocio">
-            <div class="img-negocio">
-              <img
-                src="/application/assets/negocio.png"
-                alt="imagem de usinas"
-              />
+          <div class="box-negocio">
+            <div class="negocio">
+              <div class="img-negocio">
+                <img src="../../assets/negocio.png" alt="imagem de usinas" />
+              </div>
+              <div class="texto-negocio">
+                <h1>Nosso negócio</h1>
+                <p>
+                  Estamos nos esforçando para entregar a melhor plataforma de
+                  gestão para sua empresa. A
+                  <span class="discharge">Discharge</span> faz análise por meio
+                  da nossa plataforma juntamente com uma IA especializada para
+                  te entregar à melhor solução.
+                </p>
+              </div>
             </div>
-            <div class="texto-negocio">
-              <h1>Nosso negócio</h1>
-              <p>
-                Estamos nos esforçando para entregar a melhor plataforma de
-                gestão para sua empresa. A
-                <span class="discharge">Discharge</span> faz análise por meio da
-                nossa plataforma juntamente com uma IA especializada para te
-                entregar à melhor solução.
-              </p>
-            </div>
-          </div>
-          <div class="cards-negocio">
-            <div class="card">
-              <h1>Energia</h1>
-              <p>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Mollitia blanditiis tenetur quo quaerat repellendus fugiat porro
-                sint laudantium earum. Explicabo nostrum voluptatibus magni
-                excepturi perferendis totam inventore soluta error quis!
-              </p>
-              <h2>Saiba mais</h2>
-            </div>
-            <div class="card">
-              <h1>Análise</h1>
-              <p>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Mollitia blanditiis tenetur quo quaerat repellendus fugiat porro
-                sint laudantium earum. Explicabo nostrum voluptatibus magni
-                excepturi perferendis totam inventore soluta error quis!
-              </p>
-              <h2>Saiba mais</h2>
-            </div>
-            <div class="card">
-              <h1>Economia</h1>
-              <p>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Mollitia blanditiis tenetur quo quaerat repellendus fugiat porro
-                sint laudantium earum. Explicabo nostrum voluptatibus magni
-                excepturi perferendis totam inventore soluta error quis!
-              </p>
-              <h2>Saiba mais</h2>
+            <div class="cards-negocio">
+              <div class="card">
+                <h1>Energia</h1>
+                <p>
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                  Mollitia blanditiis tenetur quo quaerat repellendus fugiat
+                  porro sint laudantium earum. Explicabo nostrum voluptatibus
+                  magni excepturi perferendis totam inventore soluta error quis!
+                </p>
+                <h2>Saiba mais</h2>
+              </div>
+              <div class="card">
+                <h1>Análise</h1>
+                <p>
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                  Mollitia blanditiis tenetur quo quaerat repellendus fugiat
+                  porro sint laudantium earum. Explicabo nostrum voluptatibus
+                  magni excepturi perferendis totam inventore soluta error quis!
+                </p>
+                <h2>Saiba mais</h2>
+              </div>
+              <div class="card">
+                <h1>Economia</h1>
+                <p>
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                  Mollitia blanditiis tenetur quo quaerat repellendus fugiat
+                  porro sint laudantium earum. Explicabo nostrum voluptatibus
+                  magni excepturi perferendis totam inventore soluta error quis!
+                </p>
+                <h2>Saiba mais</h2>
+              </div>
             </div>
           </div>
         </div>
       </section>
+
       <section class="beneficios">
-        <div class="beneficios-esq">
-          <div class="texto-beneficios">
-            <h1>Benefícios da Gestão de Energia</h1>
-            <h2>Ajudando sua empresa a crescer</h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita
-              harum minima incidunt voluptas minus ipsam, aspernatur quasi
-              voluptates amet illo recusandae tempora magnam, doloribus nemo
-              quaerat laboriosam reprehenderit, dignissimos rem?
-            </p>
+        <div class="container">
+          <div class="box-beneficios">
+            <div class="beneficios-esq">
+              <article class="texto-beneficios">
+                <h2>Benefícios da Gestão de Energia</h2>
+                <h3>Ajudando sua empresa a crescer</h3>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                  Expedita harum minima incidunt voluptas minus ipsam,
+                  aspernatur quasi voluptates amet illo recusandae tempora
+                  magnam, doloribus nemo quaerat laboriosam reprehenderit,
+                  dignissimos rem?
+                </p>
+              </article>
+            </div>
           </div>
         </div>
-        <div class="beneficios-dir">
-          <img src="/application/assets/metalurgica.png" alt="" />
-        </div>
       </section>
+
       <section class="contato">
         <div class="container">
-          <div class="container-esq"></div>
-          <div class="container-dir"><h1>Contate-nos</h1></div>
+          <div class="box-contato">
+            <figure class="image-form"></figure>
+              <form action="" class="formulario">
+              <h2>Contate-nos</h2>
+                <div class="div__input__name">
+                  <label for="input_nome">
+                    <input
+                      class="formulario__input"
+                      id="input_nome"
+                      type="text"
+                      placeholder="Nome"
+                    />
+                  </label>
+
+                  <label for="input_sobrenome">
+                    <input
+                      class="formulario__input"
+                      id="input_sobrenome"
+                      type="text"
+                      placeholder="Sobrenome"
+                    />
+                  </label>
+                </div>
+
+                <label for="input_email">
+                  <input
+                    class="formulario__input"
+                    id="input_email"
+                    type="text"
+                    placeholder="Email"
+                  />
+                </label>
+
+                <label for="input_celular">
+                  <input
+                    class="formulario__input"
+                    id="input_celular"
+                    type="text"
+                    placeholder="DD + Celular"
+                  />
+                </label>
+
+                <button class="formulario__button" type="submit">Enviar</button>
+              </form>
+            </div>
+          </div>
         </div>
       </section>
     </main>
+
     <footer class="footer">
       <div class="topicos">
         <div class="titulo-topicos">
-          <h1 class="discharge">Discharge</h1>
+          <h2 class="discharge">Discharge</h2>
         </div>
-        <p>Metalúrgica</p>
-        <p>Siderúrgica</p>
-        <p>Hidreúrgica</p>
-        <p>Metalúrgica</p>
-        <p>Siderúrgica</p>
-        <p>Hidrelúrgica</p>
+        <ul>
+          <li>Metalúrgica</li>
+          <li>Siderúrgica</li>
+          <li>Hidreúrgica</li>
+          <li>Metalúrgica</li>
+        </ul>
       </div>
       <div class="topicos">
-        <h1>Segmentos</h1>
-        <p>Metalúrgica</p>
-        <p>Siderúrgica</p>
-        <p>Hidrelúrgica</p>
+        <h2>Segmentos</h2>
+        <ul>
+          <li>Metalúrgica</li>
+          <li>Siderúrgica</li>
+          <li>Hidrelúrgica</li>
+        </ul>
       </div>
       <div class="topicos">
-        <h1>Contato</h1>
-        <p>Telefone: XXXXX-XXXX</p>
-        <p>Email: discharge@xxx.com</p>
-        <p>SP - São Paulo</p>
+        <h2>Contato</h2>
+        <ul>
+          <li>Telefone: XXXXX-XXXX</li>
+          <li>Email: discharge@xxx.com</li>
+          <li>SP - São Paulo</li>
+        </ul>
       </div>
     </footer>
+
     <div class="separacao-footer"></div>
     <div class="copyright"><h1>Copyright © Discharge | 2024</h1></div>
   </body>
