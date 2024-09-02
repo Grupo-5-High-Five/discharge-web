@@ -77,6 +77,10 @@ label{
     cursor: text;
 }
 
+.icone img{
+    cursor: pointer;
+}
+
 .botaoCadastrar {
     width: 170px;
     height: 55px;
@@ -109,4 +113,9 @@ span{
     font-family: "Poppins", sans-serif;
     font-weight: 400;
     font-size: large;
+}
+
+h1 {
+    font-weight: 600;
+    font-size: 40px;
 }

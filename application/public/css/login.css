@@ -1,167 +1,179 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
 
 body {
-  height: 100vh;
-  width: 100vw;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: row-reverse;
-  font-family: "Poppins", sans-serif;
-  font-style: normal;
-  overflow: hidden;
-  color: #d9d9d9;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row-reverse;
+    font-family: "Poppins", sans-serif;
+    font-style: normal;
+    overflow: hidden;
+    color: #D9D9D9;
 }
 
 .image {
-  width: 100%;
-  height: 100%;
-  background-image: url("../../assets/image 9.png");
-  background-repeat: no-repeat;
-  position: relative;
-  z-index: 0;
-  background-size: contain;
+    width: 100%;
+    height: 100%;
+    background-image: url('/application/assets/image\ 9.png');
+    background-repeat: no-repeat;
+    position: relative;
+    z-index: 0;
+    background-size: contain;
 }
 
 .container {
-  background-color: #011526;
-  height: 100%;
-  width: 60%;
-  clip-path: polygon(100% 0, 100% 50%, 100% 100%, 0% 100%, 25% 50%, 0% 0%);
-  position: absolute;
-  z-index: 1;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+    background-color: #011526;
+    height: 100%;
+    width: 60%;
+    clip-path: polygon(100% 0, 100% 50%, 100% 100%, 0% 100%, 25% 50%, 0% 0%);
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 .formulario {
-  height: 45%;
-  width: 60%;
-  display: flex;
-  flex-direction: column;
-  padding-right: 10%;
-  align-items: center;
+    height: 45%;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    padding-right: 10%;
+    padding-bottom: 100px;
+    align-items: center;
 }
 
 h1 {
-  color: #f2c029;
-  font-weight: 600;
-  font-size: 40px;
+    color: #F2C029;
+    font-weight: 600;
+    font-size: 40px;
 }
 
-label {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 350px;
-  height: 100%;
-  padding: 4%;
-  flex-direction: column;
+label{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+    height: 100%;
+    padding: 2%;
+    flex-direction: column;
 }
 
-.nomeInput {
-  width: 100%;
-  display: flex;
-  justify-content: left;
+.nomeInput{
+    width: 100%;
+    display: flex;
+    justify-content: left;
 }
 
 input {
-  width: 370px;
-  height: 40px;
-  border: solid black 2px;
-  border-radius: 100px;
-  padding: 1rem;
-  background-color: #d9d9d9;
-  position: relative;
-  font-size: 20px;
+    width: 370px;
+    height: 40px;
+    border: solid black 2px;
+    border-radius: 100px;
+    padding: 1rem;
+    background-color: #D9D9D9;
+    position: relative;
+    font-size: 20px;
 }
 
-.icone {
-  display: flex;
-  justify-content: flex-end;
-  position: absolute;
-  height: 40px;
-  width: 28%;
-  padding-top: 25px;
-  padding-left: 40px;
-  cursor: text;
+.icone{
+    display: flex;
+    justify-content: flex-end;
+    position: absolute;
+    height: 40px;
+    width: 28%;
+    padding-top: 25px;
+    padding-left: 40px;
+    cursor: text;
 }
 
-img {
-  height: 100%;
+.icone img{
+    cursor: pointer;
 }
+
+img{
+    height: 100%;
+}  
 
 p {
-  color: #d9d9d9;
+    color: #D9D9D9;
 }
 
-span {
-  font-family: "Poppins", sans-serif;
-  font-weight: 400;
-  font-size: large;
+span{
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-size: large;
 }
 
 .botaoEntrar {
-  width: 170px;
-  height: 55px;
-  color: #f2c029;
-  font-family: "Poppins", sans-serif;
-  font-weight: 600;
-  font-size: large;
-  background-color: #f2c02979;
-  border-radius: 100px;
-  border: none;
-  cursor: pointer;
+    width: 170px;
+    height: 55px;
+    color: #F2C029;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-size: large;
+    background-color: #f2c02979;
+    border-radius: 100px;
+    border: none;
+    cursor: pointer;
 }
 
-.conteudo {
-  height: 100%;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.527);
-  position: absolute;
-  display: flex;
-  justify-content: flex-start;
-  flex-direction: column;
+.conteudo{
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.527);
+    position: absolute;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
 }
 
-.containerTexto {
-  width: 45%;
-  height: 60%;
-  display: flex;
-  padding-top: 5%;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding-left: 5%;
+.containerTexto{
+    width: 45%;
+    height: 60%;
+    display: flex;
+    padding-top: 30px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-left: 80px;
 }
 
-.texto {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 10%;
-  font-size: larger;
+.texto{
+    width: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10%;
+    font-size: larger;
 }
 
-.containerTexto button {
-  width: 170px;
-  height: 55px;
-  color: #f2c029;
-  font-family: "Poppins", sans-serif;
-  font-weight: 600;
-  font-size: large;
-  background-color: transparent;
-  border-radius: 100px;
-  border: solid 2px;
-  cursor: pointer;
+.containerTexto button{
+    width: 170px;
+    height: 55px;
+    color: #F2C029;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-size: large;
+    background-color: transparent;
+    border-radius: 100px;
+    border: solid 2px;
+    cursor: pointer;
 }
 
-.logo {
-  padding: 20px;
+.logo{
+    padding: 20px;
 }
 
-input:focus {
-  outline: 0;
+input:focus{
+    outline: 0;
+}
+
+.posicoesSenha{
+    background-color: #D9D9D9;
+    border: none;
 }
