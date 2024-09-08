@@ -2,11 +2,11 @@
   --azulEscuro: #011526;
   --amareloPrincipal: #f2c029;
   --azulEscuroTexto: #011526;
-  --amareloDischarge: #F2AE2E;
-  --brancoBackground: #F2F2F2;
-  --branco: #FFFFFF;
+  --amareloDischarge: #f2ae2e;
+  --brancoBackground: #f2f2f2;
+  --branco: #ffffff;
   --azulBackground: #011526;
-  --cinza: #D9D9D9;
+  --cinza: #d9d9d9;
 }
 
 /* Configurações globais */
@@ -45,15 +45,19 @@ nav {
   }
 }
 
-.atom {
+.icon__raio {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 1rem;
   transition: all 0.2s ease-in;
+  & img {
+    width: 72px;
+    height: 72px;
+  }
 }
 
-.atom:hover {
+.icon__raio:hover {
   transform: scale(1.05);
 }
 
@@ -108,7 +112,7 @@ nav {
 }
 
 .btn-cadastro {
-  font-family: "poppins", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 35px;
   font-weight: 600;
   text-transform: uppercase;
@@ -209,25 +213,32 @@ nav {
   background-color: #ffffff;
   width: 40%;
   text-align: justify;
-  align-items: center;
+  align-items: flex-start;
   flex-direction: column;
   border-radius: 5%;
   padding: 1rem;
 
-  p {
+  & p {
     font-size: 20px;
   }
 
-  h1 {
+  & h1 {
     color: var(--azulEscuroTexto);
     font-size: 30px;
   }
 
-  h2 {
-    color: var(--azulEscuroTexto);
-
+  & a {
+    text-decoration: none;
   }
 
+  & h2 {
+    color: var(--amareloDischarge);
+    transition: all 0.2s;
+  }
+
+  & h2:hover {
+    color: var(--amareloPrincipal);
+  }
 }
 
 /* Beneficios */
@@ -248,7 +259,7 @@ nav {
   right: 0;
   bottom: 0;
   left: 50%;
-  background-image: url('../../assets/metalurgica.png');
+  background-image: url("../../assets/metalurgica.png");
   background-size: cover;
   background-position: center;
   clip-path: polygon(100% 0%, 100% 50%, 100% 100%, 30% 100%, 0 50%, 30% 0);
@@ -274,25 +285,24 @@ nav {
     align-items: center;
     gap: 2rem;
     color: #ffffff;
-    text-align: start;
+    text-align: flex-start;
 
-    h2 {
+    & h2 {
       font-size: 64px;
       width: 100%;
     }
 
-    h3 {
+    & h3 {
       font-size: 32px;
       width: 100%;
     }
 
-    p {
+    & p {
       width: 100%;
       font-size: 24px;
       color: #ffffff;
     }
   }
-
 }
 
 /* Contate-nos */
@@ -312,6 +322,7 @@ nav {
   background-color: var(--branco);
   padding: 2rem;
   border-radius: 10px;
+  gap: 2rem;
 }
 
 .image-form {
@@ -319,7 +330,7 @@ nav {
   background-image: url(../../assets/contato.png);
   background-repeat: no-repeat;
   background-position: center;
-  background-size: cover;
+  background-size: contain;
 }
 
 .formulario {
@@ -329,34 +340,35 @@ nav {
   gap: 1rem;
   width: 50%;
 
-  h2 {
+  & h2 {
     color: var(--azulEscuroTexto);
     font-size: 48px;
     font-weight: 800;
   }
 
-  label {
+  & label {
     width: 100%;
   }
 
-  .div__input__name {
+  & .div__input__name {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
     gap: 1rem;
   }
-
 }
 
 .formulario__input {
+  font-size: 20px;
+  font-family: "Poppins", sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   background-color: var(--cinza);
   border-radius: 10px;
-  padding: 2rem;
+  padding: 1.2rem;
   border: none;
   outline: none;
   transition: all 0.5s;
@@ -368,7 +380,7 @@ nav {
 
 .formulario__input::placeholder {
   font-size: 20px;
-  font-family: "poppins", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .formulario__button {
@@ -415,8 +427,8 @@ nav {
     margin-bottom: 1.2rem;
   }
 
-  & p {
-    font-size: 24px;
+  & li {
+    font-size: 18px;
     color: #ffffff;
   }
 
@@ -424,7 +436,6 @@ nav {
     display: flex;
     flex-direction: column;
   }
-
 }
 
 .separacao-footer {
@@ -448,15 +459,14 @@ nav {
   }
 }
 
-@media screen and (max-width: 1920px) {
-
+@media screen and (max-width: 1440px) {
   .container {
     width: 1100px;
   }
 
   /* Header */
 
-  .atom {
+  .icon__raio {
     & img {
       width: 56px;
       height: 56px;
@@ -483,7 +493,6 @@ nav {
   /* Banner */
 
   .banner {
-
     & .banner-itens {
       gap: 0.4rem;
     }
@@ -530,15 +539,14 @@ nav {
   }
 
   .cards-negocio .card {
-    align-items: flex-start;
     gap: 0.5rem;
     padding: 1rem;
 
-    p {
+    & p {
       font-size: 16px;
     }
 
-    h1,
+    & h1,
     h2 {
       font-size: 20px;
     }
@@ -547,7 +555,6 @@ nav {
   /* Beneficios */
 
   .beneficios-esq {
-
     & .texto-beneficios {
       gap: 1rem;
 
@@ -564,13 +571,11 @@ nav {
         font-size: 20px;
       }
     }
-
   }
 
   /* Contate-nos */
 
   .contato {
-
     & .box-contato {
       gap: 2rem;
     }
@@ -587,7 +592,6 @@ nav {
         font-size: 32px;
         font-weight: 700;
       }
-
     }
   }
 
@@ -598,7 +602,7 @@ nav {
 
   .formulario__input::placeholder {
     font-size: 16px;
-    font-family: "poppins", sans-serif;
+    font-family: "Poppins", sans-serif;
   }
 
   .formulario__button {
@@ -620,17 +624,15 @@ nav {
       font-size: 22px;
     }
 
-    & p {
-      font-size: 18px;
+    & li {
+      font-size: 12px;
     }
-
   }
 
   .copyright {
-    & h1 {
+    & h2 {
       font-size: 16px;
       font-weight: 300;
     }
   }
-
 }
