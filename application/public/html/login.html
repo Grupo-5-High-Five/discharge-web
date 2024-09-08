@@ -10,65 +10,69 @@
       href="../../assets/logo_flavicon.svg"
       type="image/x-icon"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
   </head>
 
   <body>
-    <div class="container">
-      <div class="formulario">
-        <h1>BEM-VINDO DE VOLTA!</h1>
+    <main class="main-content">
+      <section class="formulario">
+        <div class="container">
 
-        <label for="input_email">
-          <div class="nomeInput">
-            <span>USER</span>
-          </div>
-          <input
-            type="email"
-            placeholder="usuario@email.com.br"
-            id="input_email"
-          />
-          <div class="icone">
-            <img src="../../assets/user-circle-svgrepo-com.svg" alt="" />
-          </div>
-        </label>
+         <div class="box_area">
 
-        <label for="input_senha">
-          <div class="nomeInput">
-            <span>SENHA</span>
-          </div>
-          <input type="password" placeholder="********" id="input_senha" />
-          <div class="icone">
-            <img
-              id="imagemSenha"
-              src="https://www.svgrepo.com/show/380007/eye-password-hide.svg"
-              alt=""
-              onclick="visualizarSenha()"
-            />
-          </div>
-        </label>
-        <p>esqueci a senha</p>
-        <div>
-          <button class="botaoEntrar">ENTRAR</button>
+          <!-- Mensagem de cadastro -->
+
+          <article class="cad_texto">
+            <div class="containerTexto">
+              <div class="texto">
+                <h2>QUERO UTILIZAR O DISCHARGE</h2>
+                <p>
+                  Se você ainda não possui uma conta, entre em contato com o administrador do sistema para criar um novo usuário e começar a utilizar o Discharge, a plataforma ideal para otimizar sua gestão de dados e processos.
+                </p>
+              </div>
+              <a href="./index.html#contatenos"><button class="botaoContato">CONTATE-NOS</button></a>
+            </div>
+          </article>
+
+          <form class="form">
+
+            <!-- Tittle -->
+            <h1>BEM-VINDO DE VOLTA!</h1>
+
+            <!-- Input - User -->
+            <span class="nomeInput">USER</span>
+            <label for="input_email">          
+              <input type="email" placeholder="usuario@email.com.br" id="input_email"/>
+              <div class="icone"><img src="../../assets/user-circle-svgrepo-com.svg" alt="" /></div>
+            </label>
+
+            <!-- Input - Senha -->
+
+            <span class="nomeInput">SENHA</span>
+            <label for="input_senha">
+              <input type="password" placeholder="********" id="input_senha" />
+              <div class="icone"><img class="imagem_senha" id="imagemSenha" src="https://www.svgrepo.com/show/380007/eye-password-hide.svg" alt="" onclick="visualizarSenha()"/></div>
+            </label>
+
+            <a href=""><p>Esqueceu sua senha</p></a>
+
+            <div>
+              <button type="submit" class="botaoEntrar">ENTRAR</button>
+            </div>
+
+          </form>
+
         </div>
-      </div>
-    </div>
-    <div class="image"></div>
-    <div class="conteudo">
-      <div class="logo">
-        <img src="../../assets/LOGO.svg" alt="" />
-      </div>
-      <div class="containerTexto">
-        <div class="texto">
-          <h1>FRASE DE EFEITO</h1>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt,
-            architecto cum aliquam quam voluptates facere sequi consequuntur
-            suscipit itaque illo aperiam obcaecati nihil, accusamus similique
-            commodi autem quod minima repellendus.
-          </p>
+
         </div>
-        <button>CADASTRE-SE</button>
-      </div>
-    </div>
+      </section>
+    </main>
+
   </body>
 </html>
 

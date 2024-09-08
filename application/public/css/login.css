@@ -1,161 +1,111 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
-
-
-body {
-    height: 100vh;
-    width: 100vw;
+:root {
+    --azulEscuro: #011526;
+    --amareloPrincipal: #f2c029;
+    --azulEscuroTexto: #011526;
+    --amareloDischarge: #f2ae2e;
+    --brancoBackground: #f2f2f2;
+    --branco: #ffffff;
+    --azulBackground: #011526;
+    --cinza: #d9d9d9;
+  }
+  
+  /* Configurações globais */
+  
+  * {
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-direction: row-reverse;
-    font-family: "Poppins", sans-serif;
-    font-style: normal;
-    overflow: hidden;
-    color: #D9D9D9;
-}
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+  }
 
-.image {
+.main-content {
     width: 100%;
-    height: 100%;
-    background-image: url('../../assets/image\ 9.png');
-    background-repeat: no-repeat;
-    position: relative;
-    z-index: 0;
-    background-size: contain;
 }
 
 .container {
-    background-color: #011526;
-    height: 100%;
-    width: 60%;
-    clip-path: polygon(100% 0, 100% 50%, 100% 100%, 0% 100%, 25% 50%, 0% 0%);
-    position: absolute;
-    z-index: 1;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
+    width: 1500px;
 }
+
+/* Fundo */
 
 .formulario {
-    height: 45%;
-    width: 60%;
     display: flex;
-    flex-direction: column;
-    padding-right: 10%;
-    padding-bottom: 100px;
     align-items: center;
-}
-
-h1 {
-    color: #F2C029;
-    font-weight: 600;
-    font-size: 40px;
-}
-
-label{
-    display: flex;
     justify-content: center;
-    align-items: center;
-    width: 350px;
-    height: 100%;
-    padding: 2%;
-    flex-direction: column;
-}
-
-.nomeInput{
+    flex-direction: row;
+    height: 100vh;
     width: 100%;
-    display: flex;
-    justify-content: left;
-}
-
-input {
-    width: 370px;
-    height: 40px;
-    border: solid black 2px;
-    border-radius: 100px;
-    padding: 1rem;
-    background-color: #D9D9D9;
+    background-color: var(--azulEscuro);
     position: relative;
-    font-size: 20px;
 }
 
-.icone{
-    display: flex;
-    justify-content: flex-end;
+.formulario::before {
+    content: "";
     position: absolute;
-    height: 40px;
-    width: 28%;
-    padding-top: 25px;
-    padding-left: 40px;
-    cursor: text;
+    top: 0;
+    right: 50%;
+    bottom: 0;
+    left: 0;
+    background-image: url("../../assets/fundo_login.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    clip-path: polygon(0% 0%, 70% 0, 100% 50%, 70% 100%, 0% 100%);
+    z-index: 1;
 }
 
-.icone img{
-    cursor: pointer;
-}
+/* Área que divide a Mensagem do Formulário */
 
-img{
-    height: 100%;
-}  
-
-p {
-    color: #D9D9D9;
-}
-
-span{
-    font-family: "Poppins", sans-serif;
-    font-weight: 400;
-    font-size: large;
-}
-
-.botaoEntrar {
-    width: 170px;
-    height: 55px;
-    color: #F2C029;
-    font-family: "Poppins", sans-serif;
-    font-weight: 600;
-    font-size: large;
-    background-color: #f2c02979;
-    border-radius: 100px;
-    border: none;
-    cursor: pointer;
-}
-
-.conteudo{
-    height: 100%;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.527);
-    position: absolute;
+.box_area {
+    font-family: 'Poppins', sans-serif;
     display: flex;
-    justify-content: flex-start;
-    flex-direction: column;
-}
-
-.containerTexto{
-    width: 45%;
-    height: 60%;
-    display: flex;
-    padding-top: 30px;
-    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
-    padding-left: 80px;
+    flex-direction: row;
+    gap: 2rem;
 }
 
-.texto{
-    width: 700px;
+/* Mensagem */
+
+.cad_texto {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 10%;
-    font-size: larger;
+    width: 42%;
+    z-index: 2;
+    position: relative;
+
+    & h2 {
+        color: var(--amareloPrincipal);
+        font-weight: 600;
+        font-size: 36px;
+    }
+
+    & p {
+        text-align: justify;
+        color: var(--branco);
+    }
+
+    & .containerTexto{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    & .texto{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem;
+        font-size: 24px;
+        gap: 2rem;
+    }
 }
 
-.containerTexto button{
-    width: 170px;
-    height: 55px;
-    color: #F2C029;
+.botaoContato{
+    padding: 1rem;
+    color: var(--amareloPrincipal);
     font-family: "Poppins", sans-serif;
     font-weight: 600;
     font-size: large;
@@ -163,17 +113,164 @@ span{
     border-radius: 100px;
     border: solid 2px;
     cursor: pointer;
+    transition: all 0.2s;
 }
 
-.logo{
-    padding: 20px;
+.botaoContato:hover {
+    color: var(--branco);
 }
 
-input:focus{
-    outline: 0;
+/* Formulário */
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40%;
+    z-index: 2;
+    position: relative;
+    gap: 1rem;
+
+    & h1 {
+        color: var(--amareloPrincipal);
+        font-weight: 600;
+        font-size: 42px;
+    }
+
+    & a {
+        color: var(--amareloPrincipal);
+        text-decoration: none;
+        transition: all 0.2s;
+    }
+
+    & a:hover {
+        color: var(--amareloDischarge);
+    }
 }
 
-.posicoesSenha{
-    background-color: #D9D9D9;
+.nomeInput{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    color: var(--branco);
+    font-size: 20px;
+    font-weight: 400;
+}
+
+label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+    
+    & input {
+        width: 100%;
+        padding: 1rem;
+        border-radius: 10px;
+        font-size: 20px;
+        background-color: var(--cinza);
+        border: none;
+        outline: none;
+        transition: all 0.2s;
+    }
+
+    & input:hover {
+        outline: solid 1px var(--amareloDischarge);
+    }
+    
+    & .icone{
+        left: 90%;
+        top: 50%;
+        transform: translateY(-50%);
+        position: absolute;
+        width: 32px;
+        height: 32px;
+    
+        img {
+            width: 100%;
+        }
+    
+        & .imagem_senha {
+            cursor: pointer;
+        }
+    }
+}
+
+.botaoEntrar {
+    padding: 1rem;
+    color: var(--amareloPrincipal);
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-size: large;
+    background-color: #f2c02979;
+    border-radius: 100px;
     border: none;
+    cursor: pointer;
+    transition: all 0.2s;
 }
+
+.botaoEntrar:hover {
+    color: var(--branco);
+    background-color: #f2c029a9;
+}
+
+@media screen and (max-width: 1860px) {
+    
+    .container {
+        width: 1200px;
+    }
+
+    /* Mensagem */
+
+.cad_texto {
+
+    & h2 {
+        font-size: 28px;
+    }
+    
+    & .texto {
+        padding: 2rem;
+        font-size: 18px;
+        gap: 2rem;
+    }
+}
+
+.botaoContato{
+    font-size: medium;
+}
+
+/* Formulário */
+
+.form {
+    gap: 1rem;
+
+    & h1 {
+        font-size: 32px;
+    }
+}
+
+.nomeInput{
+    font-size: 18px;
+}
+
+label {
+    
+    & input {
+        font-size: 16px;
+    }
+    
+    & .icone{
+        width: 28px;
+        height: 28px;
+    }
+}
+
+.botaoEntrar {
+    font-size: medium;
+}
+
+}
+
+
