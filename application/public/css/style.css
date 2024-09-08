@@ -637,3 +637,153 @@ nav {
     }
   }
 }
+
+@media screen and (max-width: 1160px) {
+  .container {
+    width: 900px;
+  }
+
+  /* Header */
+
+  .icon__raio {
+    & img {
+      width: 72px;
+      height: 72px;
+    }
+  }
+
+  nav {
+    height: 7vh;
+  }
+
+  /* Sobre nós */
+
+  .negocio {
+    flex-direction: column-reverse;
+    gap: 1rem;
+  }
+
+  .img-negocio {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .img-negocio img {
+    width: 70%;
+  }
+
+  .texto-negocio {
+    width: 100%;
+  }
+
+  .texto-negocio h1 {
+    font-size: 36px;
+  }
+
+  .cards-negocio {
+    flex-direction: column;
+  }
+
+  .cards-negocio .card {
+    width: 100%;
+  }
+
+  /* Beneficios */
+
+  .beneficios {
+    height: 80vh;
+    align-items: flex-end;
+  }
+
+  .beneficios::before {
+    left: 0;
+    bottom: 50%;
+    clip-path: polygon(50% 80%, 0 0, 100% 0);
+  }
+
+  .box-beneficios {
+    height: 50%;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .beneficios-esq {
+    height: 50%;
+    width: 100%;
+
+    & .texto-beneficios {
+      height: 50%;
+      gap: 2rem;
+      padding-bottom: 10%;
+      text-align: justify;
+
+      & h2 {
+        font-size: 42px;
+      }
+
+      & h3 {
+        font-size: 36px;
+      }
+
+      & p {
+        font-size: 32px;
+      }
+    }
+  }
+
+  /* Contate-nos */
+
+  .contato {
+    & .box-contato {
+      flex-direction: column;
+      gap: 0;
+    }
+
+    & .image-form {
+      height: 40%;
+      width: 100%;
+    }
+
+    & .formulario {
+      gap: 0;
+      width: 100%;
+      height: 60%;
+
+      & h2 {
+        font-size: 48px;
+      }
+    }
+  }
+
+  .formulario__input,  .formulario__button {
+    font-size: 24px;
+    padding: 1.5rem;
+  }
+
+  .formulario__input::placeholder {
+    font-size: 24px;
+  }
+
+  /* Footer */
+
+  .footer {
+    height: 20vh;
+  }
+}
+
+@media screen and (max-width: 920px) {
+
+  .container {
+    width: 700px;
+  }
+
+    /* Beneficios */
+
+    .beneficios-esq {
+  
+      & .texto-beneficios {
+        padding-bottom: 8%;
+      }
+    }
+
+}
