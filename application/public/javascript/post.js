@@ -1,5 +1,9 @@
+// Pegando parametro pelo url
+
 const params = new URLSearchParams(window.location.search);
 const index = params.get('index')
+
+// Esperando página carregar para inserir os textos
 
 document.addEventListener("DOMContentLoaded", () => {
 
