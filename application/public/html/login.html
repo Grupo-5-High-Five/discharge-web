@@ -1,80 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/login.css" />
+    <title>Discharge</title>
+    <link
+      rel="shortcut icon"
+      href="../../assets/logo_flavicon.svg"
+      type="image/x-icon"
+    />
+  </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/login.css">
-    <title>Login</title>
-</head>
-
-<body>
+  <body>
     <div class="container">
-        <div class="formulario">
-            <h1>BEM-VINDO DE VOLTA!</h1>
+      <div class="formulario">
+        <h1>BEM-VINDO DE VOLTA!</h1>
 
-            <label for="input_email">
-                <div class="nomeInput">
-                    <span>USER</span>
-                </div>
-                <input type="email" placeholder="usuario@email.com.br" id="input_email">
-                <div class="icone">
-                    <img src="../../assets/user-circle-svgrepo-com.svg" alt="">
-                </div>
-            </label>
+        <label for="input_email">
+          <div class="nomeInput">
+            <span>USER</span>
+          </div>
+          <input
+            type="email"
+            placeholder="usuario@email.com.br"
+            id="input_email"
+          />
+          <div class="icone">
+            <img src="../../assets/user-circle-svgrepo-com.svg" alt="" />
+          </div>
+        </label>
 
-            <label for="input_senha">
-                <div class="nomeInput">
-                    <span>SENHA</span>
-                </div>
-                <input type="password" placeholder="********" id="input_senha">
-                <div class="icone">
-                    <img id="imagemSenha" src="https://www.svgrepo.com/show/380007/eye-password-hide.svg" alt=""
-                        onclick="visualizarSenha()">
-                </div>
-            </label>
-            <p>esqueci a senha</p>
-            <div>
-                <button class="botaoEntrar">
-                    ENTRAR
-                </button>
-            </div>
+        <label for="input_senha">
+          <div class="nomeInput">
+            <span>SENHA</span>
+          </div>
+          <input type="password" placeholder="********" id="input_senha" />
+          <div class="icone">
+            <img
+              id="imagemSenha"
+              src="https://www.svgrepo.com/show/380007/eye-password-hide.svg"
+              alt=""
+              onclick="visualizarSenha()"
+            />
+          </div>
+        </label>
+        <p>esqueci a senha</p>
+        <div>
+          <button class="botaoEntrar">ENTRAR</button>
         </div>
+      </div>
     </div>
-    <div class="image">
-    </div>
+    <div class="image"></div>
     <div class="conteudo">
-        <div class="logo">
-            <img src="../../assets/LOGO.svg" alt="">
+      <div class="logo">
+        <img src="../../assets/LOGO.svg" alt="" />
+      </div>
+      <div class="containerTexto">
+        <div class="texto">
+          <h1>FRASE DE EFEITO</h1>
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt,
+            architecto cum aliquam quam voluptates facere sequi consequuntur
+            suscipit itaque illo aperiam obcaecati nihil, accusamus similique
+            commodi autem quod minima repellendus.
+          </p>
         </div>
-        <div class="containerTexto">
-            <div class="texto">
-                <h1>FRASE DE EFEITO</h1>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt, architecto cum aliquam quam
-                    voluptates facere sequi consequuntur suscipit itaque illo aperiam obcaecati nihil, accusamus
-                    similique commodi autem quod minima repellendus.</p>
-            </div>
-            <button>
-                CADASTRE-SE
-            </button>
-        </div>
+        <button>CADASTRE-SE</button>
+      </div>
     </div>
-
-</body>
-
+  </body>
 </html>
 
 <script>
-    function visualizarSenha() {
-        var image = document.getElementById("imagemSenha")
-        var input = document.getElementById("input_senha")
+  function visualizarSenha() {
+    var image = document.getElementById("imagemSenha");
+    var input = document.getElementById("input_senha");
 
-        if (image.src === "https://www.svgrepo.com/show/380007/eye-password-hide.svg") {
-            image.src = "https://www.svgrepo.com/show/380010/eye-password-show.svg"
-            input.type = "text"
-        } else if (image.src = "https://www.svgrepo.com/show/380010/eye-password-show.svg") {
-            image.src = "https://www.svgrepo.com/show/380007/eye-password-hide.svg"
-            input.type = "password"
-        }
+    if (
+      image.src === "https://www.svgrepo.com/show/380007/eye-password-hide.svg"
+    ) {
+      image.src = "https://www.svgrepo.com/show/380010/eye-password-show.svg";
+      input.type = "text";
+    } else if (
+      (image.src = "https://www.svgrepo.com/show/380010/eye-password-show.svg")
+    ) {
+      image.src = "https://www.svgrepo.com/show/380007/eye-password-hide.svg";
+      input.type = "password";
     }
+  }
 </script>
