@@ -596,12 +596,13 @@ nav {
   }
 
   .formulario__input {
+    font-size: 14px;
     width: 100%;
-    padding: 1.5rem;
+    padding: 1rem;
   }
 
   .formulario__input::placeholder {
-    font-size: 16px;
+    font-size: 14px;
     font-family: "Poppins", sans-serif;
   }
 
