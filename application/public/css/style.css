@@ -432,7 +432,7 @@ nav {
   background-image: url(../../assets/contato.png);
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: cover;
+  background-size: contain;
 }
 
 .formulario {
@@ -680,11 +680,6 @@ nav {
       gap: 2rem;
     }
 
-    & .image-form {
-      width: auto;
-      height: 320px;
-    }
-
     & .formulario {
       gap: 1rem;
       width: 50%;
@@ -831,7 +826,13 @@ nav {
     padding: 1rem;
 
     & .box-contato {
+      align-items: center;
       flex-direction: column;
+    }
+
+    & .image-form {
+      width: 400px;
+      height: 400px;
     }
 
     & .formulario {
@@ -866,6 +867,25 @@ nav {
     width: 90%;
   }
 
+  nav {
+    flex-direction: row-reverse;
+  }
+
+  .nav__mobile {
+    right: 0;
+    align-items: center;
+  }
+
+  .nav__mobile .entrar_destaque {
+    width: 100%;
+    text-align: center;
+    background-color: var(--amareloPrincipal);               
+  }
+
+  .nav__links .nav__mobile .entrar_destaque a{
+    color: var(--azulBackground);          
+  }
+
   .logo__mobile {
     display: flex;
   }
@@ -875,6 +895,10 @@ nav {
   }
 
   .nav__links__span {
+    display: none;
+  }
+
+  .background-btn-cadastro {
     display: none;
   }
 
@@ -898,6 +922,7 @@ nav {
     & .formulario {
       gap: 1.5rem;
     }
+    
   }
 
   .formulario__input,
