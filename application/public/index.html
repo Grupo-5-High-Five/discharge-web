@@ -18,17 +18,39 @@
   <header>
     <nav>
       <div class="nav__links">
+        <div class="menu">
+          <input type="checkbox" id="menu-toggle" class="menu-toggle">
+          <label for="menu-toggle" class="menu_img">
+            <img src="./assets/imgs/menu.svg" alt="Menu para design responsivo">
+          </label>
+          <ul class="nav__mobile">
+            <li><a href="index.html">Início</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="#sobrenos">Sobre nós</a></li>
+            <li><a href="index.html#contatenos">Fale Conosco</a></li>
+            <li class="entrar_destaque"><a href="login.html">Entrar</a></li>
+          </ul>
+        </div>
+        <span class="nav__links__span">
         <a href="index.html">
           <figure class="icon__raio">
             <img src="./assets/imgs/logo_branca.svg" alt="Logo raio" />
           </figure>
         </a>
-        <ul>
+        <ul class="nav__desktop">
           <li><a href="blog.html">Blog</a></li>
           <li><a href="#sobrenos">Sobre nós</a></li>
           <li><a href="index.html#contatenos">Fale Conosco</a></li>
         </ul>
-      </div>
+      </span>
+    </div>
+      <span class="logo__mobile">
+        <a href="index.html">
+        <figure class="icon__raio">
+          <img src="./assets/imgs/logo_branca.svg" alt="Logo raio" />
+        </figure>
+      </a>
+    </span>
       <a href="login.html" class="background-btn-cadastro">
         <div class="btn-cadastro">Entrar</div>
       </a>
@@ -59,7 +81,7 @@
               <img src="./assets/imgs/negocio.png" alt="imagem de usinas" />
             </div>
             <div class="texto-negocio">
-              <h1>Nosso negócio</h1>
+              <h2>Nosso negócio</h2>
               <p>
                 Estamos nos esforçando para entregar a melhor plataforma de
                 gestão para sua empresa. A
@@ -71,25 +93,25 @@
           </div>
           <div class="cards-negocio">
             <div class="card">
-              <h1>Energia</h1>
+              <h2>Energia</h2>
               <p>
                 No Brasil, a indústria metalúrgica enfrenta altos custos com energia, mas também possui uma grande oportunidade para aumentar sua eficiência. Através da análise de dados e práticas inovadoras, é possível reduzir despesas e melhorar a sustentabilidade.
               </p>
-              <a href="./blog.html"><h2>Saiba mais</h2></a>
+              <a href="./blog.html"><h3>Saiba mais</h3></a>
             </div>
             <div class="card">
-              <h1>Análise</h1>
+              <h2>Análise</h2>
               <p>
                 A indústria metalúrgica consome cerca de 35% da energia industrial no Brasil, há uma oportunidade crucial para melhorar a eficiência. Através da análise de dados e adoção de tecnologias avançadas, é possível reduzir custos e aumentar a sustentabilidade.
               </p>
-              <a href="./blog.html"><h2>Saiba mais</h2></a>
+              <a href="./blog.html"><h3>Saiba mais</h3></a>
             </div>
             <div class="card">
-              <h1>Gases</h1>
+              <h2>Gases</h2>
               <p>
                 Indústrias metalúrgicas são uma grande fonte de emissões de poluentes e enfrenta custos elevados devido ao uso de combustíveis fósseis. Com as metas governamentais cada vez mais rigorosas, como a redução de 37% das emissões até 2025.
               </p>
-              <a href="./blog.html"><h2>Saiba mais</h2></a>
+              <a href="./blog.html"><h3>Saiba mais</h3></a>
             </div>
           </div>
         </div>
@@ -98,8 +120,12 @@
 
     <section class="beneficios">
       <div class="container">
+        <figure class="ben_imagem_desktop"></figure>
         <div class="box-beneficios">
-          <div class="beneficios-esq">
+          <div class="beneficios__imagem">
+            <figure class="beneficios__imagem__card"></figure>
+          </div>
+          <div class="beneficios-text">
             <article class="texto-beneficios">
               <h2>Benefícios da Gestão de Energia</h2>
               <h3>Ajudando sua empresa a crescer</h3>
@@ -177,7 +203,7 @@
 
   <div class="separacao-footer"></div>
   <div class="copyright">
-    <h1>Copyright © Discharge | 2024</h1>
+    <h2>Copyright © Discharge | 2024</h2>
   </div>
 </body>
 
