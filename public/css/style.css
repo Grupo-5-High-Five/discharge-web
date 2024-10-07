@@ -901,6 +901,10 @@ nav {
     display: none;
   }
 
+  .nav__links .nav__mobile li:hover {
+    transform: scale(1.02);
+  }
+
   .beneficios-text {
     & .texto-beneficios {
       & h2 {
