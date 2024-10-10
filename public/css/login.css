@@ -40,18 +40,18 @@
 }
 
 .formulario::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 50%;
-    bottom: 0;
-    left: 0;
-    background-image: url("../assets/imgs/fundo_login.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    clip-path: polygon(0% 0%, 70% 0, 100% 50%, 70% 100%, 0% 100%);
-    z-index: 1;
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 50%;
+  bottom: 0;
+  left: 0;
+  background-image: url("../assets/imgs/fundo_login.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  clip-path: polygon(0% 0%, 70% 0, 100% 50%, 70% 100%, 0% 100%);
+  z-index: 1;
 }
 
 /* Área que divide a Mensagem do Formulário */
@@ -91,13 +91,13 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 1rem;
   }
 
   & .texto {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 2rem;
     font-size: 24px;
     gap: 2rem;
   }
@@ -225,9 +225,8 @@ label {
     }
 
     & .texto {
-      padding: 2rem;
       font-size: 18px;
-      gap: 2rem;
+      gap: 1rem;
     }
   }
 
@@ -262,5 +261,82 @@ label {
 
   .botaoEntrar {
     font-size: medium;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+
+  .formulario {
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .formulario::before {
+    display: none;
+  }
+
+  .box_area {
+    flex-direction: column-reverse;
+    justify-content: space-evenly;
+  }
+
+  .cad_texto,
+  .form {
+    width: 80%;
+    padding: 1rem;
+  }
+
+  .form {
+    & h1 {
+      font-size: 24px;
+    }
+  }
+
+  .cad_texto {
+    padding: 1rem;
+    position: relative;
+    background-image: url(../assets/imgs/fundo_login.png);
+    border-radius: 10px;
+
+    & h2 {
+      font-size: 16px;
+    }
+  }
+}
+
+@media screen and (max-width: 680px) {
+
+
+  .cad_texto,
+  .form {
+    width: 100%;
+  }
+
+  .form {
+    & h1 {
+      font-size: 20px;
+    }
+  }
+
+  .cad_texto,
+  .botaoContato {
+    & p {
+      font-size: 12px;
+    }
+  }
+
+  label {
+    & .icone {
+      left: 85%;
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) and (max-height: 732px) {
+  .formulario {
+    overflow-y: scroll;
+    overflow: hidden;
+    height: 100%;
+    padding: 3rem;
   }
 }
