@@ -83,7 +83,7 @@ nav {
   display: none;
   flex-direction: column;
   position: absolute;
-  top: 100%;
+  top: 95%;
   white-space: nowrap;
   background-color: var(--azulBackground);
   list-style-type: none;
@@ -366,13 +366,14 @@ nav {
 }
 
 @media screen and (max-width: 1860px) {
+
   /* Header */
 
   .icon__raio,
   .menu {
     & img {
-      width: 56px;
-      height: 56px;
+      width: 42px;
+      height: 42px;
     }
   }
 
@@ -467,6 +468,7 @@ nav {
 }
 
 @media screen and (max-width: 920px) {
+
   .container {
     width: 90%;
   }
@@ -518,6 +520,12 @@ nav {
         font-size: 20px;
       }
     }
+  }
+
+  /* Blogs */
+
+  .box_link {
+    height: 200px;
   }
 
   .blogs__box {
