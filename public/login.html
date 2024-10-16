@@ -65,6 +65,8 @@
                 <p>Esqueceu sua senha</p>
               </a>
 
+              <button onclick="entrar()" class="botaoEntrar">ENTRAR</button>
+
               <!-- Modal Email -->
               <div class="modal fade" id="modal_email" tabindex="-10" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -76,18 +78,18 @@
                       </button>
                     </div>
                     <div class="modal-body">
-                       <form>
+                      <form>
                         <p>
                           Você receberá um e-mail contendo um token necessário para a validação do seu cadastro. Por favor, verifique sua caixa de entrada e siga as instruções
-                          contidas no e-mail para concluir o processo de validação. Caso não encontre o e-mail na pasta principal, não se esqueça de verificar a pasta de spam ou lixo
-                          eletrônico.
+                          contidas no e-mail para concluir o processo de validação. Caso não encontre o e-mail na pasta principal, não se esqueça de verificar a pasta de spam ou
+                          lixo eletrônico.
                         </p>
                         <span class="tag_modal">Insira seu E-mail cadastrado:</span>
                         <label for="input_email_modal">
                           <input type="email" placeholder="usuario@email.com.br" id="input_email_modal" />
                           <div class="icone"><img src="./assets/imgs/user-circle-svgrepo-com.svg" alt="" /></div>
                         </label>
-                       </form>
+                      </form>
                     </div>
                     <div class="modal-footer">
                       <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button> -->
@@ -104,8 +106,8 @@
                     <div class="modal-header">
                       <h5 class="modal-title" id="TituloModalCentralizado">Insira sua nova senha</h5>
                       <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"> -->
-                        <!-- <span aria-hidden="true">&times;</span> -->
-                      </button>
+                      <!-- <span aria-hidden="true">&times;</span> -->
+                      <!-- </button> -->
                     </div>
                     <div class="modal-body">
                       <!-- Input - User -->
@@ -132,10 +134,6 @@
                     </div>
                   </div>
                 </div>
-              </div>
-
-              <div>
-                <button onclick="entrar()" class="botaoEntrar">ENTRAR</button>
               </div>
             </form>
           </div>
