@@ -22,8 +22,8 @@
   width: 100%;
 }
 
-.container {
-  width: 90%;
+.container-login {
+  width: 80%;
 }
 
 /* Fundo */
@@ -51,7 +51,7 @@
   background-position: center;
   background-repeat: no-repeat;
   clip-path: polygon(0% 0%, 70% 0, 100% 50%, 70% 100%, 0% 100%);
-  z-index: 1;
+  /* z-index: 1; */
 }
 
 /* Área que divide a Mensagem do Formulário */
@@ -72,7 +72,7 @@
   flex-direction: column;
   align-items: center;
   width: 42%;
-  z-index: 2;
+  /* z-index: 2; */
   position: relative;
 
   & h2 {
@@ -127,7 +127,7 @@
   flex-direction: column;
   align-items: center;
   width: 40%;
-  z-index: 2;
+  /* z-index: 2; */
   position: relative;
   gap: 1rem;
 
@@ -148,13 +148,31 @@
   }
 }
 
-.nomeInput {
+.btn-amarelo {
+  background-color: var(--amareloDischarge) !important;
+  border: none !important;
+}
+
+.btn-amarelo:focus {
+  box-shadow: 0px 0px 1px 4px #ffa600b9 !important;
+}
+
+.btn-amarelo:hover {
+  background-color: var(--amareloPrincipal) !important;
+}
+
+.nomeInput,
+.tag_modal {
   width: 100%;
   display: flex;
   justify-content: flex-start;
   color: var(--branco);
   font-size: 20px;
   font-weight: 400;
+}
+
+.tag_modal {
+  color: var(--azulBackground) !important;
 }
 
 label {
@@ -265,6 +283,9 @@ label {
 }
 
 @media screen and (max-width: 1024px) {
+  .container-login {
+    width: 100%;
+  }
 
   .formulario {
     text-align: center;
@@ -305,8 +326,6 @@ label {
 }
 
 @media screen and (max-width: 680px) {
-
-
   .cad_texto,
   .form {
     width: 100%;
