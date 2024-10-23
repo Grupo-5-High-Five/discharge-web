@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Discharge</title>
+    <link rel="shortcut icon" href="./../assets/icon/logo_flavicon.svg" type="image/x-icon" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="./../css/home.css" />
+  </head>
+
+  <body>
+    <main>
+      <nav>
+        <ul>
+          <div class="ul_espacamento">
+            <a class="link_dash" href="./home.html"
+              ><li><img src="./../assets/imgs/pos-login/botao-de-inicio.png" alt="home" /></li
+            ></a>
+          </div>
+          <div class="ul_espacamento">
+            <a class="link_dash" href="./dashboard.html"
+              ><li><img src="./../assets/imgs/pos-login/grafico-de-pizza.png" alt="dashboard" /></li
+            ></a>
+            <a class="link_dash" href=""
+              ><li><img src="./../assets/imgs/pos-login/estrela.png" alt="métricas" /></li
+            ></a>
+            <a class="link_dash" href=""
+              ><li><img src="./../assets/imgs/pos-login/escola-do-sino.png" alt="histórico de recomendações" /></li
+            ></a>
+            <a class="link_dash" href=""
+              ><li><img src="./../assets/imgs/pos-login/contexto.png" alt="configurações" /></li
+            ></a>
+            <a class="link_dash" href=""
+              ><li><img src="./../assets/imgs/pos-login/sair.png" alt="sair" /></li
+            ></a>
+          </div>
+        </ul>
+      </nav>
+      <div class="content_dash">
+        <section class="banner">
+          <div class="container_dash">
+            <div class="banner_content">
+              <h1>Bem-vindo de volta!</h1>
+              <div class="banner_text">
+                <h2>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus ducimus ex laudantium quo eveniet. Expedita cupiditate, fugit architecto sequi, nobis temporibus
+                  nostrum nam quis molestiae, vel autem tempore excepturi culpa?
+                </h2>
+                <p>Última recomendação - Gemini</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="carrossel">
+          <div class="swiper">
+            <!-- <div class="swiper-wrapper">
+              <div class="swiper-slide">Slide 1</div>
+              <div class="swiper-slide">Slide 2</div>
+              <div class="swiper-slide">Slide 3</div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-scrollbar"></div> -->
+          </div>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+  const swiper = new Swiper(".swiper", {
+    direction: "horizontal",
+    loop: true,
+
+    pagination: {
+      el: ".swiper-pagination",
+    },
+
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+
+    scrollbar: {
+      el: ".swiper-scrollbar",
+    },
+  });
+</script>
