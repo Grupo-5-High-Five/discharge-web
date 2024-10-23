@@ -34,6 +34,56 @@ function cadastrar(req, res) {
     }
 }
 
+function listar(req, res) {
+    var fkEmpresa = req.params.fkEmpresa
+    metricasModel.listar(fkEmpresa).then((resultado) => {
+        res.status(200).json(resultado);
+    });
+}
+
+function editarMetrica(req, res) {
+    var energiaMaxima = req.body.energiaMaxima;
+    var co2Maximo = req.body.co2Maximo;
+    var fkEmpresa = req.params.fkEmpresa
+
+
+    metricasModel.editarMetrica(energiaMaxima, co2Maximo, fkEmpresa)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        )
+        .catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar o post: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+
+}
+
+function deletar(req, res) {
+    var fkEmpresa = req.params.fkEmpresa
+
+    metricasModel.deletar(fkEmpresa)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        )
+        .catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao deletar o post: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
 module.exports = {
-    cadastrar
+    cadastrar,
+    listar,
+    editarMetrica,
+    deletar
 }
