@@ -1,6 +1,6 @@
-if (new URLSearchParams(window.location.search).has(`${sessionStorage.getItem("token")}`)) {
-  $("#modal_senha").modal("show");
-}
+// if (false) {
+//   $("#modal_senha").modal("show");
+// }
 
 function visualizarSenha() {
   var image = document.getElementById("imagemSenha");
@@ -69,4 +69,36 @@ function entrar() {
 
     return false;
   }
+}
+
+function enviarEmail() {
+  event.preventDefault();
+
+  const email = input_email_modal.value;
+
+  console.log(email)
+
+  fetch("/usuario/emailEnviar", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      email: email
+    })
+  })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        alert("E-mail de recuperação enviado!");
+        $("#modal_email").modal("hide");
+        $("#modal_senha").modal("show");
+      } else {
+        alert("Erro ao enviar e-mail.");
+      }
+    })
+    .catch(error => {
+      console.log(error.message)
+      alert("Erro: " + error.message);
+    });
 }

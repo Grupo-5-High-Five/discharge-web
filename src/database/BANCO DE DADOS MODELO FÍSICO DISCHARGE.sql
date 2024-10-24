@@ -95,9 +95,8 @@ VALUES
 INSERT INTO funcionario (nome, email, cpf, cargo, senha, fkEmpresa) 
 VALUES 
 ('carla', 'joao@te31solutions.com', '11345678900', 'gerente', 'senha1313', 1),
-('Jorge', 'maria@44ergycorp.com', '93765432100', 'funcionario', 'senha423', 1);
+('Jorge', 'luzgustavo176@gmail.com', '93765432100', 'funcionario', 'senha423', 1);
 
 
 select * from funcionario;
-
-UPDATE funcionario SET statusFuncionario = "ativo";
+select * from metrica;

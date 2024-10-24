@@ -8,6 +8,10 @@ router.post("/cadastrar/:fkEmpresa", function (req, res) {
     usuarioController.cadastrar(req, res);
 })
 
+router.post("/emailEnviar", function (req, res) {
+    usuarioController.emailEnviar(req, res);
+})
+
 router.get("/listarFuncionarios/:fkEmpresa", function (req, res) {
     usuarioController.listar(req, res);
 })

@@ -1,5 +1,6 @@
 var usuarioModel = require("../models/usuarioModel");
 
+
 function autenticar(req, res) {
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
@@ -125,10 +126,43 @@ function mudarCargo(req, res) {
 
 }
 
+
+function emailEnviar(req, res) {
+    var email = req.body.email; // E-mail enviado pelo cliente
+
+    if (email == undefined) {
+        res.status(400).send("O e-mail está indefinido!");
+    } else {
+        // Primeiro, validar se o e-mail existe no banco
+        usuarioModel.validarEmail(email)
+            .then(function(resultadoValidacao) {
+                if (resultadoValidacao.length > 0) {
+                    // Se o e-mail for encontrado, enviar o e-mail
+                    usuarioModel.emailEnviar(email)
+                        .then(function(resultadoEnvio) {
+                            res.status(200).send("E-mail enviado com sucesso!");
+                        })
+                        .catch(function(erroEnvio) {
+                            console.log(erroEnvio);
+                            res.status(500).json("Erro ao enviar o e-mail: " + erroEnvio);
+                        });
+                } else {
+                    // Se o e-mail não for encontrado no banco de dados
+                    res.status(404).send("E-mail não cadastrado!");
+                }
+            })
+            .catch(function(erroValidacao) {
+                console.log(erroValidacao);
+                res.status(500).json("Erro ao verificar o e-mail: " + erroValidacao);
+            });
+    }
+}
+
 module.exports = {
     autenticar,
     cadastrar,
     listar,
     desativarFuncionario,
-    mudarCargo
+    mudarCargo,
+    emailEnviar
 }
