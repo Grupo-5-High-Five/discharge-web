@@ -12,6 +12,10 @@ router.post("/emailEnviar", function (req, res) {
     usuarioController.emailEnviar(req, res);
 })
 
+router.post("/atualizarSenha", function (req, res) {
+    usuarioController.atualizarSenha(req, res);
+})
+
 router.get("/listarFuncionarios/:fkEmpresa", function (req, res) {
     usuarioController.listar(req, res);
 })

@@ -9,7 +9,39 @@ var mySqlConfig = {
     port: process.env.DB_PORT
 };
 
-function executar(instrucao) {
+// function executar(instrucao) {
+
+//     if (process.env.AMBIENTE_PROCESSO !== "producao" && process.env.AMBIENTE_PROCESSO !== "desenvolvimento") {
+//         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM .env OU dev.env OU app.js\n");
+//         return Promise.reject("AMBIENTE NÃO CONFIGURADO EM .env");
+//     }
+
+//     return new Promise(function (resolve, reject) {
+//         var conexao = mysql.createConnection(mySqlConfig);
+//         conexao.connect(function (err) {
+//             if (err) {
+//                 return reject("Erro ao conectar ao MySQL: " + err);
+//             }
+//         });
+
+//         // Aqui, agora estamos passando o parâmetro 'instrucao' e o 'params' para a consulta
+//         conexao.query(instrucao, function (erro, resultados) {
+//             conexao.end();
+//             if (erro) {
+//                 return reject(erro);
+//             }
+//             console.log(resultados);
+//             resolve(resultados);
+//         }.bind(this), [params]); // bind this para que 'this' aponte para o contexto correto
+//         conexao.on('error', function (erro) {
+//             console.error("ERRO NO MySQL SERVER: ", erro.sqlMessage);
+//             return reject(erro);
+//         });
+//     });
+// }
+
+
+function executar(instrucao, params = []) { // Adicionando params como segundo argumento
 
     if (process.env.AMBIENTE_PROCESSO !== "producao" && process.env.AMBIENTE_PROCESSO !== "desenvolvimento") {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM .env OU dev.env OU app.js\n");
@@ -18,17 +50,25 @@ function executar(instrucao) {
 
     return new Promise(function (resolve, reject) {
         var conexao = mysql.createConnection(mySqlConfig);
-        conexao.connect();
-        conexao.query(instrucao, function (erro, resultados) {
+        conexao.connect(function (err) {
+            if (err) {
+                return reject("Erro ao conectar ao MySQL: " + err);
+            }
+        });
+
+        // Passando 'params' corretamente para a consulta
+        conexao.query(instrucao, params, function (erro, resultados) {
             conexao.end();
             if (erro) {
-                reject(erro);
+                return reject(erro);
             }
             console.log(resultados);
             resolve(resultados);
         });
+
         conexao.on('error', function (erro) {
-            return ("ERRO NO MySQL SERVER: ", erro.sqlMessage);
+            console.error("ERRO NO MySQL SERVER: ", erro.sqlMessage);
+            return reject(erro);
         });
     });
 }

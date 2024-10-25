@@ -1,10 +1,32 @@
-// if (false) {
-//   $("#modal_senha").modal("show");
-// }
-
 function visualizarSenha() {
   var image = document.getElementById("imagemSenha");
   var input = document.getElementById("input_senha");
+
+  if (image.src === "https://www.svgrepo.com/show/380007/eye-password-hide.svg") {
+    image.src = "https://www.svgrepo.com/show/380010/eye-password-show.svg";
+    input.type = "text";
+  } else if ((image.src = "https://www.svgrepo.com/show/380010/eye-password-show.svg")) {
+    image.src = "https://www.svgrepo.com/show/380007/eye-password-hide.svg";
+    input.type = "password";
+  }
+}
+
+function visualizarSenhaModal() {
+  var image = document.getElementById("imagemSenhaModal");
+  var input = document.getElementById("input_nova_senha_modal");
+
+  if (image.src === "https://www.svgrepo.com/show/380007/eye-password-hide.svg") {
+    image.src = "https://www.svgrepo.com/show/380010/eye-password-show.svg";
+    input.type = "text";
+  } else if ((image.src = "https://www.svgrepo.com/show/380010/eye-password-show.svg")) {
+    image.src = "https://www.svgrepo.com/show/380007/eye-password-hide.svg";
+    input.type = "password";
+  }
+}
+
+function visualizarConfirmarSenhaModal() {
+  var image = document.getElementById("imagemConfirmarSenhaModal");
+  var input = document.getElementById("input_confirmar_nova_senha_modal");
 
   if (image.src === "https://www.svgrepo.com/show/380007/eye-password-hide.svg") {
     image.src = "https://www.svgrepo.com/show/380010/eye-password-show.svg";
@@ -27,7 +49,7 @@ function entrar() {
     console.log("FORM LOGIN: ", emailVar);
     console.log("FORM SENHA: ", senhaVar);
 
-    fetch("/usuarios/autenticar", {
+    fetch("/usuario/autenticar", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -50,9 +72,8 @@ function entrar() {
             sessionStorage.NOME_USUARIO = json.nome;
             sessionStorage.ID_USUARIO = json.id;
 
-            setTimeout(function () {
-              window.location = "./dashboard/dashboard.html";
-            }, 1000); // apenas para exibir o loading
+            window.location = "./dashboard/dashboard.html";
+
           });
         } else {
           console.log("Houve um erro ao tentar realizar o login!");
@@ -72,11 +93,9 @@ function entrar() {
 }
 
 function enviarEmail() {
-  event.preventDefault();
+  event.preventDefault(); // Previne o comportamento padrão do envio do formulário
 
   const email = input_email_modal.value;
-
-  console.log(email)
 
   fetch("/usuario/emailEnviar", {
     method: "POST",
@@ -87,7 +106,12 @@ function enviarEmail() {
       email: email
     })
   })
-    .then(response => response.json())
+    .then(response => {
+      if (!response.ok) { // Verifica se a resposta não foi bem-sucedida
+        throw new Error("Erro ao enviar e-mail");
+      }
+      return response.json(); // Retorna o corpo da resposta como JSON
+    })
     .then(data => {
       if (data.success) {
         alert("E-mail de recuperação enviado!");
@@ -98,7 +122,50 @@ function enviarEmail() {
       }
     })
     .catch(error => {
-      console.log(error.message)
+      console.log(error.message);
       alert("Erro: " + error.message);
     });
+}
+
+
+function atualizarSenha() {
+  event.preventDefault();
+
+  const novaSenha = input_nova_senha_modal.value;
+  const confirmacaoNovaSenha = input_confirmar_nova_senha_modal.value;
+  const tokenRecuperacao = input_token.value;
+
+  if (novaSenha != confirmacaoNovaSenha) {
+    alert("As senhas estão diferentes")
+  } else {
+
+    fetch("usuario/atualizarSenha", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        tokenRecuperacao: tokenRecuperacao,
+        novaSenha: novaSenha
+      })
+    })
+      .then(response => {
+        if (!response.ok) { // Verifica se a resposta não foi bem-sucedida
+          throw new Error("Erro ao alterar a senha");
+        }
+        return response.json(); // Retorna o corpo da resposta como JSON
+      })
+      .then(data => {
+        if (data.success) {
+          alert("Senha alterada com sucesso!");
+          $("#modal_senha").modal("hide");
+        } else {
+          alert("Erro ao alterar a senha.");
+        }
+      })
+      .catch(error => {
+        console.log(error.message);
+        alert("Erro: " + error.message);
+      });
+  }
 }

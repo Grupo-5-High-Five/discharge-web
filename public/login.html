@@ -121,24 +121,25 @@
                     <form>
                       <span class="tag_modal">Token:</span>
                       <label for="input_token">
-                        <input type="text" placeholder="token" id="input_token" />
+                        <input type="text" placeholder="TOKEN" id="input_token" />
                       </label>
                       <span class="tag_modal">Nova senha:</span>
                       <label for="input_nova_senha_modal">
-                        <input type="text" placeholder="senha" id="input_nova_senha_modal" />
-                        <div class="icone"><img src="./assets/imgs/user-circle-svgrepo-com.svg" alt="" /></div>
+                        <input type="text" placeholder="Senha" id="input_nova_senha_modal" />
+                        <div class="icone"><img src="https://www.svgrepo.com/show/380007/eye-password-hide.svg" alt=""
+                            onclick="visualizarSenhaModal()" id="imagemSenhaModal" /></div>
                       </label>
                       <span class="tag_modal">Confirmar nova senha:</span>
                       <label for="input_confirmar_nova_senha_modal">
-                        <input type="text" placeholder="confirmar senha" id="input_confirmar_senha" />
-                        <div class="icone"><img src="https://www.svgrepo.com/show/380007/eye-password-hide.svg"
-                            alt="" /></div>
+                        <input type="text" placeholder="Confirmar Senha" id="input_confirmar_nova_senha_modal" />
+                        <div class="icone"><img src="https://www.svgrepo.com/show/380007/eye-password-hide.svg" alt=""
+                            onclick="visualizarConfirmarSenhaModal()" id="imagemConfirmarSenhaModal" /></div>
                       </label>
                     </form>
                   </div>
                   <div class="modal-footer">
                     <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button> -->
-                    <button type="button" class="btn btn-primary btn-amarelo">Enviar</button>
+                    <button type="button" class="btn btn-primary btn-amarelo" onclick="atualizarSenha()">Enviar</button>
                   </div>
                 </div>
               </div>
