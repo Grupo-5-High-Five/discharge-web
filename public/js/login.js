@@ -97,7 +97,7 @@ function enviarEmail() {
 
   const email = input_email_modal.value;
 
-  fetch("/usuario/emailEnviar", {
+  fetch("usuario/emailEnviar", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"

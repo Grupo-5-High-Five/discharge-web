@@ -107,32 +107,6 @@ function guardarInfos(email, token, dataExpiracao) {
     return database.executar(instrucaoSql, [email, token, dataExpiracao, token, dataExpiracao]); // Passando os parâmetros
 }
 
-
-// function validarToken(tokenRecuperacao) {
-//     console.log("analizando o token" + tokenRecuperacao)
-//     return new Promise((resolve, reject) => {
-//         const instrucaoSql = `SELECT * FROM tokens_recuperacao WHERE token = ? AND data_expiracao > NOW()`;
-//         database.executar(instrucaoSql, [tokenRecuperacao])
-//             .then(resultado => {
-//                 if (resultado.length > 0) {
-//                     // Token válido
-//                     console.log("cheguei aqui")
-//                     const valor = resultado[0]
-//                     console.log(resultado[0])
-//                     resolve(valor); // Retorna os dados do token
-//                 } else {
-//                     // Token inválido ou expirado
-//                     reject(new Error("Token inválido ou expirado."));
-//                 }
-//             })
-//             .catch(err => {
-//                 console.error("Erro ao validar token: ", err);
-//                 reject(err);
-//             });
-//     });
-
-// }
-
 function validarToken(tokenRecuperacao) {
     console.log("Analisando o token: " + tokenRecuperacao);
     
@@ -171,7 +145,6 @@ function atualizarSenha(email, novaSenha) {
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql, [novaSenha, email]); // Passando parâmetros
 }
-
 
 function romoverToken(email, tokenRecuperacao) {
     return new Promise((resolve, reject) => {
