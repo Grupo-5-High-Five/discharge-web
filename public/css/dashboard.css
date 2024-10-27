@@ -15,13 +15,22 @@
 
 main {
   background-color: var(--fundo);
+  width: 100%;
+  height: 100%;
   display: flex;
+  flex-direction: row;
 }
+
+.container {
+  width: 90%;
+}
+
+/* Navbar */
 
 nav {
   display: flex;
   background-color: var(--azul);
-  position: sticky;
+  position: fixed;
   height: 100vh;
   width: 5%;
 }
@@ -58,43 +67,71 @@ ul {
 
 li {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   width: 100%;
   gap: 1rem;
 }
 
-section {
+/* Conteúdo da Dashbord */
+
+.global {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: var(--fundo);
+  align-items: flex-end;
   width: 100%;
   height: 100vh;
+  background-color: var(--fundo);
+  /* gap: 1rem; */
 }
 
-#title img {
-  width: 3%;
-  cursor: pointer;
+.kpis,
+.dash {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 95%;
 }
 
-#title {
+.kpi-content,
+.dash-content,
+.pasta-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* Kpis */
+
+.title {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 1rem;
-  padding-bottom: 0rem;
-  height: max-content;
+  align-items: center;
+  width: 100%;
+
+  & h1 {
+    padding: 0.5rem;
+  }
+
+  & img {
+    width: 3%;
+    cursor: pointer;
+    padding: 0.5rem;
+  }
 }
 
-.container-kpi {
+.grid-kpi {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   justify-items: center;
   align-items: center;
   gap: 1rem;
-  padding: 1rem;
+  width: 100%;
 }
 
 .kpi {
@@ -110,6 +147,7 @@ section {
   box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
   border-left: solid #f62626;
   border-width: 7px;
+  /* padding: 0.5rem 0.75rem; */
 }
 
 .energia {
@@ -155,11 +193,20 @@ section {
   transform: translateX(-135%);
 }
 
+.troca-pasta.ativo {
+  background-color: #011526;
+  color: var(--fundo);
+}
+
+/* Menu de navegação - Dash's */
+
 .pasta {
-  padding-top: 1rem;
+  display: flex;
+  justify-content: center;
   border-bottom: solid;
   border-width: 0.15rem;
   height: max-content;
+  width: 95%;
 }
 
 .troca-pasta {
@@ -175,12 +222,7 @@ section {
   margin-left: 1rem;
 }
 
-.ativo {
-  background-color: var(--azul);
-  color: var(--fundo);
-}
-
-#dash-financeiro-inferior {
+/* #dash-financeiro-inferior {
   display: none;
   grid-template-columns: 1fr 2fr;
   padding: 1rem;
@@ -199,6 +241,21 @@ section {
   gap: 0.5rem;
 }
 
+.container-kpi-financeiro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+} */
+
+.grid-dash {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 2fr;
+  align-items: center;
+  justify-items: center;
+  gap: 1rem;
+}
+
 .grafico {
   display: flex;
   justify-content: center;
@@ -206,22 +263,7 @@ section {
   background-color: white;
   border-radius: 12px;
   width: 90%;
+  height: 100%;
   box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
+  /* padding: 0rem 0.75rem; */
 }
-
-.container-kpi-financeiro {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  justify-items: center;
-}
-
-#dash-tecnico-inferior {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 2fr;
-  align-items: center;
-  justify-items: center;
-  padding: 1rem;
-  gap: 1rem;
-}
-

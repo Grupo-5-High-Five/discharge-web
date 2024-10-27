@@ -11,198 +11,213 @@
 
   <body>
     <main>
-    <nav>
-      <ul>
-        <div class="ul_espacamento">
-          <a class="link_dash" href="./home.html"
-            ><li><img src="./../assets/imgs/pos-login/botao-de-inicio.png" alt="home" /></li
-          ></a>
-        </div>
-        <div class="ul_espacamento">
-          <a class="link_dash" href="./dashboard.html"
-            ><li><img src="./../assets/imgs/pos-login/grafico-de-pizza.png" alt="dashboard" /></li
-          ></a>
-          <a class="link_dash" href=""
-            ><li><img src="./../assets/imgs/pos-login/estrela.png" alt="métricas" /></li
-          ></a>
-          <a class="link_dash" href=""
-            ><li><img src="./../assets/imgs/pos-login/escola-do-sino.png" alt="histórico de recomendações" /></li
-          ></a>
-          <a class="link_dash" href=""
-            ><li><img src="./../assets/imgs/pos-login/contexto.png" alt="configurações" /></li
-          ></a>
-          <a class="link_dash" href=""
-            ><li><img src="./../assets/imgs/pos-login/sair.png" alt="sair" /></li
-          ></a>
-        </div>
-      </ul>
-    </nav>
-    <section>
-      <div id="title">
-        <h1>Visão Eficiência Energética</h1>
-        <img src="./../assets/imgs/pos-login/pergunta-para-fazer-login-em-circulos.png" alt="Glossário" />
-      </div>
-
-      <div class="container-kpi">
-        <div class="kpi">
-          <div class="conteudo-kpi">
-            <span class="titulo-kpi">Emissão de CO2 (tCO2)</span>
-            <span class="info-kpi">7</span>
-            <img class="icon-kpi" src="./../assets/imgs/pos-login/iconco2.png" alt="co2" />
+      <nav>
+        <ul>
+          <div class="ul_espacamento">
+            <a class="link_dash" href="./home.html"
+              ><li><img src="./../assets/imgs/pos-login/botao-de-inicio.png" alt="home" /></li
+            ></a>
           </div>
-        </div>
-
-        <div class="kpi">
-          <span class="titulo-kpi">Previsão emissão de CO2 (tCO2)</span>
-          <div class="conteudo-kpi">
-            <span class="info-kpi">7</span>
-            <img class="icon-kpi" src="./../assets/imgs/pos-login/iconco2.png" alt="co2" />
+          <div class="ul_espacamento">
+            <a class="link_dash" href="./dashboard.html"
+              ><li><img src="./../assets/imgs/pos-login/grafico-de-pizza.png" alt="dashboard" /></li
+            ></a>
+            <a class="link_dash" href=""
+              ><li><img src="./../assets/imgs/pos-login/estrela.png" alt="métricas" /></li
+            ></a>
+            <a class="link_dash" href=""
+              ><li><img src="./../assets/imgs/pos-login/escola-do-sino.png" alt="histórico de recomendações" /></li
+            ></a>
+            <a class="link_dash" href=""
+              ><li><img src="./../assets/imgs/pos-login/contexto.png" alt="configurações" /></li
+            ></a>
+            <a class="link_dash" href=""
+              ><li><img src="./../assets/imgs/pos-login/sair.png" alt="sair" /></li
+            ></a>
           </div>
-        </div>
+        </ul>
+      </nav>
+      <section class="global">
+        <section class="kpis">
+          <div class="container">
+            <div class="kpi-content">
+              <div class="title">
+                <h1>Visão Eficiência Energética</h1>
+                <img src="./../assets/imgs/pos-login/pergunta-para-fazer-login-em-circulos.png" alt="Glossário" />
+              </div>
 
-        <div class="kpi">
-          <span class="titulo-kpi">Reincidência ultrapassagem de limite</span>
-          <div class="conteudo-kpi">
-            <span class="info-kpi">7</span>
-            <img class="icon-kpi" src="./../assets/imgs/pos-login/iconco2.png" alt="co2" />
-          </div>
-        </div>
-        <div class="kpi energia">
-          <span class="titulo-kpi">Consumo Energia (KWh)</span>
-          <div class="conteudo-kpi">
-            <span class="info-kpi">7</span>
-            <img class="icon-kpi" src="./../assets/imgs/pos-login/iconraio.png" alt="energia" />
-          </div>
-        </div>
+              <div class="grid-kpi">
+                <div class="kpi">
+                  <div class="conteudo-kpi">
+                    <span class="titulo-kpi">Emissão de CO2 (tCO2)</span>
+                    <span class="info-kpi">7</span>
+                    <img class="icon-kpi" src="./../assets/imgs/pos-login/iconco2.png" alt="co2" />
+                  </div>
+                </div>
 
-        <div class="kpi energia">
-          <span class="titulo-kpi">Previsão Consumo Energia (KWh)</span>
-          <div class="conteudo-kpi">
-            <span class="info-kpi">7</span>
-            <img class="icon-kpi" src="./../assets/imgs/pos-login/iconraio.png" alt="energia" />
-          </div>
-        </div>
+                <div class="kpi">
+                  <span class="titulo-kpi">Previsão emissão de CO2 (tCO2)</span>
+                  <div class="conteudo-kpi">
+                    <span class="info-kpi">7</span>
+                    <img class="icon-kpi" src="./../assets/imgs/pos-login/iconco2.png" alt="co2" />
+                  </div>
+                </div>
 
-        <div class="kpi energia">
-          <span class="titulo-kpi">Desperdício Energia (KWh)</span>
-          <div class="conteudo-kpi">
-            <span class="info-kpi">7</span>
-            <img class="icon-kpi" src="./../assets/imgs/pos-login/iconraio.png" alt="energia" />
-          </div>
-        </div>
-      </div>
-      <div class="pasta">
-        <button class="troca-pasta ativo" onclick="acionarTecnico()" id="botaoTecnico">Técnico</button>
-        <!-- <button class="troca-pasta" onclick="acionarFinanceiro()" id="botaoFinanceiro">Financeiro</button> -->
-      </div>
+                <div class="kpi">
+                  <span class="titulo-kpi">Reincidência ultrapassagem de limite</span>
+                  <div class="conteudo-kpi">
+                    <span class="info-kpi">7</span>
+                    <img class="icon-kpi" src="./../assets/imgs/pos-login/iconco2.png" alt="co2" />
+                  </div>
+                </div>
+                <div class="kpi energia">
+                  <span class="titulo-kpi">Consumo Energia (KWh)</span>
+                  <div class="conteudo-kpi">
+                    <span class="info-kpi">7</span>
+                    <img class="icon-kpi" src="./../assets/imgs/pos-login/iconraio.png" alt="energia" />
+                  </div>
+                </div>
 
-      <div id="dash-financeiro-inferior">
-        <div class="dash-financeiro-esquerda">
-          <div class="kpi financeiro">
-            <span class="titulo-kpi">Gasto Energia(R$)</span>
-            <div class="conteudo-kpi">
-              <span class="info-kpi">7</span>
-              <img class="icon-kpi" src="./../assets/imgs/pos-login/iconmoeda.png" alt="moeda" />
+                <div class="kpi energia">
+                  <span class="titulo-kpi">Previsão Consumo Energia (KWh)</span>
+                  <div class="conteudo-kpi">
+                    <span class="info-kpi">7</span>
+                    <img class="icon-kpi" src="./../assets/imgs/pos-login/iconraio.png" alt="energia" />
+                  </div>
+                </div>
+
+                <div class="kpi energia">
+                  <span class="titulo-kpi">Desperdício Energia (KWh)</span>
+                  <div class="conteudo-kpi">
+                    <span class="info-kpi">7</span>
+                    <img class="icon-kpi" src="./../assets/imgs/pos-login/iconraio.png" alt="energia" />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="kpi financeiro">
-            <span class="titulo-kpi">Previsão Gasto Energia (R$)</span>
-            <div class="conteudo-kpi">
-              <span class="info-kpi">7</span>
-              <img class="icon-kpi" src="./../assets/imgs/pos-login/iconmoeda.png" alt="moeda" />
-            </div>
-          </div>
-          <div class="kpi financeiro">
-            <span class="titulo-kpi">Previsão custo disperdícios (R$)</span>
-            <div class="conteudo-kpi">
-              <span class="info-kpi">7</span>
-              <img class="icon-kpi" src="./../assets/imgs/pos-login/iconmoeda.png" alt="moeda" />
-            </div>
-          </div>
-          <div class="kpi financeiro">
-            <span class="titulo-kpi">Previsão multas (R$)</span>
-            <div class="conteudo-kpi">
-              <span class="info-kpi">7</span>
-              <img class="icon-kpi" src="./../assets/imgs/pos-login/iconmoeda.png" alt="moeda" />
-            </div>
-          </div>
-        </div>
+        </section>
 
-        <div class="dash-financeiro-direita">
-          <div class="container-kpi-financeiro">
+        <section class="pasta">
+          <div class="container">
+            <div class="pasta-content">
+              <button class="troca-pasta ativo" onclick="acionarTecnico()" id="botaoTecnico">Técnico</button>
+            </div>
+          </div>
+          <!-- <button class="troca-pasta" onclick="acionarFinanceiro()" id="botaoFinanceiro">Financeiro</button> -->
+        </section>
+
+        <!-- <div id="dash-financeiro-inferior">
+          <div class="dash-financeiro-esquerda">
             <div class="kpi financeiro">
-              <span class="titulo-kpi">Custo disperdícios (R$)</span>
+              <span class="titulo-kpi">Gasto Energia(R$)</span>
               <div class="conteudo-kpi">
                 <span class="info-kpi">7</span>
                 <img class="icon-kpi" src="./../assets/imgs/pos-login/iconmoeda.png" alt="moeda" />
               </div>
             </div>
             <div class="kpi financeiro">
-              <span class="titulo-kpi">Orçamento (R$)</span>
+              <span class="titulo-kpi">Previsão Gasto Energia (R$)</span>
               <div class="conteudo-kpi">
                 <span class="info-kpi">7</span>
                 <img class="icon-kpi" src="./../assets/imgs/pos-login/iconmoeda.png" alt="moeda" />
               </div>
             </div>
-          </div>
-          <div class="grafico">
-            <canvas id="myChart"></canvas>
-          </div>
-        </div>
-      </div>
+            <div class="kpi financeiro">
+              <span class="titulo-kpi">Previsão custo disperdícios (R$)</span>
+              <div class="conteudo-kpi">
+                <span class="info-kpi">7</span>
+                <img class="icon-kpi" src="./../assets/imgs/pos-login/iconmoeda.png" alt="moeda" />
+              </div>
+            </div>
+            <div class="kpi financeiro">
+              <span class="titulo-kpi">Previsão multas (R$)</span>
+              <div class="conteudo-kpi">
+                <span class="info-kpi">7</span>
+                <img class="icon-kpi" src="./../assets/imgs/pos-login/iconmoeda.png" alt="moeda" />
+              </div>
+            </div>
+          </div> -->
 
-      <div id="dash-tecnico-inferior">
-        <!-- <div class="container-kpi-tecnico"> -->
-          <div class="kpi energia">
-            <span class="titulo-kpi">Energia Reativa Atrasada (KVarh)</span>
-            <div class="conteudo-kpi">
-              <span class="info-kpi">7</span>
-              <img class="icon-kpi" src="./../assets/imgs/pos-login/iconraio.png" alt="energia" />
+        <!-- <div class="dash-financeiro-direita">
+            <div class="container-kpi-financeiro">
+              <div class="kpi financeiro">
+                <span class="titulo-kpi">Custo disperdícios (R$)</span>
+                <div class="conteudo-kpi">
+                  <span class="info-kpi">7</span>
+                  <img class="icon-kpi" src="./../assets/imgs/pos-login/iconmoeda.png" alt="moeda" />
+                </div>
+              </div>
+              <div class="kpi financeiro">
+                <span class="titulo-kpi">Orçamento (R$)</span>
+                <div class="conteudo-kpi">
+                  <span class="info-kpi">7</span>
+                  <img class="icon-kpi" src="./../assets/imgs/pos-login/iconmoeda.png" alt="moeda" />
+                </div>
+              </div>
+            </div>
+            <div class="grafico">
+              <canvas id="myChart"></canvas>
             </div>
           </div>
-          <div class="kpi energia">
-            <span class="titulo-kpi">Energia Reativa Adiantada (KVarh)</span>
-            <div class="conteudo-kpi">
-              <span class="info-kpi">7</span>
-              <img class="icon-kpi" src="./../assets/imgs/pos-login/iconraio.png" alt="energia" />
+        </div> -->
+
+        <section id="section-dashboard" class="dash">
+          <div class="container">
+            <div class="dash-content">
+              <div class="grid-dash">
+                <div class="kpi energia">
+                  <span class="titulo-kpi">Energia Reativa Atrasada (KVarh)</span>
+                  <div class="conteudo-kpi">
+                    <span class="info-kpi">7</span>
+                    <img class="icon-kpi" src="./../assets/imgs/pos-login/iconraio.png" alt="energia" />
+                  </div>
+                </div>
+                <div class="kpi energia">
+                  <span class="titulo-kpi">Energia Reativa Adiantada (KVarh)</span>
+                  <div class="conteudo-kpi">
+                    <span class="info-kpi">7</span>
+                    <img class="icon-kpi" src="./../assets/imgs/pos-login/iconraio.png" alt="energia" />
+                  </div>
+                </div>
+                <div class="kpi energia" id="kpi-reativa-adiantada">
+                  <span class="titulo-kpi">Energia Reativa Adiantada (KVarh)</span>
+                  <div class="conteudo-kpi">
+                    <span class="info-kpi">7</span>
+                    <img class="icon-kpi" src="./../assets/imgs/pos-login/iconraio.png" alt="energia" />
+                  </div>
+                </div>
+
+                <div class="grafico"><canvas id="myChart2"></canvas></div>
+                <div class="grafico"><canvas id="myChart3"></canvas></div>
+                <div class="grafico"><canvas id="myChart4"></canvas></div>
+              </div>
             </div>
           </div>
-          <div class="kpi energia" id="kpi-reativa-adiantada">
-            <span class="titulo-kpi">Energia Reativa Adiantada (KVarh)</span>
-            <div class="conteudo-kpi">
-              <span class="info-kpi">7</span>
-              <img class="icon-kpi" src="./../assets/imgs/pos-login/iconraio.png" alt="energia" />
-            </div>
-          </div>
-        <!-- </div> -->
-        <!-- <div class="container-grafico-tecnico"> -->
-        <div class="grafico"><canvas id="myChart2"></canvas></div>
-        <div class="grafico"><canvas id="myChart3"></canvas></div>
-        <div class="grafico"><canvas id="myChart4"></canvas></div>
-      <!-- </div> -->
-    </section>
+        </section>
+      </section>
     </main>
   </body>
 </html>
 <script>
   function acionarFinanceiro() {
     const botaoFinanceiro = document.getElementById("botaoFinanceiro");
-    const dashFinanceiro = document.getElementById("dash-financeiro-inferior");
-    const dashTecnico = document.getElementById("dash-tecnico-inferior");
+    // const dashFinanceiro = document.getElementById("dash-financeiro-inferior");
+    const dashboard = document.getElementById("section-dashboard");
     botaoFinanceiro.classList.add("ativo");
     botaoTecnico.classList.remove("ativo");
-    dashFinanceiro.style.display = "grid";
-    dashTecnico.style.display = "none";
+    // dashFinanceiro.style.display = "grid";
+    dashboard.style.display = "none";
   }
 
   function acionarTecnico() {
     const botaoTecnico = document.getElementById("botaoTecnico");
-    const dashFinanceiro = document.getElementById("dash-financeiro-inferior");
-    const dashTecnico = document.getElementById("dash-tecnico-inferior");
+    // const dashFinanceiro = document.getElementById("dash-financeiro-inferior");
+    const dashboard = document.getElementById("section-dashboard");
     botaoTecnico.classList.add("ativo");
     botaoFinanceiro.classList.remove("ativo");
-    dashFinanceiro.style.display = "none";
-    dashTecnico.style.display = "grid";
+    // dashFinanceiro.style.display = "none";
+    dashboard.style.display = "grid";
   }
 </script>
 
