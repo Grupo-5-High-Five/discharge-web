@@ -193,12 +193,7 @@ nav {
   justify-content: center;
   height: 100vh;
   position: relative;
-  background: linear-gradient(
-      180deg,
-      rgba(240, 0, 0, 0) 0%,
-      rgba(63, 57, 5, 0.267) 100%
-    ),
-    url(../assets/imgs/solda.jpg);
+  background: linear-gradient(180deg, rgba(240, 0, 0, 0) 0%, rgba(63, 57, 5, 0.267) 100%), url(../assets/imgs/solda.jpg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -210,7 +205,7 @@ nav {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 2rem;
+  padding: 0 0 2rem 0;
 
   .banner__itens {
     display: flex;
@@ -218,7 +213,7 @@ nav {
     gap: 1rem;
 
     & h1 {
-      font-size: 36px;
+      font-size: 32px;
       font-weight: 700;
       color: var(--branco);
     }
@@ -251,7 +246,6 @@ nav {
   align-items: center;
   justify-content: center;
   height: auto;
-  padding: 2rem;
   background-color: var(--brancoBackground);
 }
 
@@ -289,11 +283,7 @@ nav {
 .box h2 {
   position: absolute;
   background: rgb(1, 21, 38);
-  background: linear-gradient(
-    180deg,
-    rgba(1, 21, 38, 0.6685049019607843) 0%,
-    rgba(255, 255, 255, 0) 100%
-  );
+  background: linear-gradient(180deg, rgba(1, 21, 38, 0.6685049019607843) 0%, rgba(255, 255, 255, 0) 100%);
   color: var(--branco);
   width: 100%;
   padding: 1.5rem;
@@ -366,7 +356,6 @@ nav {
 }
 
 @media screen and (max-width: 1860px) {
-
   /* Header */
 
   .icon__raio,
@@ -405,7 +394,7 @@ nav {
     }
 
     & h1 {
-      font-size: 24px;
+      font-size: 20px;
     }
 
     & a {
@@ -415,10 +404,6 @@ nav {
   }
 
   /* Blogs */
-
-  .blogs {
-    padding: 2rem;
-  }
 
   .blogs__box {
     gap: 1rem;
@@ -468,7 +453,6 @@ nav {
 }
 
 @media screen and (max-width: 920px) {
-
   .container {
     width: 90%;
   }
@@ -517,7 +501,7 @@ nav {
   .banner__content {
     & .banner__itens {
       & h1 {
-        font-size: 20px;
+        font-size: 16px;
       }
     }
   }
@@ -525,7 +509,7 @@ nav {
   /* Blogs */
 
   .box_link {
-    height: 200px;
+    height: 250px;
   }
 
   .blogs__box {
