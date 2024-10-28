@@ -72,7 +72,7 @@ function entrar() {
             sessionStorage.NOME_USUARIO = json.nome;
             sessionStorage.ID_USUARIO = json.id;
 
-            window.location = "./dashboard/dashboard.html";
+            window.location = "../dashboard/home.html";
 
           });
         } else {
