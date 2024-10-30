@@ -1,179 +1,202 @@
 const { desativar } = require("../controllers/usuarioController");
-var database = require("../database/config")
+var database = require("../database/config");
 const nodemailer = require("nodemailer");
 
 function autenticar(email, senha) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", email, senha);
-    var instrucaoSql = `
-        SELECT idFuncionario, nome, email FROM funcionario WHERE email = ? AND senha = ?;
+  console.log(
+    "ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ",
+    email,
+    senha
+  );
+  var instrucaoSql = `
+        SELECT idFuncionario, nome, email, cargo FROM funcionario WHERE email = ? AND senha = ?;
     `;
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql, [email, senha]); // Passando parâmetros
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql, [email, senha]); // Passando parâmetros
 }
-
 
 // Coloque os mesmos parâmetros aqui. Vá para a var instrucaoSql
 function cadastrar(nome, email, cpf, tipo, senha, fkEmpresa) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nome, email, senha);
-    var instrucaoSql = `
+  console.log(
+    "ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():",
+    nome,
+    email,
+    senha
+  );
+  var instrucaoSql = `
         INSERT INTO funcionario (nome, email, cpf, cargo, senha, fkEmpresa) VALUES (?, ?, ?, ?, ?, ?);
     `;
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql, [nome, email, cpf, tipo, senha, fkEmpresa]); // Passando parâmetros
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql, [
+    nome,
+    email,
+    cpf,
+    tipo,
+    senha,
+    fkEmpresa,
+  ]); // Passando parâmetros
 }
-
 
 function listar(fkEmpresa) {
-    var instrucaoSql = `SELECT idFuncionario as id, nome as nome, cpf, fkEmpresa FROM funcionario WHERE fkEmpresa = ? AND statusFuncionario = "ativo";`;
-    return database.executar(instrucaoSql, [fkEmpresa]); // Passando o parâmetro
+  var instrucaoSql = `SELECT idFuncionario as id, nome as nome, cpf, fkEmpresa FROM funcionario WHERE fkEmpresa = ? AND statusFuncionario = "ativo";`;
+  return database.executar(instrucaoSql, [fkEmpresa]); // Passando o parâmetro
 }
 
-
 function desativarFuncionario(idFuncionarioDesativar) {
-    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function editar(): ", idFuncionarioDesativar);
-    var instrucaoSql = `
+  console.log(
+    "ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function editar(): ",
+    idFuncionarioDesativar
+  );
+  var instrucaoSql = `
     UPDATE funcionario
     SET statusFuncionario = "inativo"
     WHERE idFuncionario IN (?);
     `;
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql, [idFuncionarioDesativar]); // Passando o parâmetro
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql, [idFuncionarioDesativar]); // Passando o parâmetro
 }
 
-
 function mudarCargo(idFuncionarioDesativar, cargo) {
-    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function editar(): ", idFuncionarioDesativar);
-    var instrucaoSql = `
+  console.log(
+    "ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function editar(): ",
+    idFuncionarioDesativar
+  );
+  var instrucaoSql = `
     UPDATE funcionario
     SET cargo = ?
     WHERE idFuncionario IN (?);
     `;
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql, [cargo, idFuncionarioDesativar]); // Passando parâmetros
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql, [cargo, idFuncionarioDesativar]); // Passando parâmetros
 }
-
 
 function validarEmail(email) {
-    console.log("ACESSEI O USUARIO MODEL PARA VALIDAR EMAIL \n");
-    var instrucaoSql = `SELECT email FROM funcionario WHERE email = ?;`;
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql, [email]); // Passando o parâmetro
+  console.log("ACESSEI O USUARIO MODEL PARA VALIDAR EMAIL \n");
+  var instrucaoSql = `SELECT email FROM funcionario WHERE email = ?;`;
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql, [email]); // Passando o parâmetro
 }
 
-
 function emailEnviar(email, token) {
-    console.log("ACESSEI O USUARIO MODEL PARA ENVIAR EMAIL \n");
+  console.log("ACESSEI O USUARIO MODEL PARA ENVIAR EMAIL \n");
 
-    var transporter = nodemailer.createTransport({
-        service: 'gmail', // Ou outro serviço de email
-        auth: {
-            user: process.env.MEU_EMAIL,
-            pass: process.env.MINHA_SENHA
-        }
-    });
+  var transporter = nodemailer.createTransport({
+    service: "gmail", // Ou outro serviço de email
+    auth: {
+      user: process.env.MEU_EMAIL,
+      pass: process.env.MINHA_SENHA,
+    },
+  });
 
-    var mailOptions = {
-        from: process.env.MEU_EMAIL,
-        to: email,
-        subject: 'Recuperação de Senha',
-        text: `Aqui está o token para redefinição da da sua senha.
+  var mailOptions = {
+    from: process.env.MEU_EMAIL,
+    to: email,
+    subject: "Recuperação de Senha",
+    text: `Aqui está o token para redefinição da da sua senha.
                 Não compartilhe com ninguém
                 
-                ${token}`
-    };
+                ${token}`,
+  };
 
-    return new Promise((resolve, reject) => {
-        transporter.sendMail(mailOptions, function (error, info) {
-            if (error) {
-                console.log("Erro ao enviar e-mail: ", error);
-                reject(error); // Retorna o erro
-            } else {
-                console.log('Email enviado: ' + info.response);
-                resolve(info.response); // Sucesso
-            }
-        });
+  return new Promise((resolve, reject) => {
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log("Erro ao enviar e-mail: ", error);
+        reject(error); // Retorna o erro
+      } else {
+        console.log("Email enviado: " + info.response);
+        resolve(info.response); // Sucesso
+      }
     });
+  });
 }
 
 function guardarInfos(email, token, dataExpiracao) {
-    var instrucaoSql = `
+  var instrucaoSql = `
         INSERT INTO tokens_recuperacao (email, token, data_criacao, data_expiracao) 
         VALUES (?, ?, NOW(), ?)
         ON DUPLICATE KEY UPDATE 
             token = ?, 
             data_criacao = NOW(), 
             data_expiracao = ?;`;
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql, [email, token, dataExpiracao, token, dataExpiracao]); // Passando os parâmetros
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql, [
+    email,
+    token,
+    dataExpiracao,
+    token,
+    dataExpiracao,
+  ]); // Passando os parâmetros
 }
 
 function validarToken(tokenRecuperacao) {
-    console.log("Analisando o token: " + tokenRecuperacao);
-    
-    return new Promise((resolve, reject) => {
-        // Consulta SQL para verificar o token e se não está expirado
-        const instrucaoSql = `SELECT * FROM tokens_recuperacao WHERE token = ? AND data_expiracao > NOW()`;
+  console.log("Analisando o token: " + tokenRecuperacao);
 
-        // Executa a consulta
-        database.executar(instrucaoSql, [tokenRecuperacao])
-            .then(resultado => {
-                // Verifica se o resultado é um array e possui elementos
-                if (Array.isArray(resultado) && resultado.length > 0) {
-                    // Token válido
-                    console.log("Token válido. Cheguei aqui:");
+  return new Promise((resolve, reject) => {
+    // Consulta SQL para verificar o token e se não está expirado
+    const instrucaoSql = `SELECT * FROM tokens_recuperacao WHERE token = ? AND data_expiracao > NOW()`;
 
-                    resolve(resultado); // Retorna os dados do token
-                } else {
-                    // Token inválido ou expirado
-                    reject(new Error("Token inválido ou expirado."));
-                }
-            })
-            .catch(err => {
-                console.error("Erro ao validar token: ", err);
-                reject(err);
-            });
-    });
+    // Executa a consulta
+    database
+      .executar(instrucaoSql, [tokenRecuperacao])
+      .then((resultado) => {
+        // Verifica se o resultado é um array e possui elementos
+        if (Array.isArray(resultado) && resultado.length > 0) {
+          // Token válido
+          console.log("Token válido. Cheguei aqui:");
+
+          resolve(resultado); // Retorna os dados do token
+        } else {
+          // Token inválido ou expirado
+          reject(new Error("Token inválido ou expirado."));
+        }
+      })
+      .catch((err) => {
+        console.error("Erro ao validar token: ", err);
+        reject(err);
+      });
+  });
 }
 
-
 function atualizarSenha(email, novaSenha) {
-    var instrucaoSql = `
+  var instrucaoSql = `
     UPDATE funcionario
     SET senha = ?
     WHERE email = ?;
     `;
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql, [novaSenha, email]); // Passando parâmetros
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql, [novaSenha, email]); // Passando parâmetros
 }
 
 function romoverToken(email, tokenRecuperacao) {
-    return new Promise((resolve, reject) => {
-        const instrucaoSql = `DELETE FROM tokens_recuperacao WHERE email = ? AND token = ?;`;
-        database.executar(instrucaoSql, [email, tokenRecuperacao])
-            .then(resultado => {
-                if (resultado.affectedRows > 0) {
-                    resolve("Token excluído com sucesso.");
-                } else {
-                    reject(new Error("Nenhum token encontrado para o email fornecido."));
-                }
-            })
-            .catch(err => {
-                console.error("Erro ao excluir o token: ", err);
-                reject(err);
-            });
-    });
+  return new Promise((resolve, reject) => {
+    const instrucaoSql = `DELETE FROM tokens_recuperacao WHERE email = ? AND token = ?;`;
+    database
+      .executar(instrucaoSql, [email, tokenRecuperacao])
+      .then((resultado) => {
+        if (resultado.affectedRows > 0) {
+          resolve("Token excluído com sucesso.");
+        } else {
+          reject(new Error("Nenhum token encontrado para o email fornecido."));
+        }
+      })
+      .catch((err) => {
+        console.error("Erro ao excluir o token: ", err);
+        reject(err);
+      });
+  });
 }
 
 module.exports = {
-    autenticar,
-    cadastrar,
-    listar,
-    desativarFuncionario,
-    mudarCargo,
-    emailEnviar,
-    validarEmail,
-    guardarInfos,
-    validarToken,
-    atualizarSenha,
-    romoverToken
+  autenticar,
+  cadastrar,
+  listar,
+  desativarFuncionario,
+  mudarCargo,
+  emailEnviar,
+  validarEmail,
+  guardarInfos,
+  validarToken,
+  atualizarSenha,
+  romoverToken,
 };

@@ -82,7 +82,7 @@ function entrar() {
             console.log(JSON.stringify(json));
             sessionStorage.EMAIL_USUARIO = json.email;
             sessionStorage.NOME_USUARIO = json.nome;
-            sessionStorage.ID_USUARIO = json.id;
+            sessionStorage.ID_USUARIO = json.idFuncionario;
             sessionStorage.CARGO_USUARIO = json.cargo;
 
             window.location.href = "../dashboard/home.html";
