@@ -63,7 +63,7 @@ new Chart(graficoEnergiaAtrasada, {
     datasets: [
       {
         label: "Potência Reativa Adiantada (kVarh)",
-        data: [50, 60, 55, 70, 65, 55, 60],
+        data: [30, 22, 31, 18, 25, 21, 23],
         borderWidth: 1,
         borderColor: "#22AF2F",
         backgroundColor: "#22AF2F77",
