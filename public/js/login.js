@@ -2,10 +2,14 @@ function visualizarSenha() {
   var image = document.getElementById("imagemSenha");
   var input = document.getElementById("input_senha");
 
-  if (image.src === "https://www.svgrepo.com/show/380007/eye-password-hide.svg") {
+  if (
+    image.src === "https://www.svgrepo.com/show/380007/eye-password-hide.svg"
+  ) {
     image.src = "https://www.svgrepo.com/show/380010/eye-password-show.svg";
     input.type = "text";
-  } else if ((image.src = "https://www.svgrepo.com/show/380010/eye-password-show.svg")) {
+  } else if (
+    (image.src = "https://www.svgrepo.com/show/380010/eye-password-show.svg")
+  ) {
     image.src = "https://www.svgrepo.com/show/380007/eye-password-hide.svg";
     input.type = "password";
   }
@@ -15,10 +19,14 @@ function visualizarSenhaModal() {
   var image = document.getElementById("imagemSenhaModal");
   var input = document.getElementById("input_nova_senha_modal");
 
-  if (image.src === "https://www.svgrepo.com/show/380007/eye-password-hide.svg") {
+  if (
+    image.src === "https://www.svgrepo.com/show/380007/eye-password-hide.svg"
+  ) {
     image.src = "https://www.svgrepo.com/show/380010/eye-password-show.svg";
     input.type = "text";
-  } else if ((image.src = "https://www.svgrepo.com/show/380010/eye-password-show.svg")) {
+  } else if (
+    (image.src = "https://www.svgrepo.com/show/380010/eye-password-show.svg")
+  ) {
     image.src = "https://www.svgrepo.com/show/380007/eye-password-hide.svg";
     input.type = "password";
   }
@@ -28,10 +36,14 @@ function visualizarConfirmarSenhaModal() {
   var image = document.getElementById("imagemConfirmarSenhaModal");
   var input = document.getElementById("input_confirmar_nova_senha_modal");
 
-  if (image.src === "https://www.svgrepo.com/show/380007/eye-password-hide.svg") {
+  if (
+    image.src === "https://www.svgrepo.com/show/380007/eye-password-hide.svg"
+  ) {
     image.src = "https://www.svgrepo.com/show/380010/eye-password-show.svg";
     input.type = "text";
-  } else if ((image.src = "https://www.svgrepo.com/show/380010/eye-password-show.svg")) {
+  } else if (
+    (image.src = "https://www.svgrepo.com/show/380010/eye-password-show.svg")
+  ) {
     image.src = "https://www.svgrepo.com/show/380007/eye-password-hide.svg";
     input.type = "password";
   }
@@ -71,9 +83,9 @@ function entrar() {
             sessionStorage.EMAIL_USUARIO = json.email;
             sessionStorage.NOME_USUARIO = json.nome;
             sessionStorage.ID_USUARIO = json.id;
+            sessionStorage.CARGO_USUARIO = json.cargo;
 
-            window.location = "../dashboard/home.html";
-
+            window.location.href = "../dashboard/home.html";
           });
         } else {
           console.log("Houve um erro ao tentar realizar o login!");
@@ -100,19 +112,20 @@ function enviarEmail() {
   fetch("usuario/emailEnviar", {
     method: "POST",
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      email: email
-    })
+      email: email,
+    }),
   })
-    .then(response => {
-      if (!response.ok) { // Verifica se a resposta não foi bem-sucedida
+    .then((response) => {
+      if (!response.ok) {
+        // Verifica se a resposta não foi bem-sucedida
         throw new Error("Erro ao enviar e-mail");
       }
       return response.json(); // Retorna o corpo da resposta como JSON
     })
-    .then(data => {
+    .then((data) => {
       if (data.success) {
         alert("E-mail de recuperação enviado!");
         $("#modal_email").modal("hide");
@@ -121,12 +134,11 @@ function enviarEmail() {
         alert("Erro ao enviar e-mail.");
       }
     })
-    .catch(error => {
+    .catch((error) => {
       console.log(error.message);
       alert("Erro: " + error.message);
     });
 }
-
 
 function atualizarSenha() {
   event.preventDefault();
@@ -136,26 +148,26 @@ function atualizarSenha() {
   const tokenRecuperacao = input_token.value;
 
   if (novaSenha != confirmacaoNovaSenha) {
-    alert("As senhas estão diferentes")
+    alert("As senhas estão diferentes");
   } else {
-
     fetch("usuario/atualizarSenha", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         tokenRecuperacao: tokenRecuperacao,
-        novaSenha: novaSenha
-      })
+        novaSenha: novaSenha,
+      }),
     })
-      .then(response => {
-        if (!response.ok) { // Verifica se a resposta não foi bem-sucedida
+      .then((response) => {
+        if (!response.ok) {
+          // Verifica se a resposta não foi bem-sucedida
           throw new Error("Erro ao alterar a senha");
         }
         return response.json(); // Retorna o corpo da resposta como JSON
       })
-      .then(data => {
+      .then((data) => {
         if (data.success) {
           alert("Senha alterada com sucesso!");
           $("#modal_senha").modal("hide");
@@ -163,7 +175,7 @@ function atualizarSenha() {
           alert("Erro ao alterar a senha.");
         }
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error.message);
         alert("Erro: " + error.message);
       });

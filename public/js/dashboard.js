@@ -1,9 +1,18 @@
+// Função permissionamento
+
+const cargo = sessionStorage.getItem("CARGO_USUARIO");
+const btnTec = document.getElementById("btn_tec");
+const btnCon = document.getElementById("btn_con");
+
+if (cargo == "eficiencia") {
+  btnCon.style.display = "none";
+} else if (cargo == "consumo") {
+  btnTec.style.display = "none";
+}
+
 // Função que troca as telas da dashboard
 
 function trocarDash(index) {
-  const btnTec = document.getElementById("btn_tec");
-  const btnCon = document.getElementById("btn_con");
-
   const dashTec = document.getElementById("dash-tec");
   const dashCon = document.getElementById("dash-con");
 
@@ -29,7 +38,15 @@ const graficoEnergiaAtrasada = document.getElementById("graph_ener_atr");
 new Chart(graficoEnergiaAtrasada, {
   type: "bar",
   data: {
-    labels: ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"],
+    labels: [
+      "Segunda",
+      "Terça",
+      "Quarta",
+      "Quinta",
+      "Sexta",
+      "Sábado",
+      "Domingo",
+    ],
     datasets: [
       {
         label: "Potência Reativa Adiantada (kVarh)",
@@ -85,7 +102,15 @@ const graficoEnergiaAdiantada = document.getElementById("graph_ener_adi");
 new Chart(graficoEnergiaAdiantada, {
   type: "bar",
   data: {
-    labels: ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"],
+    labels: [
+      "Segunda",
+      "Terça",
+      "Quarta",
+      "Quinta",
+      "Sexta",
+      "Sábado",
+      "Domingo",
+    ],
     datasets: [
       {
         label: "Potência Reativa Atrasado (kVarh)",
@@ -141,7 +166,15 @@ const graficoUtilIndutiva = document.getElementById("graph_util_indutiva");
 new Chart(graficoUtilIndutiva, {
   type: "bar",
   data: {
-    labels: ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"],
+    labels: [
+      "Domingo",
+      "Segunda",
+      "Terça",
+      "Quarta",
+      "Quinta",
+      "Sexta",
+      "Sábado",
+    ],
     datasets: [
       {
         label: "Energia Útil",
@@ -189,13 +222,21 @@ function calcularMediaMovel(data, windowSize) {
   return result;
 }
 
-const dadosConsumo = [12, 19, 3, 5, 2, 3, 8, 12, 15, 9];
+const dadosConsumo = [12, 19, 3, 5, 2, 3, 8, 12];
 const mediaMovel = calcularMediaMovel(dadosConsumo, 3);
 
 new Chart(graficoConsumoMedia, {
   type: "line",
   data: {
-    labels: ["01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00"],
+    labels: [
+      "Domingo",
+      "Segunda",
+      "Terça",
+      "Quarta",
+      "Quinta",
+      "Sexta",
+      "Sábado",
+    ],
     datasets: [
       {
         label: "Consumo de Energia",
@@ -233,13 +274,37 @@ const graficoEmissaoGases = document.getElementById("graph_emissao");
 new Chart(graficoEmissaoGases, {
   type: "bar",
   data: {
-    labels: ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"],
+    labels: [
+      "Segunda",
+      "Terça",
+      "Quarta",
+      "Quinta",
+      "Sexta",
+      "Sábado",
+      "Domingo",
+    ],
     datasets: [
       {
         label: "Emissão de CO₂ (tCO2)",
         data: [120, 150, 130, 160, 145, 110, 100],
-        backgroundColor: ["rgba(75, 192, 192, 0.7)", "rgba(54, 162, 235, 0.7)", "rgba(255, 205, 86, 0.7)", "rgba(153, 102, 255, 0.7)", "rgba(255, 99, 132, 0.7)", "rgba(201, 203, 207, 0.7)", "rgba(255, 159, 64, 0.7)"],
-        borderColor: ["rgba(75, 192, 192, 1)", "rgba(54, 162, 235, 1)", "rgba(255, 205, 86, 1)", "rgba(153, 102, 255, 1)", "rgba(255, 99, 132, 1)", "rgba(201, 203, 207, 1)", "rgba(255, 159, 64, 1)"],
+        backgroundColor: [
+          "rgba(75, 192, 192, 0.7)",
+          "rgba(54, 162, 235, 0.7)",
+          "rgba(255, 205, 86, 0.7)",
+          "rgba(153, 102, 255, 0.7)",
+          "rgba(255, 99, 132, 0.7)",
+          "rgba(201, 203, 207, 0.7)",
+          "rgba(255, 159, 64, 0.7)",
+        ],
+        borderColor: [
+          "rgba(75, 192, 192, 1)",
+          "rgba(54, 162, 235, 1)",
+          "rgba(255, 205, 86, 1)",
+          "rgba(153, 102, 255, 1)",
+          "rgba(255, 99, 132, 1)",
+          "rgba(201, 203, 207, 1)",
+          "rgba(255, 159, 64, 1)",
+        ],
         borderWidth: 1,
       },
     ],
