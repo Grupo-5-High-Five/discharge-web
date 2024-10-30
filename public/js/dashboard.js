@@ -1,21 +1,34 @@
 // Função permissionamento
 
 const cargo = sessionStorage.getItem("CARGO_USUARIO");
+
 const btnTec = document.getElementById("btn_tec");
 const btnCon = document.getElementById("btn_con");
 
+const dashTec = document.getElementById("dash-tec");
+const dashCon = document.getElementById("dash-con");
+
 if (cargo == "eficiencia") {
   btnCon.style.display = "none";
+
+  btnTec.classList.add("ativo");
+  btnCon.classList.remove("ativo");
+
+  dashTec.style.display = "grid";
+  dashCon.style.display = "none";
 } else if (cargo == "consumo") {
   btnTec.style.display = "none";
+
+  btnCon.classList.add("ativo");
+  btnTec.classList.remove("ativo");
+
+  dashCon.style.display = "grid";
+  dashTec.style.display = "none";
 }
 
 // Função que troca as telas da dashboard
 
 function trocarDash(index) {
-  const dashTec = document.getElementById("dash-tec");
-  const dashCon = document.getElementById("dash-con");
-
   if (index == 1) {
     btnTec.classList.add("ativo");
     btnCon.classList.remove("ativo");
