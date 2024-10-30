@@ -4,24 +4,90 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Discharge</title>
-    <link rel="shortcut icon" href="./../assets/icon/logo_flavicon.svg" type="image/x-icon" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link
+      rel="shortcut icon"
+      href="./../assets/icon/logo_flavicon.svg"
+      type="image/x-icon"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
     <link rel="stylesheet" href="./../css/home.css" />
   </head>
 
   <body>
     <main>
-      <nav>
+      <nav id="nav">
         <ul>
           <li class="ul_espacamento">
-            <a class="link_dash" href="./home.html"><article><img src="./../assets/imgs/dashboard/botao-de-inicio.png" alt="home" /></article></a>
+            <span class="link_dash" onclick="menu()">
+              <article>
+                <img src="./../assets/imgs/dashboard/menu.svg" alt="buguer" />
+                <h3>Menu</h3>
+              </article>
+            </span>
           </li>
           <li class="ul_espacamento">
-            <a class="link_dash" href="./dashboard.html"><article><img src="./../assets/imgs/dashboard/grafico-de-pizza.png" alt="dashboard" /></article></a>
-            <a class="link_dash" href=""><article><img src="./../assets/imgs/dashboard/estrela.png" alt="métricas" /></article></a>
-            <a class="link_dash" href=""><article><img src="./../assets/imgs/dashboard/escola-do-sino.png" alt="histórico de recomendações" /></article></a>
-            <a class="link_dash" href=""><article><img src="./../assets/imgs/dashboard/contexto.png" alt="configurações" /></article></a>
-            <a class="link_dash" href=""><article><img src="./../assets/imgs/dashboard/sair.png" alt="sair" /></article></a>
+            <a class="link_dash active" href="./home.html">
+              <article>
+                <img
+                  src="./../assets/imgs/dashboard/botao-de-inicio.png"
+                  alt="home"
+                />
+                <h3>Início</h3>
+              </article>
+            </a>
+            <a class="link_dash" href="./dashboard.html">
+              <article>
+                <img
+                  src="./../assets/imgs/dashboard/grafico-de-pizza.png"
+                  alt="dashboard"
+                />
+                <h3>Dashboard</h3>
+              </article>
+            </a>
+            <a class="link_dash" href="">
+              <article>
+                <img
+                  src="./../assets/imgs/dashboard/estrela.png"
+                  alt="métricas"
+                />
+                <h3>Métricas</h3>
+              </article>
+            </a>
+            <a class="link_dash" href="">
+              <article>
+                <img
+                  src="./../assets/imgs/dashboard/escola-do-sino.png"
+                  alt="histórico de recomendações"
+                />
+                <h3>Alertas</h3>
+              </article>
+            </a>
+            <a class="link_dash" href="">
+              <article>
+                <img
+                  src="./../assets/imgs/dashboard/contexto.png"
+                  alt="configurações"
+                />
+                <h3>Configurações</h3>
+              </article>
+            </a>
+            <span class="link_dash" onclick="menu()">
+              <article class="link_dash_user">
+                <img
+                  src="./../assets/imgs/dashboard/user.svg"
+                  alt="Ícone de Usuário"
+                />
+                <h3 id="name_user"></h3>
+                <img
+                  onclick="sair()"
+                  src="./../assets/imgs/dashboard/sair.png"
+                  alt="Sair"
+                />
+              </article>
+            </span>
           </li>
         </ul>
       </nav>
@@ -32,9 +98,14 @@
               <h1>Bem-vindo de volta!</h1>
               <div class="banner_text">
                 <h2>
-                  <b>Potência Reativa Atrasada <span class="alert">Alta</span></b><br>
-                  Instale capacitores para compensar a energia reativa causada por cargas indutivas, 
-                  como motores e transformadores. Isso melhora o fator de potência e reduz o desperdício de energia, diminuindo custos e evitando penalidades tarifárias.
+                  <b
+                    >Potência Reativa Atrasada
+                    <span class="alert">Alta</span></b
+                  ><br />
+                  Instale capacitores para compensar a energia reativa causada
+                  por cargas indutivas, como motores e transformadores. Isso
+                  melhora o fator de potência e reduz o desperdício de energia,
+                  diminuindo custos e evitando penalidades tarifárias.
                 </h2>
                 <p>Última recomendação - Gemini</p>
               </div>
@@ -47,11 +118,18 @@
             <div class="swiper-wrapper">
               <div class="swiper-slide">
                 <div class="component-slide">
-                  <figure><img src="../assets/imgs/ia.jpg" alt="Imagem do post de ia" /></figure>
+                  <figure>
+                    <img
+                      src="../assets/imgs/ia.jpg"
+                      alt="Imagem do post de ia"
+                    />
+                  </figure>
                   <div>
                     <p>
-                      Em 2019, a indústria metalúrgica representou 10,9% das exportações industriais no Brasil, com uma participação de 
-                      aproximadamente 3,1% no PIB industrial. Em 2021, foi o setor que mais consumiu energia...
+                      Em 2019, a indústria metalúrgica representou 10,9% das
+                      exportações industriais no Brasil, com uma participação de
+                      aproximadamente 3,1% no PIB industrial. Em 2021, foi o
+                      setor que mais consumiu energia...
                     </p>
                     <a href="../post.html?index=1">Saiba Mais</a>
                   </div>
@@ -59,11 +137,18 @@
               </div>
               <div class="swiper-slide">
                 <div class="component-slide">
-                  <figure><img src="../assets/imgs/custo.jpg" alt="Imagem do post de custos" /></figure>
+                  <figure>
+                    <img
+                      src="../assets/imgs/custo.jpg"
+                      alt="Imagem do post de custos"
+                    />
+                  </figure>
                   <div>
                     <p>
-                      A indústria metalúrgica, conhecida por sua alta demanda de energia elétrica, é uma das que mais sofre com os 
-                      custos elevados de operação. Os processos eletrointensivos, como fundição, laminação e usinagem de metais...
+                      A indústria metalúrgica, conhecida por sua alta demanda de
+                      energia elétrica, é uma das que mais sofre com os custos
+                      elevados de operação. Os processos eletrointensivos, como
+                      fundição, laminação e usinagem de metais...
                     </p>
                     <a href="../post.html?index=2">Saiba Mais</a>
                   </div>
@@ -71,11 +156,18 @@
               </div>
               <div class="swiper-slide">
                 <div class="component-slide">
-                  <figure><img src="../assets/imgs/gases.jpg" alt="Imagem do post de gases" /></figure>
+                  <figure>
+                    <img
+                      src="../assets/imgs/gases.jpg"
+                      alt="Imagem do post de gases"
+                    />
+                  </figure>
                   <div>
                     <p>
-                      Com a crescente pressão global para conter as mudanças climáticas, muitos governos têm estabelecido metas ambiciosas de 
-                      redução de emissões de poluentes. A Contribuição Nacionalmente Determinada (NDC) do Brasil...
+                      Com a crescente pressão global para conter as mudanças
+                      climáticas, muitos governos têm estabelecido metas
+                      ambiciosas de redução de emissões de poluentes. A
+                      Contribuição Nacionalmente Determinada (NDC) do Brasil...
                     </p>
                     <a href="../post.html?index=3">Saiba Mais</a>
                   </div>
@@ -90,25 +182,7 @@
       </div>
     </main>
   </body>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="../js/home.js"></script>
+  <script src="../js/dashfront.js"></script>
 </html>
-
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script>
-  const swiper = new Swiper(".swiper", {
-    direction: "horizontal",
-    loop: true,
-
-    pagination: {
-      el: ".swiper-pagination",
-    },
-
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
-
-    scrollbar: {
-      el: ".swiper-scrollbar",
-    },
-  });
-</script>
