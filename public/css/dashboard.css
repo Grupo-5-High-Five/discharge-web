@@ -9,6 +9,7 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
   scroll-behavior: smooth;
   font-family: "Poppins", sans-serif;
 }
@@ -32,45 +33,87 @@ nav {
   background-color: var(--azul);
   position: fixed;
   height: 100vh;
-  width: 5%;
-}
+  z-index: 99;
+  width: 4.4%;
+  transition: all 0.5s ease-in-out;
 
-nav img {
-  width: 90%;
-  cursor: pointer;
+  &.aberto {
+    width: 260px;
+  }
 }
 
 ul {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
   height: 100%;
   list-style: none;
-}
+  gap: 1rem;
+  overflow: hidden;
 
-.link_dash {
-  transition: all 0.5s;
-}
+  & li {
+    width: 100%;
+  }
 
-.link_dash:hover {
-  transform: scale(1.1);
+  & a,
+  span {
+    display: flex;
+    padding: 1rem;
+    width: 100%;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    &.active {
+      background-color: #013869;
+    }
+  }
+
+  & a:hover,
+  span:hover {
+    background-color: #013869;
+  }
+
+  & .link_dash {
+    display: flex;
+    color: white;
+    align-items: center;
+    text-decoration: none;
+
+    & h3 {
+      font-size: 14px;
+      font-weight: 500;
+    }
+  }
+
+  & .link_dash img {
+    transition: all 0.5s;
+    width: 36px;
+    cursor: pointer;
+  }
+
+  & .link_dash img:hover {
+    transform: scale(1.1);
+  }
+
+  & article {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    gap: 1rem;
+
+    &.link_dash_user {
+      justify-content: space-between;
+    }
+  }
 }
 
 .ul_espacamento {
   display: flex;
   flex-direction: column;
-  padding: 1rem;
-  gap: 3rem;
-
-  & article {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    gap: 1rem;
-  }
+  align-items: flex-start;
 }
 
 /* Conteúdo da Dashbord */
@@ -173,13 +216,13 @@ ul {
   border-width: 7px;
 }
 
-.energia {
+.bom {
   border-color: #3d9a00;
 }
 
 .critico {
   border-color: #f62626;
-  color: #f62626;
+  /* color: #f62626; */
 }
 
 .alerta {
@@ -204,7 +247,18 @@ ul {
 }
 
 .info-kpi {
+  display: flex;
+  position: relative;
+  gap: 0.4rem;
   font-size: 40px;
+
+  & p {
+    position: absolute;
+    left: 105%;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+  }
 }
 
 .icon-kpi {

@@ -5,90 +5,183 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Discharge</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="shortcut icon" href="./../assets/icon/logo_flavicon.svg" type="image/x-icon" />
+    <link
+      rel="shortcut icon"
+      href="./../assets/icon/logo_flavicon.svg"
+      type="image/x-icon"
+    />
     <link rel="stylesheet" href="./../css/dashboard.css" />
   </head>
 
   <body>
     <main>
-      <nav>
+      <nav id="nav">
         <ul>
           <li class="ul_espacamento">
-            <a class="link_dash" href="./home.html"><article><img src="./../assets/imgs/dashboard/botao-de-inicio.png" alt="home" /></article></a>
+            <span class="link_dash" onclick="menu()">
+              <article>
+                <img src="./../assets/imgs/dashboard/menu.svg" alt="buguer" />
+                <h3>Menu</h3>
+              </article>
+            </span>
           </li>
           <li class="ul_espacamento">
-            <a class="link_dash" href="./dashboard.html"><article><img src="./../assets/imgs/dashboard/grafico-de-pizza.png" alt="dashboard" /></article></a>
-            <a class="link_dash" href=""><article><img src="./../assets/imgs/dashboard/estrela.png" alt="métricas" /></article></a>
-            <a class="link_dash" href=""><article><img src="./../assets/imgs/dashboard/escola-do-sino.png" alt="histórico de recomendações" /></article></a>
-            <a class="link_dash" href=""><article><img src="./../assets/imgs/dashboard/contexto.png" alt="configurações" /></article></a>
-            <a class="link_dash" href=""><article><img src="./../assets/imgs/dashboard/sair.png" alt="sair" /></article></a>
+            <a class="link_dash" href="./home.html">
+              <article>
+                <img
+                  src="./../assets/imgs/dashboard/botao-de-inicio.png"
+                  alt="home"
+                />
+                <h3>Início</h3>
+              </article>
+            </a>
+            <a class="link_dash active" href="./dashboard.html">
+              <article>
+                <img
+                  src="./../assets/imgs/dashboard/grafico-de-pizza.png"
+                  alt="dashboard"
+                />
+                <h3>Dashboard</h3>
+              </article>
+            </a>
+            <a class="link_dash" href="">
+              <article>
+                <img
+                  src="./../assets/imgs/dashboard/estrela.png"
+                  alt="métricas"
+                />
+                <h3>Métricas</h3>
+              </article>
+            </a>
+            <a class="link_dash" href="">
+              <article>
+                <img
+                  src="./../assets/imgs/dashboard/escola-do-sino.png"
+                  alt="histórico de recomendações"
+                />
+                <h3>Alertas</h3>
+              </article>
+            </a>
+            <a class="link_dash" href="">
+              <article>
+                <img
+                  src="./../assets/imgs/dashboard/contexto.png"
+                  alt="configurações"
+                />
+                <h3>Configurações</h3>
+              </article>
+            </a>
+            <span class="link_dash" onclick="menu()">
+              <article class="link_dash_user">
+                <img
+                  src="./../assets/imgs/dashboard/user.svg"
+                  alt="Ícone de Usuário"
+                />
+                <h3 id="name_user"></h3>
+                <img
+                  onclick="sair()"
+                  src="./../assets/imgs/dashboard/sair.png"
+                  alt="Sair"
+                />
+              </article>
+            </span>
           </li>
         </ul>
       </nav>
       <section class="global">
         <section class="kpis">
           <div class="container">
-
             <!-- KPIs -->
 
             <div class="kpi-content">
               <div class="title">
                 <h1>Visão Eficiência Energética</h1>
                 <div class="info-dash">
-                  <!-- <select name="filtro" id="filtro">
-                    <option value="">Ano Atual</option>
-                    <option value="">Mês Atual</option>
-                    <option value="" selected>Última Semana</option>
-                  </select> -->
-                  <img src="./../assets/imgs/dashboard/info.svg" alt="Glossário" />
+                  <button>Filtrar</button>
+                  <select name="filtro" id="filtro">
+                    <option value="ano">Ano Atual</option>
+                    <option value="mes">Mês Atual</option>
+                    <option value="semana" selected>Semana Atual</option>
+                    <option value="dia">Dia Atual</option>
+                  </select>
+                  <img
+                    src="./../assets/imgs/dashboard/info.svg"
+                    alt="Glossário"
+                  />
                 </div>
               </div>
 
               <div class="grid-kpi">
-                <div class="kpi">
+                <div class="kpi bom">
                   <div class="conteudo-kpi">
                     <span class="titulo-kpi">Emissão de CO2 (tCO2)</span>
-                    <span class="info-kpi">7</span>
-                    <img class="icon-kpi" src="./../assets/imgs/dashboard/iconco2.svg" alt="co2" />
+                    <span class="info-kpi">0.26</span>
+                    <img
+                      class="icon-kpi"
+                      src="./../assets/imgs/dashboard/iconco2.svg"
+                      alt="co2"
+                    />
                   </div>
                 </div>
 
-                <div class="kpi">
+                <div class="kpi bom">
                   <span class="titulo-kpi">Previsão emissão de CO2 (tCO2)</span>
                   <div class="conteudo-kpi">
-                    <span class="info-kpi">7</span>
-                    <img class="icon-kpi" src="./../assets/imgs/dashboard/iconco2.svg" alt="co2" />
+                    <span class="info-kpi">1.2</span>
+                    <img
+                      class="icon-kpi"
+                      src="./../assets/imgs/dashboard/iconco2.svg"
+                      alt="co2"
+                    />
                   </div>
                 </div>
 
-                <div class="kpi">
-                  <span class="titulo-kpi">Reincidência ultrapassagem de limite</span>
+                <div class="kpi alerta">
+                  <span class="titulo-kpi">
+                    Reincidência ultrapassagem de limite
+                  </span>
                   <div class="conteudo-kpi">
-                    <span class="info-kpi">7</span>
-                    <img class="icon-kpi" src="./../assets/imgs/dashboard/iconco2.svg" alt="co2" />
+                    <span class="info-kpi">2</span>
+                    <img
+                      class="icon-kpi"
+                      src="./../assets/imgs/dashboard/iconco2.svg"
+                      alt="co2"
+                    />
                   </div>
                 </div>
-                <div class="kpi energia">
+                <div class="kpi alerta">
                   <span class="titulo-kpi">Consumo Energia (KWh)</span>
                   <div class="conteudo-kpi">
-                    <span class="info-kpi">7</span>
-                    <img class="icon-kpi" src="./../assets/imgs/dashboard/iconraio.svg" alt="energia" />
+                    <span class="info-kpi">660.89</span>
+                    <img
+                      class="icon-kpi"
+                      src="./../assets/imgs/dashboard/iconraio.svg"
+                      alt="energia"
+                    />
                   </div>
                 </div>
 
-                <div class="kpi energia">
+                <div class="kpi critico">
                   <span class="titulo-kpi">Previsão Consumo Energia (KWh)</span>
                   <div class="conteudo-kpi">
-                    <span class="info-kpi">7</span>
-                    <img class="icon-kpi" src="./../assets/imgs/dashboard/iconraio.svg" alt="energia" />
+                    <span class="info-kpi">842.12</span>
+                    <img
+                      class="icon-kpi"
+                      src="./../assets/imgs/dashboard/iconraio.svg"
+                      alt="energia"
+                    />
                   </div>
                 </div>
 
-                <div class="kpi energia">
+                <div class="kpi critico">
                   <span class="titulo-kpi">Desperdício Energia (KWh)</span>
                   <div class="conteudo-kpi">
-                    <span class="info-kpi">7</span>
-                    <img class="icon-kpi" src="./../assets/imgs/dashboard/iconraio.svg" alt="energia" />
+                    <span class="info-kpi">273.41</span>
+                    <img
+                      class="icon-kpi"
+                      src="./../assets/imgs/dashboard/iconraio.svg"
+                      alt="energia"
+                    />
                   </div>
                 </div>
               </div>
@@ -101,8 +194,16 @@
         <section class="pasta">
           <div class="container">
             <div class="pasta-content">
-              <button class="troca-pasta ativo" onclick="trocarDash(1)" id="btn_tec">Status</button>
-              <button class="troca-pasta" onclick="trocarDash(2)" id="btn_con">Consumo</button>
+              <button
+                class="troca-pasta ativo"
+                onclick="trocarDash(1)"
+                id="btn_tec"
+              >
+                Status
+              </button>
+              <button class="troca-pasta" onclick="trocarDash(2)" id="btn_con">
+                Consumo
+              </button>
             </div>
           </div>
         </section>
@@ -114,25 +215,41 @@
             <div class="dash-content">
               <!-- Dash Técnica -->
               <article class="dash-tec" id="dash-tec">
-                <div class="kpi energia">
-                  <span class="titulo-kpi">Potência Reativa Atrasada Total (KVarh)</span>
+                <div class="kpi bom">
+                  <span class="titulo-kpi"
+                    >Potência Reativa Atrasada Total (KVarh)</span
+                  >
                   <div class="conteudo-kpi">
-                    <span class="info-kpi">7</span>
-                    <img class="icon-kpi" src="./../assets/imgs/dashboard/iconraio.svg" alt="energia" />
+                    <span class="info-kpi">83.11</span>
+                    <img
+                      class="icon-kpi"
+                      src="./../assets/imgs/dashboard/iconraio.svg"
+                      alt="energia"
+                    />
                   </div>
                 </div>
-                <div class="kpi alerta">
-                  <span class="titulo-kpi">Potência Reativa Adiantada Total (KVarh)</span>
+                <div class="kpi critico">
+                  <span class="titulo-kpi"
+                    >Potência Reativa Adiantada Total (KVarh)</span
+                  >
                   <div class="conteudo-kpi">
-                    <span class="info-kpi">7</span>
-                    <img class="icon-kpi" src="./../assets/imgs/dashboard/iconraio.svg" alt="energia" />
+                    <span class="info-kpi">540.64</span>
+                    <img
+                      class="icon-kpi"
+                      src="./../assets/imgs/dashboard/iconraio.svg"
+                      alt="energia"
+                    />
                   </div>
                 </div>
                 <div class="kpi critico" id="kpi-reativa-adiantada">
                   <span class="titulo-kpi">Fator de Potência com Problema</span>
                   <div class="conteudo-kpi">
                     <span class="info-kpi">Adiantado</span>
-                    <img class="icon-kpi" src="./../assets/imgs/dashboard/iconraio.svg" alt="energia" />
+                    <img
+                      class="icon-kpi"
+                      src="./../assets/imgs/dashboard/iconraio.svg"
+                      alt="energia"
+                    />
                   </div>
                 </div>
 
@@ -142,15 +259,20 @@
                     <div class="info-graph">
                       <figure class="tooltip">
                         <p class="tooltiptext">
-                          🟩 P. Reat. Atrasada <br>
+                          🟩 P. Reat. Atrasada <br />
                           🟧 Fator Potência
                         </p>
                       </figure>
                       <!-- <img src="../assets/imgs/dashboard/info.svg" alt="Icone de Info"> -->
-                      <img src="../assets/imgs/dashboard/max.svg" alt="Icone de Maximizar">
+                      <img
+                        src="../assets/imgs/dashboard/max.svg"
+                        alt="Icone de Maximizar"
+                      />
                     </div>
                   </div>
-                  <div class="grafico"><canvas id="graph_ener_atr"></canvas></div>
+                  <div class="grafico">
+                    <canvas id="graph_ener_atr"></canvas>
+                  </div>
                 </div>
                 <div class="box-graph">
                   <div class="title-graph">
@@ -158,14 +280,19 @@
                     <div class="info-graph">
                       <figure class="tooltip">
                         <p class="tooltiptext">
-                          🟪 P. Reat. Adiantada <br>
+                          🟪 P. Reat. Adiantada <br />
                           🟨 Fator Potência
                         </p>
                       </figure>
-                      <img src="../assets/imgs/dashboard/max.svg" alt="Icone de Maximizar">
+                      <img
+                        src="../assets/imgs/dashboard/max.svg"
+                        alt="Icone de Maximizar"
+                      />
                     </div>
                   </div>
-                  <div class="grafico"><canvas id="graph_ener_adi"></canvas></div>
+                  <div class="grafico">
+                    <canvas id="graph_ener_adi"></canvas>
+                  </div>
                 </div>
                 <div class="box-graph">
                   <div class="title-graph">
@@ -173,73 +300,112 @@
                     <div class="info-graph">
                       <figure class="tooltip">
                         <p class="tooltiptext">
-                          🟦 Energia Útil <br>
+                          🟦 Energia Útil <br />
                           🟥 Energia Indutiva
                         </p>
                       </figure>
-                      <img src="../assets/imgs/dashboard/max.svg" alt="Icone de Maximizar">
+                      <img
+                        src="../assets/imgs/dashboard/max.svg"
+                        alt="Icone de Maximizar"
+                      />
                     </div>
                   </div>
-                  <div class="grafico"><canvas id="graph_util_indutiva"></canvas></div>
+                  <div class="grafico">
+                    <canvas id="graph_util_indutiva"></canvas>
+                  </div>
                 </div>
               </article>
               <!-- Dash consumo -->
               <article class="dash-con" id="dash-con">
                 <div class="kpi-con">
                   <div class="kpi energia">
-                      <span class="titulo-kpi">Consumo total de Energia</span>
+                    <span class="titulo-kpi"
+                      >% Meta de consumo (KWh) x Atingido</span
+                    >
                     <div class="conteudo-kpi">
-                      <span class="info-kpi">7</span>
-                      <img class="icon-kpi" src="./../assets/imgs/dashboard/iconraio.svg" alt="energia" />
+                      <span class="info-kpi">
+                        1000
+                        <p>84%</p>
+                      </span>
+                      <img
+                        class="icon-kpi"
+                        src="./../assets/imgs/dashboard/iconraio.svg"
+                        alt="energia"
+                      />
                     </div>
                   </div>
-                    <div class="kpi energia">
-                      <span class="titulo-kpi">Emissão total de CO₂ (tCO2)</span>
-                      <div class="conteudo-kpi">
-                        <span class="info-kpi">7</span>
-                        <img class="icon-kpi" src="./../assets/imgs/dashboard/iconco2.svg" alt="energia" />
-                      </div>
-                    </div>
-                    <div class="kpi energia">
-                      <span class="titulo-kpi">Potência Reativa Atrasada Total (KVarh)</span>
-                      <div class="conteudo-kpi">
-                        <span class="info-kpi">7</span>
-                        <img class="icon-kpi" src="./../assets/imgs/dashboard/iconraio.svg" alt="energia" />
-                      </div>
+                  <div class="kpi critico">
+                    <span class="titulo-kpi">
+                      % Meta de desperdício x Atingido
+                    </span>
+                    <div class="conteudo-kpi">
+                      <span class="info-kpi">
+                        350
+                        <p>78%</p>
+                      </span>
+                      <img
+                        class="icon-kpi"
+                        src="./../assets/imgs/dashboard/iconraio.svg"
+                        alt="energia"
+                      />
                     </div>
                   </div>
-                  <div class="box-graph">
-                    <div class="title-graph">
+                  <div class="kpi bom">
+                    <span class="titulo-kpi">% Meta de emissão x Atingido</span>
+                    <div class="conteudo-kpi">
+                      <span class="info-kpi">
+                        6
+                        <p>20%</p>
+                      </span>
+                      <img
+                        class="icon-kpi"
+                        src="./../assets/imgs/dashboard/iconco2.svg"
+                        alt="energia"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="box-graph">
+                  <div class="title-graph">
                     <h2>Consumo de Energia</h2>
                     <div class="info-graph">
                       <figure class="tooltip">
                         <p class="tooltiptext">
-                          🟩 Consumo energia <br>
+                          🟩 Consumo energia <br />
                           🟥 Previsão de consumo
                         </p>
                       </figure>
-                      <img src="../assets/imgs/dashboard/max.svg" alt="Icone de Maximizar">
+                      <img
+                        src="../assets/imgs/dashboard/max.svg"
+                        alt="Icone de Maximizar"
+                      />
                     </div>
                   </div>
-                 <div class="grafico"><canvas id="graph_con_med"></canvas></div>
+                  <div class="grafico">
+                    <canvas id="graph_con_med"></canvas>
                   </div>
-                  <div class="box-graph">
+                </div>
+                <div class="box-graph">
                   <div class="title-graph">
                     <h2>Emissão de CO₂ (tCO2)</h2>
                     <div class="info-graph">
                       <figure class="tooltip">
                         <p class="tooltiptext">
-                          Emissão CO₂ <br>
+                          Emissão CO₂ <br />
                           Essa semana
                         </p>
                       </figure>
-                      <img src="../assets/imgs/dashboard/max.svg" alt="Icone de Maximizar">
+                      <img
+                        src="../assets/imgs/dashboard/max.svg"
+                        alt="Icone de Maximizar"
+                      />
                     </div>
                   </div>
-                    <div class="grafico"><canvas id="graph_emissao"></canvas></div>
+                  <div class="grafico">
+                    <canvas id="graph_emissao"></canvas>
                   </div>
-                </article>
-              </div>
+                </div>
+              </article>
             </div>
           </div>
         </section>
@@ -247,4 +413,5 @@
     </main>
   </body>
   <script src="../js/dashboard.js"></script>
+  <script src="../js/dashfront.js"></script>
 </html>
