@@ -56,7 +56,8 @@ FOREIGN KEY ForeignKey_fkEmpresa (fkEmpresa) REFERENCES empresa (idEmpresa)
 
 CREATE TABLE IF NOT EXISTS metrica (
 idMetricas			            INT AUTO_INCREMENT COMMENT 'Identificador único de métricas de cada empresa',
-consumoMaxima		            VARCHAR(45) COMMENT 'Métrica de Consumo máxima antes do alerta',
+consumoMaximo		            VARCHAR(45) COMMENT 'Métrica de Consumo máximo antes do alerta',
+desperdicioMaximo               VARCHAR(45) COMMENT 'Métrica de Desperdício máximo da metalurgica',
 co2Maximo			            VARCHAR(45) COMMENT 'Métrica de CO2 máxima antes do alerta',
 potenciaReativaAtrasadaMaxima   VARCHAR(45) COMMENT 'Métrica de Potência Reativa Atrasada máxima antes do alerta',
 potenciaReativaAdiantadaMaxima  VARCHAR(45) COMMENT 'Métrica de Potência Reativa Adiantada máxima antes do alerta',
@@ -91,8 +92,8 @@ VALUES ('SteelForge', 'contato@steelforge.com', '1234567890', '12345678000190', 
 
 -- Inserir dois funcionários para a empresa SteelForge
 INSERT INTO funcionario (nome, email, cpf, cargo, senha, statusFuncionario, fkEmpresa)
-VALUES ('João Silva', 'joao.silva@steelforge.com', '12345678910', 'admin', 'senha123', 'ativo', 1),
-       ('Gustavo Luz', 'gustavo.luz@steelforge.com', '98765432100', 'consumo', 'senha456', 'ativo', 1);
+VALUES ('João Silva', 'joao.silva@steelforge.com', '12345678910', 'admin', '123', 'ativo', 1),
+       ('Gustavo Luz', 'gustavo.luz@steelforge.com', '98765432100', 'consumo', '123', 'ativo', 1);
 
 
 
