@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discharge | Métricas</title>
+    <link rel="stylesheet" href="./../css/metricas.css">
+    <link rel="stylesheet" href="./../css/navbar.css" />
+    <link rel="shortcut icon" href="./../assets/icon/logo_flavicon.svg" type="image/x-icon" />
+</head>
+
+<body>
+    <main>
+        <nav id="nav">
+            <ul>
+                <li class="ul_espacamento">
+                    <span class="link_dash" onclick="menu()">
+                        <article>
+                            <img src="./../assets/imgs/dashboard/menu.svg" alt="buguer" />
+                            <h3>Menu</h3>
+                        </article>
+                    </span>
+                </li>
+                <li class="ul_espacamento">
+                    <a class="link_dash" href="./home.html">
+                        <article>
+                            <img src="./../assets/imgs/dashboard/botao-de-inicio.png" alt="home" />
+                            <h3>Início</h3>
+                        </article>
+                    </a>
+                    <a class="link_dash active" href="./dashboard.html">
+                        <article>
+                            <img src="./../assets/imgs/dashboard/grafico-de-pizza.png" alt="dashboard" />
+                            <h3>Dashboard</h3>
+                        </article>
+                    </a>
+                    <a class="link_dash" href="./metricas.html">
+                        <article>
+                            <img src="./../assets/imgs/dashboard/estrela.png" alt="métricas" />
+                            <h3>Métricas</h3>
+                        </article>
+                    </a>
+                    <a class="link_dash" href="">
+                        <article>
+                            <img src="./../assets/imgs/dashboard/escola-do-sino.png" alt="histórico de recomendações" />
+                            <h3>Alertas</h3>
+                        </article>
+                    </a>
+                    <a class="link_dash" href="">
+                        <article>
+                            <img src="./../assets/imgs/dashboard/contexto.png" alt="configurações" />
+                            <h3>Configurações</h3>
+                        </article>
+                    </a>
+                    <span class="link_dash" onclick="menu()">
+                        <article class="link_dash_user">
+                            <img src="./../assets/imgs/dashboard/user.svg" alt="Ícone de Usuário" />
+                            <h3 id="name_user"></h3>
+                            <img onclick="sair()" src="./../assets/imgs/dashboard/sair.png" alt="Sair" />
+                        </article>
+                    </span>
+                </li>
+            </ul>
+        </nav>
+        <section class="global">
+            <section class="content">
+                <div class="container">
+                    <div class="title">
+                        <h1>Métricas de Eficiência</h1>
+                    </div>
+                    <p>Personalize como as métricas impactarão os indicadores de
+                        monitoramento. Tenha uma visão mais direcionada e significativa dos dados, fatores que
+                        influenciam o
+                        sucesso e eficiência de seus processos. Ao
+                        selecionar as métricas, você pode ajustar os indicadores de forma a refletir melhor a
+                        realidade
+                        do
+                        seu
+                        negócio ou operação.
+                    </p>
+                    <div class="container-metricas">
+                        <div class="content-metrica">
+                            <div class="title">
+                                <img src="./../assets/imgs/dashboard/iconco2.svg" alt="co2">
+                                <h4>Limite de emissão de CO2 (tCO2):</h4>
+                                <input type="number" oninput=enforceMaxLength(this) maxlength = "3">
+                            </div>
+                            <p>Limite de emissões de tCO2 por megawatt-hora (tCO2/MWh). Essa métrica mede quantas
+                                toneladas
+                                de
+                                CO2 são emitidas por cada megawatt-hora de energia consumido no processo produtivo. Ao
+                                definir
+                                um limite máximo de emissões, você pode monitorar seu impacto ambiental e adotar
+                                estratégias
+                                para reduzir o consumo energético. Isso contribui para diminuir as emissões totais de
+                                CO2,
+                                tornando a operação mais sustentável e alinhada com padrões de eficiência energética.
+                            </p>
+                        </div>
+                        <div class="content-metrica">
+                            <div class="title">
+                                <img src="./../assets/imgs/dashboard/iconco2.svg" alt="co2">
+                                <h4>Limite de emissão de CO2 (tCO2):</h4>
+                                <input type="number">
+                            </div>
+                            <p>Limite de emissões de tCO2 por megawatt-hora (tCO2/MWh). Essa métrica mede quantas
+                                toneladas
+                                de
+                                CO2 são emitidas por cada megawatt-hora de energia consumido no processo produtivo. Ao
+                                definir
+                                um limite máximo de emissões, você pode monitorar seu impacto ambiental e adotar
+                                estratégias
+                                para reduzir o consumo energético. Isso contribui para diminuir as emissões totais de
+                                CO2,
+                                tornando a operação mais sustentável e alinhada com padrões de eficiência energética.
+                            </p>
+                        </div>
+                        <div class="content-metrica">
+                            <div class="title">
+                                <img src="./../assets/imgs/dashboard/iconco2.svg" alt="co2">
+                                <h4>Limite de emissão de CO2 (tCO2):</h4>
+                                <input type="number">
+                            </div>
+                            <p>Limite de emissões de tCO2 por megawatt-hora (tCO2/MWh). Essa métrica mede quantas
+                                toneladas
+                                de
+                                CO2 são emitidas por cada megawatt-hora de energia consumido no processo produtivo. Ao
+                                definir
+                                um limite máximo de emissões, você pode monitorar seu impacto ambiental e adotar
+                                estratégias
+                                para reduzir o consumo energético. Isso contribui para diminuir as emissões totais de
+                                CO2,
+                                tornando a operação mais sustentável e alinhada com padrões de eficiência energética.
+                            </p>
+                        </div>
+                        <button>
+                            Aplicar
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </main>
+</body>
+
+</html>
+
+<script>
+    function enforceMaxLength(element) {
+        if (element.value.length > element.maxLength) {
+            element.value = element.value.slice(0, element.maxLength);
+        }
+    }
+</script>
