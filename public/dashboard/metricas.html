@@ -29,13 +29,13 @@
                             <h3>Início</h3>
                         </article>
                     </a>
-                    <a class="link_dash active" href="./dashboard.html">
+                    <a class="link_dash" href="./dashboard.html">
                         <article>
                             <img src="./../assets/imgs/dashboard/grafico-de-pizza.png" alt="dashboard" />
                             <h3>Dashboard</h3>
                         </article>
                     </a>
-                    <a class="link_dash" href="./metricas.html">
+                    <a class="link_dash active" href="./metricas.html">
                         <article>
                             <img src="./../assets/imgs/dashboard/estrela.png" alt="métricas" />
                             <h3>Métricas</h3>
@@ -83,8 +83,9 @@
                         <div class="content-metrica">
                             <div class="title">
                                 <img src="./../assets/imgs/dashboard/iconco2.svg" alt="co2">
-                                <h4>Limite de emissão de CO2 (tCO2):</h4>
-                                <input type="number" oninput=enforceMaxLength(this) maxlength = "3">
+                                <h4>Limite de emissão de CO2 no mês (tCO2)</h4>
+                                <input type="number" oninput=enforceMaxLength(this) maxlength = "3" placeholder="7">
+                                <p>(tco2)</p>
                             </div>
                             <p>Limite de emissões de tCO2 por megawatt-hora (tCO2/MWh). Essa métrica mede quantas
                                 toneladas
@@ -100,38 +101,22 @@
                         </div>
                         <div class="content-metrica">
                             <div class="title">
-                                <img src="./../assets/imgs/dashboard/iconco2.svg" alt="co2">
-                                <h4>Limite de emissão de CO2 (tCO2):</h4>
-                                <input type="number">
+                                <img src="./../assets/imgs/dashboard/iconraio.svg" alt="energia">
+                                <h4>Consumo total de energia no mês  (kWh)</h4>
+                                <input type="number" oninput=enforceMaxLength(this) maxlength = "3" placeholder="10">
+                                <p>(kWh)</p>
                             </div>
-                            <p>Limite de emissões de tCO2 por megawatt-hora (tCO2/MWh). Essa métrica mede quantas
-                                toneladas
-                                de
-                                CO2 são emitidas por cada megawatt-hora de energia consumido no processo produtivo. Ao
-                                definir
-                                um limite máximo de emissões, você pode monitorar seu impacto ambiental e adotar
-                                estratégias
-                                para reduzir o consumo energético. Isso contribui para diminuir as emissões totais de
-                                CO2,
-                                tornando a operação mais sustentável e alinhada com padrões de eficiência energética.
+                            <p>Na métrica de consumo total de energia no mês, você pode definir um limite máximo de consumo (em kWh) que não pretende ultrapassar. Essa definição serve como uma meta de economia de energia, ajudando a manter o consumo sob controle e a evitar custos elevados. Com essa meta, o sistema pode monitorar o consumo ao longo do mês, alertando quando o consumo estiver se aproximando do limite, o que permite tomar ações corretivas para otimizar o uso de energia e evitar excessos.
                             </p>
                         </div>
                         <div class="content-metrica">
                             <div class="title">
-                                <img src="./../assets/imgs/dashboard/iconco2.svg" alt="co2">
-                                <h4>Limite de emissão de CO2 (tCO2):</h4>
-                                <input type="number">
+                                <img src="./../assets/imgs/dashboard/iconraio.svg" alt="energia">
+                                <h4>Máximo desperdício de energia no mês (kWh)</h4>
+                                <input type="number" oninput=enforceMaxLength(this) maxlength = "3" placeholder="10">
+                                <p>(kWh)</p>
                             </div>
-                            <p>Limite de emissões de tCO2 por megawatt-hora (tCO2/MWh). Essa métrica mede quantas
-                                toneladas
-                                de
-                                CO2 são emitidas por cada megawatt-hora de energia consumido no processo produtivo. Ao
-                                definir
-                                um limite máximo de emissões, você pode monitorar seu impacto ambiental e adotar
-                                estratégias
-                                para reduzir o consumo energético. Isso contribui para diminuir as emissões totais de
-                                CO2,
-                                tornando a operação mais sustentável e alinhada com padrões de eficiência energética.
+                            <p>A métrica de meta de máximo desperdício de energia define um limite tolerável de energia desperdiçada. Esta métrica permite monitorar a quantidade de energia que não está sendo usada de maneira produtiva, como perdas em equipamentos ineficientes, processos ociosos ou fugas de energia. Ao estabelecer uma meta de desperdício máximo, você pode acompanhar de perto os pontos de ineficiência e implementar melhorias para reduzir o desperdício, economizando nos custos operacionais e promovendo uma operação mais sustentável.
                             </p>
                         </div>
                         <button>
@@ -143,13 +128,5 @@
         </section>
     </main>
 </body>
-
+<script src="../js/metricafront.js"></script>
 </html>
-
-<script>
-    function enforceMaxLength(element) {
-        if (element.value.length > element.maxLength) {
-            element.value = element.value.slice(0, element.maxLength);
-        }
-    }
-</script>
