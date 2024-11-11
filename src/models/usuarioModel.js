@@ -9,14 +9,14 @@ function autenticar(email, senha) {
     senha
   );
   var instrucaoSql = `
-        SELECT idFuncionario, nome, email, cargo FROM funcionario WHERE email = ? AND senha = ?;
+        SELECT id, nome, email, cargo FROM funcionario WHERE email = ? AND senha = ?;
     `;
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql, [email, senha]); // Passando parâmetros
 }
 
 // Coloque os mesmos parâmetros aqui. Vá para a var instrucaoSql
-function cadastrar(nome, email, cpf, tipo, senha, fkEmpresa) {
+function cadastrar(nome, email, cpf, tipo, senha, fkempresa) {
   console.log(
     "ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():",
     nome,
@@ -24,22 +24,15 @@ function cadastrar(nome, email, cpf, tipo, senha, fkEmpresa) {
     senha
   );
   var instrucaoSql = `
-        INSERT INTO funcionario (nome, email, cpf, cargo, senha, fkEmpresa) VALUES (?, ?, ?, ?, ?, ?);
+        INSERT INTO funcionario (nome, email, cpf, cargo, senha, fkempresa) VALUES (?, ?, ?, ?, ?, ?);
     `;
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
-  return database.executar(instrucaoSql, [
-    nome,
-    email,
-    cpf,
-    tipo,
-    senha,
-    fkEmpresa,
-  ]); // Passando parâmetros
+  return database.executar(instrucaoSql, [nome, email, cpf, tipo, senha, fkempresa]); // Passando parâmetros
 }
 
-function listar(fkEmpresa) {
-  var instrucaoSql = `SELECT idFuncionario as id, nome as nome, cpf, fkEmpresa FROM funcionario WHERE fkEmpresa = ? AND statusFuncionario = "ativo";`;
-  return database.executar(instrucaoSql, [fkEmpresa]); // Passando o parâmetro
+function listar(fkempresa) {
+  var instrucaoSql = `SELECT idFuncionario as id, nome as nome, cpf, fkempresa FROM funcionario WHERE fkempresa = ? AND statusFuncionario = "ativo";`;
+  return database.executar(instrucaoSql, [fkempresa]); // Passando o parâmetro
 }
 
 function desativarFuncionario(idFuncionarioDesativar) {
@@ -50,7 +43,7 @@ function desativarFuncionario(idFuncionarioDesativar) {
   var instrucaoSql = `
     UPDATE funcionario
     SET statusFuncionario = "inativo"
-    WHERE idFuncionario IN (?);
+    WHERE id IN (?);
     `;
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql, [idFuncionarioDesativar]); // Passando o parâmetro
@@ -64,7 +57,7 @@ function mudarCargo(idFuncionarioDesativar, cargo) {
   var instrucaoSql = `
     UPDATE funcionario
     SET cargo = ?
-    WHERE idFuncionario IN (?);
+    WHERE id IN (?);
     `;
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql, [cargo, idFuncionarioDesativar]); // Passando parâmetros
@@ -120,13 +113,7 @@ function guardarInfos(email, token, dataExpiracao) {
             data_criacao = NOW(), 
             data_expiracao = ?;`;
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
-  return database.executar(instrucaoSql, [
-    email,
-    token,
-    dataExpiracao,
-    token,
-    dataExpiracao,
-  ]); // Passando os parâmetros
+  return database.executar(instrucaoSql, [email, token, dataExpiracao, token, dataExpiracao]); // Passando os parâmetros
 }
 
 function validarToken(tokenRecuperacao) {
