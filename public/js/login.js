@@ -2,14 +2,10 @@ function visualizarSenha() {
   var image = document.getElementById("imagemSenha");
   var input = document.getElementById("input_senha");
 
-  if (
-    image.src === "https://www.svgrepo.com/show/380007/eye-password-hide.svg"
-  ) {
+  if (image.src === "https://www.svgrepo.com/show/380007/eye-password-hide.svg") {
     image.src = "https://www.svgrepo.com/show/380010/eye-password-show.svg";
     input.type = "text";
-  } else if (
-    (image.src = "https://www.svgrepo.com/show/380010/eye-password-show.svg")
-  ) {
+  } else if ((image.src = "https://www.svgrepo.com/show/380010/eye-password-show.svg")) {
     image.src = "https://www.svgrepo.com/show/380007/eye-password-hide.svg";
     input.type = "password";
   }
@@ -19,14 +15,10 @@ function visualizarSenhaModal() {
   var image = document.getElementById("imagemSenhaModal");
   var input = document.getElementById("input_nova_senha_modal");
 
-  if (
-    image.src === "https://www.svgrepo.com/show/380007/eye-password-hide.svg"
-  ) {
+  if (image.src === "https://www.svgrepo.com/show/380007/eye-password-hide.svg") {
     image.src = "https://www.svgrepo.com/show/380010/eye-password-show.svg";
     input.type = "text";
-  } else if (
-    (image.src = "https://www.svgrepo.com/show/380010/eye-password-show.svg")
-  ) {
+  } else if ((image.src = "https://www.svgrepo.com/show/380010/eye-password-show.svg")) {
     image.src = "https://www.svgrepo.com/show/380007/eye-password-hide.svg";
     input.type = "password";
   }
@@ -36,14 +28,10 @@ function visualizarConfirmarSenhaModal() {
   var image = document.getElementById("imagemConfirmarSenhaModal");
   var input = document.getElementById("input_confirmar_nova_senha_modal");
 
-  if (
-    image.src === "https://www.svgrepo.com/show/380007/eye-password-hide.svg"
-  ) {
+  if (image.src === "https://www.svgrepo.com/show/380007/eye-password-hide.svg") {
     image.src = "https://www.svgrepo.com/show/380010/eye-password-show.svg";
     input.type = "text";
-  } else if (
-    (image.src = "https://www.svgrepo.com/show/380010/eye-password-show.svg")
-  ) {
+  } else if ((image.src = "https://www.svgrepo.com/show/380010/eye-password-show.svg")) {
     image.src = "https://www.svgrepo.com/show/380007/eye-password-hide.svg";
     input.type = "password";
   }
@@ -82,7 +70,7 @@ function entrar() {
             console.log(JSON.stringify(json));
             sessionStorage.EMAIL_USUARIO = json.email;
             sessionStorage.NOME_USUARIO = json.nome;
-            sessionStorage.ID_USUARIO = json.idFuncionario;
+            sessionStorage.ID_USUARIO = json.id;
             sessionStorage.CARGO_USUARIO = json.cargo;
 
             window.location.href = "../dashboard/home.html";
