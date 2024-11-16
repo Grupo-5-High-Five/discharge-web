@@ -1,162 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/login.css" />
+    <title>Discharge</title>
+    <link rel="shortcut icon" href="./assets/icon/logo_flavicon.svg" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="./css/login.css" />
-  <title>Discharge</title>
-  <link rel="shortcut icon" href="./assets/icon/logo_flavicon.svg" type="image/x-icon" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-    rel="stylesheet" />
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
-</head>
+  <body>
+    <main class="main-content">
+      <section class="formulario">
+        <div class="container-login">
+          <div class="box_area">
+            <!-- Mensagem de cadastro -->
 
-<body>
-  <main class="main-content">
-    <section class="formulario">
-      <div class="container-login">
-        <div class="box_area">
-          <!-- Mensagem de cadastro -->
-
-          <article class="cad_texto">
-            <div class="containerTexto">
-              <div class="texto">
-                <h2>QUERO UTILIZAR O DISCHARGE</h2>
-                <p>
-                  Se você ainda não possui uma conta, entre em contato com o administrador do sistema para criar um novo
-                  usuário e começar a utilizar o Discharge, a plataforma
-                  ideal para otimizar sua gestão de dados e processos.
-                </p>
+            <article class="cad_texto">
+              <div class="containerTexto">
+                <div class="texto">
+                  <h2>QUERO UTILIZAR O DISCHARGE</h2>
+                  <p>Se você ainda não possui uma conta, entre em contato com o administrador do sistema para criar um novo usuário e começar a utilizar o Discharge, a plataforma ideal para otimizar sua gestão de dados e processos.</p>
+                </div>
+                <a href="./index.html#contatenos"><button class="botaoContato">CONTATE-NOS</button></a>
               </div>
-              <a href="./index.html#contatenos"><button class="botaoContato">CONTATE-NOS</button></a>
-            </div>
-          </article>
+            </article>
 
-          <form class="form">
-            <!-- Tittle -->
-            <h1>BEM-VINDO DE VOLTA!</h1>
+            <form class="form">
+              <!-- Tittle -->
+              <h1>BEM-VINDO DE VOLTA!</h1>
 
-            <!-- Input - User -->
-            <span class="nomeInput">E-MAIL</span>
-            <label for="input_email">
-              <input type="email" placeholder="usuario@email.com.br" id="input_email" />
-              <div class="icone"><img src="./assets/imgs/user-circle-svgrepo-com.svg" alt="" /></div>
-            </label>
+              <!-- Input - User -->
+              <span class="nomeInput">E-MAIL</span>
+              <label for="input_email">
+                <input type="email" placeholder="usuario@email.com.br" id="input_email" />
+                <div class="icone"><img src="./assets/imgs/user-circle-svgrepo-com.svg" alt="" /></div>
+              </label>
 
-            <!-- Input - Senha -->
+              <!-- Input - Senha -->
 
-            <span class="nomeInput">SENHA</span>
-            <label for="input_senha">
-              <input type="password" placeholder="********" id="input_senha" />
-              <div class="icone">
-                <img class="imagem_senha" id="imagemSenha"
-                  src="https://www.svgrepo.com/show/380007/eye-password-hide.svg" alt="" onclick="visualizarSenha()" />
-              </div>
-            </label>
+              <span class="nomeInput">SENHA</span>
+              <label for="input_senha">
+                <input type="password" placeholder="********" id="input_senha" />
+                <div class="icone">
+                  <img class="imagem_senha" id="imagemSenha" src="https://www.svgrepo.com/show/380007/eye-password-hide.svg" alt="" onclick="visualizarSenha()" />
+                </div>
+              </label>
 
-            <a href="" class="modal-link" data-toggle="modal" data-target="#modal_email">
-              <p>Esqueceu sua senha</p>
-            </a>
+              <a href="" class="modal-link" data-toggle="modal" data-target="#modal_email">
+                <p>Esqueceu sua senha</p>
+              </a>
 
-            <button onclick="entrar()" class="botaoEntrar">ENTRAR</button>
+              <button onclick="entrar()" class="botaoEntrar">ENTRAR</button>
 
-            <!-- Modal Email -->
-            <div class="modal fade" id="modal_email" tabindex="-10" role="dialog"
-              aria-labelledby="TituloModalCentralizado" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="TituloModalCentralizado">Informe seu E-mail</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <form id="recuperar_senha_email">
-                      <p>
-                        Você receberá um e-mail contendo um token necessário para a validação do seu cadastro. Por
-                        favor, verifique sua caixa de entrada e siga as instruções
-                        contidas no e-mail para concluir o processo de validação. Caso não encontre o e-mail na pasta
-                        principal, não se esqueça de verificar a pasta de spam ou
-                        lixo eletrônico.
-                      </p>
-                      <span class="tag_modal">Insira seu E-mail cadastrado:</span>
-                      <label for="input_email_modal">
-                        <input type="email" placeholder="usuario@email.com.br" id="input_email_modal" />
-                        <div class="icone"><img src="./assets/imgs/user-circle-svgrepo-com.svg" alt="" /></div>
-                      </label>
-                    </form>
-                  </div>
-                  <div class="modal-footer">
-                    <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button> -->
-                    <button type="button" class="btn btn-primary btn-amarelo" ondblclick="enviarEmail()">Enviar</button>
+              <!-- Modal Email -->
+              <div class="modal fade" id="modal_email" tabindex="-10" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="TituloModalCentralizado">Informe seu E-mail</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form id="recuperar_senha_email">
+                        <p>
+                          Você receberá um e-mail contendo um token necessário para a validação do seu cadastro. Por favor, verifique sua caixa de entrada e siga as instruções contidas no e-mail para concluir o processo de validação. Caso não
+                          encontre o e-mail na pasta principal, não se esqueça de verificar a pasta de spam ou lixo eletrônico.
+                        </p>
+                        <span class="tag_modal">Insira seu E-mail cadastrado:</span>
+                        <label for="input_email_modal">
+                          <input type="email" placeholder="usuario@email.com.br" id="input_email_modal" />
+                          <div class="icone"><img src="./assets/imgs/user-circle-svgrepo-com.svg" alt="" /></div>
+                        </label>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button> -->
+                      <button type="button" class="btn btn-primary btn-amarelo" ondblclick="enviarEmail()">Enviar</button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <!-- Modal Senha -->
-            <div class="modal fade" id="modal_senha" tabindex="-10" role="dialog"
-              aria-labelledby="TituloModalCentralizado" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="TituloModalCentralizado">Insira sua nova senha</h5>
-                    <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"> -->
-                    <!-- <span aria-hidden="true">&times;</span> -->
-                    <!-- </button> -->
-                  </div>
-                  <div class="modal-body">
-                    <!-- Input - User -->
-                    <p>
-                      Insira sua nova senha com atenção e certifique-se de não esquecê-la! Você pode anotá-la em um
-                      local seguro ou optar por usar um gerenciador de senhas para
-                      maior segurança e praticidade.
-                    </p>
-                    <form>
-                      <span class="tag_modal">Token:</span>
-                      <label for="input_token">
-                        <input type="text" placeholder="TOKEN" id="input_token" />
-                      </label>
-                      <span class="tag_modal">Nova senha:</span>
-                      <label for="input_nova_senha_modal">
-                        <input type="text" placeholder="Senha" id="input_nova_senha_modal" />
-                        <div class="icone"><img src="https://www.svgrepo.com/show/380007/eye-password-hide.svg" alt=""
-                            onclick="visualizarSenhaModal()" id="imagemSenhaModal" /></div>
-                      </label>
-                      <span class="tag_modal">Confirmar nova senha:</span>
-                      <label for="input_confirmar_nova_senha_modal">
-                        <input type="text" placeholder="Confirmar Senha" id="input_confirmar_nova_senha_modal" />
-                        <div class="icone"><img src="https://www.svgrepo.com/show/380007/eye-password-hide.svg" alt=""
-                            onclick="visualizarConfirmarSenhaModal()" id="imagemConfirmarSenhaModal" /></div>
-                      </label>
-                    </form>
-                  </div>
-                  <div class="modal-footer">
-                    <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button> -->
-                    <button type="button" class="btn btn-primary btn-amarelo" onclick="atualizarSenha()">Enviar</button>
+              <!-- Modal Senha -->
+              <div class="modal fade" id="modal_senha" tabindex="-10" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="TituloModalCentralizado">Insira sua nova senha</h5>
+                      <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"> -->
+                      <!-- <span aria-hidden="true">&times;</span> -->
+                      <!-- </button> -->
+                    </div>
+                    <div class="modal-body">
+                      <!-- Input - User -->
+                      <p>Insira sua nova senha com atenção e certifique-se de não esquecê-la! Você pode anotá-la em um local seguro ou optar por usar um gerenciador de senhas para maior segurança e praticidade.</p>
+                      <form>
+                        <span class="tag_modal">Token:</span>
+                        <label for="input_token">
+                          <input type="text" placeholder="TOKEN" id="input_token" />
+                        </label>
+                        <span class="tag_modal">Nova senha:</span>
+                        <label for="input_nova_senha_modal">
+                          <input type="text" placeholder="Senha" id="input_nova_senha_modal" />
+                          <div class="icone"><img src="https://www.svgrepo.com/show/380007/eye-password-hide.svg" alt="" onclick="visualizarSenhaModal()" id="imagemSenhaModal" /></div>
+                        </label>
+                        <span class="tag_modal">Confirmar nova senha:</span>
+                        <label for="input_confirmar_nova_senha_modal">
+                          <input type="text" placeholder="Confirmar Senha" id="input_confirmar_nova_senha_modal" />
+                          <div class="icone"><img src="https://www.svgrepo.com/show/380007/eye-password-hide.svg" alt="" onclick="visualizarConfirmarSenhaModal()" id="imagemConfirmarSenhaModal" /></div>
+                        </label>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button> -->
+                      <button type="button" class="btn btn-primary btn-amarelo" onclick="atualizarSenha()">Enviar</button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
-      </div>
-    </section>
-  </main>
-</body>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-  integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-  integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-
+      </section>
+    </main>
+  </body>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </html>
 
 <script src="./js/login.js"></script>

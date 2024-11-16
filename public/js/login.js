@@ -44,11 +44,13 @@ function entrar() {
   let senhaVar = input_senha.value;
 
   if (emailVar == "" || senhaVar == "") {
-    alert("Todos os campos devem ser preenchidos");
-  } else {
-    console.log("FORM LOGIN: ", emailVar);
-    console.log("FORM SENHA: ", senhaVar);
+    let titulo = "Todos os campos devem ser preenchidos!";
+    let msg = "";
+    let icon = "warning";
+    let action = false;
 
+    modal(titulo, msg, icon, action);
+  } else {
     fetch("/usuario/autenticar", {
       method: "POST",
       headers: {
@@ -60,10 +62,13 @@ function entrar() {
       }),
     })
       .then(function (resposta) {
-        console.log("ESTOU NO THEN DO entrar()!");
-
         if (resposta.ok) {
-          console.log(resposta);
+          let titulo = "Login realizado com sucesso!";
+          let msg = "Aguarde que estamos te redirecionando para página..";
+          let icon = "success";
+          let action = true;
+
+          modal(titulo, msg, icon, action);
 
           resposta.json().then((json) => {
             console.log(json);
@@ -72,15 +77,17 @@ function entrar() {
             sessionStorage.NOME_USUARIO = json.nome;
             sessionStorage.ID_USUARIO = json.id;
             sessionStorage.CARGO_USUARIO = json.cargo;
-
-            window.location.href = "../dashboard/home.html";
           });
         } else {
-          console.log("Houve um erro ao tentar realizar o login!");
+          let titulo = "Credênciais Inválidas!";
+          let msg = "Verifique suas credências ou entre em contato com nosso suporte.";
+          let icon = "error";
+          let action = false;
+
+          modal(titulo, msg, icon, action);
 
           resposta.text().then((texto) => {
             console.error(texto);
-            // finalizarAguardar(texto);
           });
         }
       })
@@ -168,4 +175,64 @@ function atualizarSenha() {
         alert("Erro: " + error.message);
       });
   }
+}
+
+function modal(titulo, msg, tipo, action) {
+  let tempo = 3500;
+  if (action) {
+    tempo = 1760;
+  }
+
+  let timerInterval;
+  Swal.fire({
+    title: titulo, // Parâmetro do título
+    html: msg, // Parâmetro da msg
+    icon: tipo, // Parâmetro do tipo
+    position: "top",
+    timer: tempo,
+    timerProgressBar: true,
+    showClass: {
+      popup: `
+              animate__animated
+              animate__fadeInUp
+              animate__faster
+            `,
+    },
+    hideClass: {
+      popup: `
+              animate__animated
+              animate__fadeOutDown
+              animate__faster
+            `,
+    },
+    didOpen: () => {
+      Swal.showLoading();
+
+      let timerBar = document.querySelector(".swal2-timer-progress-bar");
+
+      if (timerBar) {
+        let corBarra = "#80f73b";
+
+        if (tipo == "error") {
+          corBarra = "#FF5733";
+        } else if (tipo == "warning") {
+          corBarra = "#f2ae2e";
+        }
+
+        timerBar.style.backgroundColor = corBarra;
+      }
+
+      const timer = Swal.getPopup().querySelector("b");
+      timerInterval = setInterval(() => {
+        timer.textContent = `${Swal.getTimerLeft()}`;
+      }, 100);
+    },
+    willClose: () => {
+      clearInterval(timerInterval);
+    },
+  }).then((result) => {
+    if (action && result.dismiss === Swal.DismissReason.timer) {
+      window.location.href = "../dashboard/home.html";
+    }
+  });
 }

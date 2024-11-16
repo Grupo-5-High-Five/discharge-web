@@ -51,7 +51,6 @@
   background-position: center;
   background-repeat: no-repeat;
   clip-path: polygon(0% 0%, 70% 0, 100% 50%, 70% 100%, 0% 100%);
-  /* z-index: 1; */
 }
 
 /* Área que divide a Mensagem do Formulário */
@@ -227,6 +226,11 @@ label {
   border: none;
   cursor: pointer;
   transition: all 0.2s;
+  outline: none;
+}
+
+.botaoEntrar:focus {
+  outline: none;
 }
 
 .botaoEntrar:hover {
