@@ -185,6 +185,28 @@ nav {
   transition: all 0.5s;
 }
 
+/* Icon user */
+
+.uplogin,
+.notlogin.down {
+  display: none;
+}
+
+.uplogin.up {
+  display: flex;
+  color: white;
+
+  & a {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+  }
+}
+
 /* Banner */
 
 .banner {
@@ -558,7 +580,6 @@ nav {
 }
 
 @media screen and (max-width: 1860px) {
-  
   /* Header */
 
   .icon__raio,
@@ -880,7 +901,13 @@ nav {
   }
 
   .nav__links .nav__mobile .entrar_destaque a {
-    color: var(--azulBackground);
+    color: var(--azulEscuroTexto);
+    transition: all 0.5s;
+
+    &:hover {
+      color: var(--branco);
+      transform: scale(1.05);
+    }
   }
 
   .logo__mobile {

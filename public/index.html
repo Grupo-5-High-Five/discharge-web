@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="./css/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <link
     href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
     rel="stylesheet" />
@@ -29,7 +28,8 @@
             <li><a href="blog.html">Blog</a></li>
             <li><a href="#sobrenos">Sobre nós</a></li>
             <li><a href="index.html#contatenos">Fale Conosco</a></li>
-            <li class="entrar_destaque"><a href="login.html">Entrar</a></li>
+            <li class="entrar_destaque notlogin"><a href="./login.html" id="a_entrar">Entrar</a></li>
+            <li class="entrar_destaque uplogin"><a href="./dashboard/dashboard.html" id="a_user"></a></li>
           </ul>
         </div>
         <span class="nav__links__span">
@@ -52,8 +52,8 @@
           </figure>
         </a>
       </span>
-      <a href="login.html" class="background-btn-cadastro">
-        <div class="btn-cadastro">Entrar</div>
+      <a href="login.html" id="a_entrar_desktop" class="background-btn-cadastro">
+        <div class="btn-cadastro" id="txt_entrar_desktop"></div>
       </a>
     </nav>
   </header>
@@ -221,8 +221,10 @@
     <h2>Copyright © Discharge | 2024</h2>
   </div>
 
-  <script src="js/contato.js"></script>
-
 </body>
+
+<script src="./js/contato.js"></script>
+<script src="./js/index.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
 </html>
