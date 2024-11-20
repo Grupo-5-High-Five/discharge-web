@@ -96,7 +96,7 @@ function openModal(message, isSucess) {
             modal.classList.remove('show');
             modalMessage.style.transition = '';
         }, 1000);
-    }, 5000);
+    }, 3000);
 
 }
 
