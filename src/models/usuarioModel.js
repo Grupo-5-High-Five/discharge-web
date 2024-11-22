@@ -27,7 +27,14 @@ function cadastrar(nome, email, cpf, tipo, senha, fkempresa) {
         INSERT INTO funcionario (nome, email, cpf, cargo, senha, fkempresa) VALUES (?, ?, ?, ?, ?, ?);
     `;
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
-  return database.executar(instrucaoSql, [nome, email, cpf, tipo, senha, fkempresa]); // Passando parâmetros
+  return database.executar(instrucaoSql, [
+    nome,
+    email,
+    cpf,
+    tipo,
+    senha,
+    fkempresa,
+  ]); // Passando parâmetros
 }
 
 function listar(fkempresa) {
@@ -42,7 +49,7 @@ function desativarFuncionario(idFuncionarioDesativar) {
   );
   var instrucaoSql = `
     UPDATE funcionario
-    SET statusFuncionario = "inativo"
+    SET status = "inativo"
     WHERE id IN (?);
     `;
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -113,7 +120,13 @@ function guardarInfos(email, token, dataExpiracao) {
             data_criacao = NOW(), 
             data_expiracao = ?;`;
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
-  return database.executar(instrucaoSql, [email, token, dataExpiracao, token, dataExpiracao]); // Passando os parâmetros
+  return database.executar(instrucaoSql, [
+    email,
+    token,
+    dataExpiracao,
+    token,
+    dataExpiracao,
+  ]); // Passando os parâmetros
 }
 
 function validarToken(tokenRecuperacao) {
