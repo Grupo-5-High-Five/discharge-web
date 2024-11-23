@@ -28,6 +28,8 @@ if (cargo == "eficiencia") {
 
 // Função que troca as telas da dashboard
 
+const dashConTitle = document.getElementById("dash-con-title");
+
 function trocarDash(index) {
   if (index == 1) {
     btnTec.classList.add("ativo");
@@ -35,12 +37,15 @@ function trocarDash(index) {
 
     dashTec.style.display = "grid";
     dashCon.style.display = "none";
+    dashConTitle.innerHTML = "<h1>Qualidade Energética Geral</h1>";
+
   } else {
     btnCon.classList.add("ativo");
     btnTec.classList.remove("ativo");
 
     dashCon.style.display = "grid";
     dashTec.style.display = "none";
+    dashConTitle.innerHTML = "<h1>Eficiência Energética entre XX/XX e XX/XX (XXXX)</h1>";
   }
 }
 
@@ -285,58 +290,104 @@ new Chart(graficoConsumoMedia, {
 const graficoEmissaoGases = document.getElementById("graph_emissao");
 
 new Chart(graficoEmissaoGases, {
-  type: "bar",
+  type: "line",
   data: {
     labels: [
-      "Segunda",
-      "Terça",
-      "Quarta",
-      "Quinta",
-      "Sexta",
-      "Sábado",
-      "Domingo",
+      "Jan",
+      "Fev",
+      "Mar",
+      "Abr",
+      "Mai",
+      "Jun",
+      "Jul",
+      "Ago",
+      "Set",
+      "Out",
+      "Nov",
+      "Dez",
     ],
     datasets: [
       {
-        label: "Emissão de CO₂ (tCO2)",
-        data: [120, 150, 130, 160, 145, 110, 100],
-        backgroundColor: [
-          "rgba(75, 192, 192, 0.7)",
-          "rgba(54, 162, 235, 0.7)",
-          "rgba(255, 205, 86, 0.7)",
-          "rgba(153, 102, 255, 0.7)",
-          "rgba(255, 99, 132, 0.7)",
-          "rgba(201, 203, 207, 0.7)",
-          "rgba(255, 159, 64, 0.7)",
-        ],
-        borderColor: [
-          "rgba(75, 192, 192, 1)",
-          "rgba(54, 162, 235, 1)",
-          "rgba(255, 205, 86, 1)",
-          "rgba(153, 102, 255, 1)",
-          "rgba(255, 99, 132, 1)",
-          "rgba(201, 203, 207, 1)",
-          "rgba(255, 159, 64, 1)",
-        ],
-        borderWidth: 1,
+        label: "Consumo de Energia",
+        data: dadosConsumo,
+        borderColor: "rgba(75, 192, 192, 1)",
+        borderWidth: 2,
+        fill: false,
+      },
+      {
+        label: "Consumo de Energia",
+        data: [5,6,3,9,6,4,6],
+        borderColor: "#DBB100",
+        backgroundColor: "#DBB10077",
+        borderWidth: 2,
+        fill: false,
       },
     ],
   },
   options: {
+    plugins: {
+      legend: {
+        display: false,
+      },
+    },
     scales: {
       y: {
         beginAtZero: true,
       },
     },
-    plugins: {
-      legend: { display: false },
-      tooltip: {
-        callbacks: {
-          label: function (context) {
-            return `Emissão de CO₂: ${context.raw} (tCO2)`;
-          },
-        },
-      },
-    },
   },
+    // type: "bar",
+  // data: {
+  //   labels: [
+  //     "Segunda",
+  //     "Terça",
+  //     "Quarta",
+  //     "Quinta",
+  //     "Sexta",
+  //     "Sábado",
+  //     "Domingo",
+  //   ],
+  //   datasets: [
+  //     {
+  //       label: "Emissão de CO₂ (tCO2)",
+  //       data: [120, 150, 130, 160, 145, 110, 100],
+  //       backgroundColor: [
+  //         "rgba(75, 192, 192, 0.7)",
+  //         "rgba(54, 162, 235, 0.7)",
+  //         "rgba(255, 205, 86, 0.7)",
+  //         "rgba(153, 102, 255, 0.7)",
+  //         "rgba(255, 99, 132, 0.7)",
+  //         "rgba(201, 203, 207, 0.7)",
+  //         "rgba(255, 159, 64, 0.7)",
+  //       ],
+  //       borderColor: [
+  //         "rgba(75, 192, 192, 1)",
+  //         "rgba(54, 162, 235, 1)",
+  //         "rgba(255, 205, 86, 1)",
+  //         "rgba(153, 102, 255, 1)",
+  //         "rgba(255, 99, 132, 1)",
+  //         "rgba(201, 203, 207, 1)",
+  //         "rgba(255, 159, 64, 1)",
+  //       ],
+  //       borderWidth: 1,
+  //     },
+  //   ],
+  // },
+  // options: {
+  //   scales: {
+  //     y: {
+  //       beginAtZero: true,
+  //     },
+  //   },
+  //   plugins: {
+  //     legend: { display: false },
+  //     tooltip: {
+  //       callbacks: {
+  //         label: function (context) {
+  //           return `Emissão de CO₂: ${context.raw} (tCO2)`;
+  //         },
+  //       },
+  //     },
+  //   },
+  // },
 });

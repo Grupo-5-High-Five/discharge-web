@@ -83,14 +83,14 @@
                         <div class="content-metrica">
                             <div class="title">
                                 <img src="./../assets/imgs/dashboard/iconco2.svg" alt="co2">
-                                <h4>Limite de emissão de CO2 no mês (tCO2)</h4>
-                                <input type="number" oninput=enforceMaxLength(this) maxlength = "3" placeholder="7">
+                                <h4>Limite de emissão de CO2 ao ano (tCO2)</h4>
+                                <input type="number" oninput=enforceMaxLength(this) maxlength = "3" placeholder="7" id="input_co2Max">
                                 <p>(tco2)</p>
                             </div>
-                            <p>Limite de emissões de tCO2 por megawatt-hora (tCO2/MWh). Essa métrica mede quantas
+                            <p>Limite de emissões de tCO2 ao ano (tCO2). Essa métrica mede quantas
                                 toneladas
                                 de
-                                CO2 são emitidas por cada megawatt-hora de energia consumido no processo produtivo. Ao
+                                CO2 são emitidas ao ano no processo produtivo. Ao
                                 definir
                                 um limite máximo de emissões, você pode monitorar seu impacto ambiental e adotar
                                 estratégias
@@ -103,7 +103,7 @@
                             <div class="title">
                                 <img src="./../assets/imgs/dashboard/iconraio.svg" alt="energia">
                                 <h4>Consumo total de energia no mês  (kWh)</h4>
-                                <input type="number" oninput=enforceMaxLength(this) maxlength = "3" placeholder="10">
+                                <input type="number" oninput=enforceMaxLength(this) maxlength = "3" placeholder="10" id="input_energiaMax">
                                 <p>(kWh)</p>
                             </div>
                             <p>Na métrica de consumo total de energia no mês, você pode definir um limite máximo de consumo (em kWh) que não pretende ultrapassar. Essa definição serve como uma meta de economia de energia, ajudando a manter o consumo sob controle e a evitar custos elevados. Com essa meta, o sistema pode monitorar o consumo ao longo do mês, alertando quando o consumo estiver se aproximando do limite, o que permite tomar ações corretivas para otimizar o uso de energia e evitar excessos.

@@ -2,8 +2,8 @@
 var fkEmpresa = 1;
 
 function cadastrarMetrica() {
-    let energiaMaxima = 14.330
-    let co2Maximo = 6.31
+    let energiaMaxima = document.getElementById("input_energiaMax");
+    let co2Maximo = document.getElementById("input_co2Max");
 
     fetch(`/metricas/cadastrar/${fkEmpresa}`, {
         method: "POST",

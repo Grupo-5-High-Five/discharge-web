@@ -184,6 +184,7 @@ main {
   justify-content: center;
   align-items: center;
   padding-top: 0.5rem;
+  
 }
 
 .info-kpi {
@@ -264,6 +265,7 @@ main {
   display: flex;
   flex-direction: column;
   width: 90%;
+
   height: 100%;
 }
 
@@ -351,3 +353,4 @@ main {
   visibility: visible;
   opacity: 1;
 }
+
