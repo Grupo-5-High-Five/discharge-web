@@ -9,10 +9,10 @@ function autenticar(email, senha) {
     senha
   );
   var instrucaoSql = `
-        SELECT id, nome, email, cargo FROM funcionario WHERE email = ? AND senha = ?;
+        SELECT id, nome, email, cargo, fkempresa FROM funcionario WHERE email = ? AND senha = ?;
     `;
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
-  return database.executar(instrucaoSql, [email, senha]); // Passando parâmetros
+  return database.executar(instrucaoSql, [email, senha]);
 }
 
 // Coloque os mesmos parâmetros aqui. Vá para a var instrucaoSql
@@ -27,47 +27,47 @@ function cadastrar(nome, email, cpf, tipo, senha, fkempresa) {
         INSERT INTO funcionario (nome, email, cpf, cargo, senha, fkempresa) VALUES (?, ?, ?, ?, ?, ?);
     `;
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
-  return database.executar(instrucaoSql, [
-    nome,
-    email,
-    cpf,
-    tipo,
-    senha,
-    fkempresa,
-  ]); // Passando parâmetros
+  return database.executar(instrucaoSql, [nome, email, cpf, tipo, senha, fkempresa]);
 }
 
 function listar(fkempresa) {
-  var instrucaoSql = `SELECT idFuncionario as id, nome as nome, cpf, fkempresa FROM funcionario WHERE fkempresa = ? AND statusFuncionario = "ativo";`;
+  var instrucaoSql = `SELECT id, nome, email, cargo, senha, status_funcionario FROM funcionario WHERE fkempresa = ? and status_funcionario = "ativo";`;
   return database.executar(instrucaoSql, [fkempresa]); // Passando o parâmetro
 }
 
-function desativarFuncionario(idFuncionarioDesativar) {
+function desativarFuncionario(id) {
   console.log(
     "ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function editar(): ",
-    idFuncionarioDesativar
+    id
   );
   var instrucaoSql = `
     UPDATE funcionario
-    SET status = "inativo"
-    WHERE id IN (?);
+    SET status_funcionario = "inativo"
+    WHERE id = ?;
     `;
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
-  return database.executar(instrucaoSql, [idFuncionarioDesativar]); // Passando o parâmetro
+  return database.executar(instrucaoSql, [id]); // Passando o parâmetro
 }
 
-function mudarCargo(idFuncionarioDesativar, cargo) {
+function atualizarFuncionario(id, nome, email, senha, cargo) {
   console.log(
-    "ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function editar(): ",
-    idFuncionarioDesativar
+    "ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function atualizarFuncionario(): ",
+    nome,
+    email,
+    senha,
+    cargo,
+    id
   );
   var instrucaoSql = `
-    UPDATE funcionario
-    SET cargo = ?
-    WHERE id IN (?);
+    UPDATE funcionario 
+    SET nome = ?, 
+        email = ?, 
+        senha = ?, 
+        cargo = ?
+    WHERE id = ?;
     `;
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
-  return database.executar(instrucaoSql, [cargo, idFuncionarioDesativar]); // Passando parâmetros
+  return database.executar(instrucaoSql, [nome, email, senha, cargo, id]); // Passando parâmetros
 }
 
 function validarEmail(email) {
@@ -120,13 +120,7 @@ function guardarInfos(email, token, dataExpiracao) {
             data_criacao = NOW(), 
             data_expiracao = ?;`;
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
-  return database.executar(instrucaoSql, [
-    email,
-    token,
-    dataExpiracao,
-    token,
-    dataExpiracao,
-  ]); // Passando os parâmetros
+  return database.executar(instrucaoSql, [email, token, dataExpiracao, token, dataExpiracao]); // Passando os parâmetros
 }
 
 function validarToken(tokenRecuperacao) {
@@ -192,7 +186,7 @@ module.exports = {
   cadastrar,
   listar,
   desativarFuncionario,
-  mudarCargo,
+  atualizarFuncionario,
   emailEnviar,
   validarEmail,
   guardarInfos,

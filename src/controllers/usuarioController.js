@@ -79,10 +79,10 @@ function listar(req, res) {
 }
 
 function desativarFuncionario(req, res) {
-  var idFuncionarioDesativar = req.body.idFuncionarioDesativar;
+  var id = req.params.id;
 
   usuarioModel
-    .desativarFuncionario(idFuncionarioDesativar)
+    .desativarFuncionario(id)
     .then(function (resultado) {
       res.json(resultado);
     })
@@ -93,12 +93,15 @@ function desativarFuncionario(req, res) {
     });
 }
 
-function mudarCargo(req, res) {
-  var idFuncionarioDesativar = req.body.idFuncionarioDesativar;
+function atualizarFuncionario(req, res) {
+  var id = req.params.id;
+  var nome = req.body.nome;
+  var email = req.body.email;
+  var senha = req.body.senha;
   var cargo = req.body.cargo;
 
   usuarioModel
-    .mudarCargo(idFuncionarioDesativar, cargo)
+    .atualizarFuncionario(id, nome, email, senha, cargo)
     .then(function (resultado) {
       res.json(resultado);
     })
@@ -183,7 +186,7 @@ module.exports = {
   cadastrar,
   listar,
   desativarFuncionario,
-  mudarCargo,
+  atualizarFuncionario,
   emailEnviar,
   atualizarSenha,
 };
