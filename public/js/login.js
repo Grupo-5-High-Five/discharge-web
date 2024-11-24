@@ -77,6 +77,7 @@ function entrar() {
             sessionStorage.NOME_USUARIO = json.nome;
             sessionStorage.ID_USUARIO = json.id;
             sessionStorage.CARGO_USUARIO = json.cargo;
+            sessionStorage.ID_EMPRESA = json.fkempresa;
           });
         } else {
           let titulo = "Credênciais Inválidas!";
