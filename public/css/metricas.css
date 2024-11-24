@@ -59,28 +59,31 @@ main {
 
   & h1 {
     font-size: 24px;
-    padding: 0.5rem;
     width: 100%;
   }
 
   & h4 {
     font-size: 20px;
-    padding: 0.5rem;
     width: 100%;
   }
 
-  & img {
-    width: 4%;
-    cursor: pointer;
-    padding: 0.5rem;
+  & .div_sep {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
   }
-}
 
-& p {
-  color: var(--azul);
-  font-size: 20px;
-  padding: 0.5rem;
-  width: 100%;
+  & .div_sep img {
+    width: 55px;
+    height: 55px;
+    cursor: pointer;
+  }
+
+  & p {
+    color: var(--azul);
+    font-size: 20px;
+    width: 100%;
+  }
 }
 
 .content-metrica {
@@ -88,9 +91,8 @@ main {
   border-color: var(--azul);
   border-width: 1px;
   border-radius: 12px;
-  padding: 0.5rem;
+  padding: 1rem;
   box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
-
 
   & input {
     border-color: var(--azul);
@@ -101,15 +103,7 @@ main {
     width: 150px;
     font-size: large;
   }
-
-  & p {
-    color: var(--azul);
-    font-size: 17px;
-    padding: 0.5rem;
-    width: 100%;
-  }
 }
-
 
 .container-metricas {
   display: flex;
@@ -125,7 +119,7 @@ main {
     border-radius: 10px;
     cursor: pointer;
   }
-  
+
   & button:active {
     transition: 0.1s;
     background-color: #013869;

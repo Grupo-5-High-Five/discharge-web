@@ -1,132 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Discharge | Métricas</title>
-    <link rel="stylesheet" href="./../css/metricas.css">
+    <link rel="stylesheet" href="./../css/metricas.css" />
     <link rel="stylesheet" href="./../css/navbar.css" />
     <link rel="shortcut icon" href="./../assets/icon/logo_flavicon.svg" type="image/x-icon" />
-</head>
+  </head>
 
-<body>
+  <body>
     <main>
-        <nav id="nav">
-            <ul>
-                <li class="ul_espacamento">
-                    <span class="link_dash" onclick="menu()">
-                        <article>
-                            <img src="./../assets/imgs/dashboard/menu.svg" alt="buguer" />
-                            <h3>Menu</h3>
-                        </article>
-                    </span>
-                </li>
-                <li class="ul_espacamento">
-                    <a class="link_dash" href="./home.html">
-                        <article>
-                            <img src="./../assets/imgs/dashboard/botao-de-inicio.png" alt="home" />
-                            <h3>Início</h3>
-                        </article>
-                    </a>
-                    <a class="link_dash" href="./dashboard.html">
-                        <article>
-                            <img src="./../assets/imgs/dashboard/grafico-de-pizza.png" alt="dashboard" />
-                            <h3>Dashboard</h3>
-                        </article>
-                    </a>
-                    <a class="link_dash active" href="./metricas.html">
-                        <article>
-                            <img src="./../assets/imgs/dashboard/estrela.png" alt="métricas" />
-                            <h3>Métricas</h3>
-                        </article>
-                    </a>
-                    <a class="link_dash" href="./historico.html">
-                        <article>
-                            <img src="./../assets/imgs/dashboard/escola-do-sino.png" alt="histórico de recomendações" />
-                            <h3>Alertas</h3>
-                        </article>
-                    </a>
-                    <a class="link_dash" href="">
-                        <article>
-                            <img src="./../assets/imgs/dashboard/contexto.png" alt="configurações" />
-                            <h3>Configurações</h3>
-                        </article>
-                    </a>
-                    <span class="link_dash" onclick="menu()">
-                        <article class="link_dash_user">
-                            <img src="./../assets/imgs/dashboard/user.svg" alt="Ícone de Usuário" />
-                            <h3 id="name_user"></h3>
-                            <img onclick="sair()" src="./../assets/imgs/dashboard/sair.png" alt="Sair" />
-                        </article>
-                    </span>
-                </li>
-            </ul>
-        </nav>
-        <section class="global">
-            <section class="content">
-                <div class="container">
-                    <div class="title">
-                        <h1>Métricas de Eficiência</h1>
-                    </div>
-                    <p>Personalize como as métricas impactarão os indicadores de
-                        monitoramento. Tenha uma visão mais direcionada e significativa dos dados, fatores que
-                        influenciam o
-                        sucesso e eficiência de seus processos. Ao
-                        selecionar as métricas, você pode ajustar os indicadores de forma a refletir melhor a
-                        realidade
-                        do
-                        seu
-                        negócio ou operação.
-                    </p>
-                    <div class="container-metricas">
-                        <div class="content-metrica">
-                            <div class="title">
-                                <img src="./../assets/imgs/dashboard/iconco2.svg" alt="co2">
-                                <h4>Limite de emissão de CO2 no mês (tCO2)</h4>
-                                <input type="number" oninput=enforceMaxLength(this) maxlength = "3" placeholder="7">
-                                <p>(tco2)</p>
-                            </div>
-                            <p>Limite de emissões de tCO2 por megawatt-hora (tCO2/MWh). Essa métrica mede quantas
-                                toneladas
-                                de
-                                CO2 são emitidas por cada megawatt-hora de energia consumido no processo produtivo. Ao
-                                definir
-                                um limite máximo de emissões, você pode monitorar seu impacto ambiental e adotar
-                                estratégias
-                                para reduzir o consumo energético. Isso contribui para diminuir as emissões totais de
-                                CO2,
-                                tornando a operação mais sustentável e alinhada com padrões de eficiência energética.
-                            </p>
-                        </div>
-                        <div class="content-metrica">
-                            <div class="title">
-                                <img src="./../assets/imgs/dashboard/iconraio.svg" alt="energia">
-                                <h4>Consumo total de energia no mês  (kWh)</h4>
-                                <input type="number" oninput=enforceMaxLength(this) maxlength = "3" placeholder="10">
-                                <p>(kWh)</p>
-                            </div>
-                            <p>Na métrica de consumo total de energia no mês, você pode definir um limite máximo de consumo (em kWh) que não pretende ultrapassar. Essa definição serve como uma meta de economia de energia, ajudando a manter o consumo sob controle e a evitar custos elevados. Com essa meta, o sistema pode monitorar o consumo ao longo do mês, alertando quando o consumo estiver se aproximando do limite, o que permite tomar ações corretivas para otimizar o uso de energia e evitar excessos.
-                            </p>
-                        </div>
-                        <div class="content-metrica">
-                            <div class="title">
-                                <img src="./../assets/imgs/dashboard/iconraio.svg" alt="energia">
-                                <h4>Máximo desperdício de energia no mês (kWh)</h4>
-                                <input type="number" oninput=enforceMaxLength(this) maxlength = "3" placeholder="10">
-                                <p>(kWh)</p>
-                            </div>
-                            <p>A métrica de meta de máximo desperdício de energia define um limite tolerável de energia desperdiçada. Esta métrica permite monitorar a quantidade de energia que não está sendo usada de maneira produtiva, como perdas em equipamentos ineficientes, processos ociosos ou fugas de energia. Ao estabelecer uma meta de desperdício máximo, você pode acompanhar de perto os pontos de ineficiência e implementar melhorias para reduzir o desperdício, economizando nos custos operacionais e promovendo uma operação mais sustentável.
-                            </p>
-                        </div>
-                        <button>
-                            Aplicar
-                        </button>
-                    </div>
+      <nav id="nav">
+        <ul>
+          <li class="ul_espacamento">
+            <span class="link_dash" onclick="menu()">
+              <article>
+                <img src="./../assets/imgs/dashboard/menu.svg" alt="buguer" />
+                <h3>Menu</h3>
+              </article>
+            </span>
+          </li>
+          <li class="ul_espacamento">
+            <a class="link_dash" href="./home.html">
+              <article>
+                <img src="./../assets/imgs/dashboard/botao-de-inicio.png" alt="home" />
+                <h3>Início</h3>
+              </article>
+            </a>
+            <a class="link_dash" href="./dashboard.html">
+              <article>
+                <img src="./../assets/imgs/dashboard/grafico-de-pizza.png" alt="dashboard" />
+                <h3>Dashboard</h3>
+              </article>
+            </a>
+            <a class="link_dash active" href="./metricas.html">
+              <article>
+                <img src="./../assets/imgs/dashboard/estrela.png" alt="métricas" />
+                <h3>Métricas</h3>
+              </article>
+            </a>
+            <a class="link_dash" href="./historico.html">
+              <article>
+                <img src="./../assets/imgs/dashboard/escola-do-sino.png" alt="histórico de recomendações" />
+                <h3>Alertas</h3>
+              </article>
+            </a>
+            <a class="link_dash" href="">
+              <article>
+                <img src="./../assets/imgs/dashboard/contexto.png" alt="configurações" />
+                <h3>Configurações</h3>
+              </article>
+            </a>
+            <span class="link_dash" onclick="menu()">
+              <article class="link_dash_user">
+                <img src="./../assets/imgs/dashboard/user.svg" alt="Ícone de Usuário" />
+                <h3 id="name_user"></h3>
+                <img onclick="sair()" src="./../assets/imgs/dashboard/sair.png" alt="Sair" />
+              </article>
+            </span>
+          </li>
+        </ul>
+      </nav>
+      <section class="global">
+        <section class="content">
+          <div class="container">
+            <div class="title">
+              <h1>Métricas de Eficiência</h1>
+            </div>
+            <p>
+              Personalize como as métricas impactarão os indicadores de monitoramento. Tenha uma visão mais direcionada e significativa dos dados, fatores que influenciam o sucesso e eficiência de seus processos. Ao selecionar as métricas, você pode
+              ajustar os indicadores de forma a refletir melhor a realidade do seu negócio ou operação.
+            </p>
+            <div class="container-metricas">
+              <div class="content-metrica">
+                <div class="title">
+                  <div class="div_sep">
+                    <img src="./../assets/imgs/dashboard/iconco2.svg" alt="co2" />
+                    <h4>Limite de emissão de CO2 no mês (tCO2)</h4>
+                  </div>
+                  <div class="div_sep">
+                    <input type="number" oninput="enforceMaxLength(this)" maxlength="3" placeholder="7" />
+                    <p>(tco2)</p>
+                  </div>
                 </div>
-            </section>
+                <p>
+                  Limite de emissões de tCO2 por megawatt-hora (tCO2/MWh). Essa métrica mede quantas toneladas de CO2 são emitidas por cada megawatt-hora de energia consumido no processo produtivo. Ao definir um limite máximo de emissões, você pode
+                  monitorar seu impacto ambiental e adotar estratégias para reduzir o consumo energético. Isso contribui para diminuir as emissões totais de CO2, tornando a operação mais sustentável e alinhada com padrões de eficiência energética.
+                </p>
+              </div>
+              <div class="content-metrica">
+                <div class="title">
+                  <div class="div_sep">
+                    <img src="./../assets/imgs/dashboard/iconraio.svg" alt="energia" />
+                    <h4>Consumo total de energia no mês (kWh)</h4>
+                  </div>
+                  <div class="div_sep">
+                    <input type="number" oninput="enforceMaxLength(this)" maxlength="3" placeholder="10" />
+                    <p>(kWh)</p>
+                  </div>
+                </div>
+                <p>
+                  Na métrica de consumo total de energia no mês, você pode definir um limite máximo de consumo (em kWh) que não pretende ultrapassar. Essa definição serve como uma meta de economia de energia, ajudando a manter o consumo sob controle
+                  e a evitar custos elevados. Com essa meta, o sistema pode monitorar o consumo ao longo do mês, alertando quando o consumo estiver se aproximando do limite, o que permite tomar ações corretivas para otimizar o uso de energia e evitar
+                  excessos.
+                </p>
+              </div>
+              <div class="content-metrica">
+                <div class="title">
+                  <div class="div_sep">
+                    <img src="./../assets/imgs/dashboard/iconraio.svg" alt="energia" />
+                    <h4>Máximo desperdício de energia no mês (kWh)</h4>
+                  </div>
+                  <div class="div_sep">
+                    <input type="number" oninput="enforceMaxLength(this)" maxlength="3" placeholder="10" />
+                    <p>(kWh)</p>
+                  </div>
+                </div>
+                <p>
+                  A métrica de meta de máximo desperdício de energia define um limite tolerável de energia desperdiçada. Esta métrica permite monitorar a quantidade de energia que não está sendo usada de maneira produtiva, como perdas em equipamentos
+                  ineficientes, processos ociosos ou fugas de energia. Ao estabelecer uma meta de desperdício máximo, você pode acompanhar de perto os pontos de ineficiência e implementar melhorias para reduzir o desperdício, economizando nos custos
+                  operacionais e promovendo uma operação mais sustentável.
+                </p>
+              </div>
+              <button>Aplicar</button>
+            </div>
+          </div>
         </section>
+      </section>
     </main>
-</body>
-<script src="../js/metricafront.js"></script>
+  </body>
+  <script src="../js/metricafront.js"></script>
 </html>
