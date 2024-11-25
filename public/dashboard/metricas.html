@@ -3,13 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Discharge | Métricas</title>
+    <title>Discharge</title>
     <link rel="stylesheet" href="./../css/metricas.css" />
     <link rel="stylesheet" href="./../css/navbar.css" />
     <link rel="shortcut icon" href="./../assets/icon/logo_flavicon.svg" type="image/x-icon" />
   </head>
 
-  <body>
+  <body onload="listarMetricas()">
     <main>
       <nav id="nav">
         <ul>
@@ -63,10 +63,14 @@
         </ul>
       </nav>
       <section class="global">
-        <section class="content">
+        <form class="content" id="forms">
           <div class="container">
             <div class="title">
               <h1>Métricas de Eficiência</h1>
+              <div class="div_sep_btn">
+                <button type="submit" onclick="cadastrarMetrica(event)" id="btn_cad">Cadastrar</button>
+                <button type="submit" onclick="editarMetrica(event)">Redefinir</button>
+              </div>
             </div>
             <p>
               Personalize como as métricas impactarão os indicadores de monitoramento. Tenha uma visão mais direcionada e significativa dos dados, fatores que influenciam o sucesso e eficiência de seus processos. Ao selecionar as métricas, você pode
@@ -77,58 +81,106 @@
                 <div class="title">
                   <div class="div_sep">
                     <img src="./../assets/imgs/dashboard/iconco2.svg" alt="co2" />
-                    <h4>Limite de emissão de CO2 no mês (tCO2)</h4>
+                    <h4>Limite de emissão de CO2 no anual (tCO2)</h4>
                   </div>
                   <div class="div_sep">
-                    <input type="number" oninput="enforceMaxLength(this)" maxlength="3" placeholder="7" />
-                    <p>(tco2)</p>
+                    <p>Valor em tco2</p>
+                    <input type="number" oninput="enforceMaxLength(this)" maxlength="3" placeholder="tCO2" />
+                    <div class="delete" onclick="deletarMetrica()"></div>
                   </div>
                 </div>
                 <p>
-                  Limite de emissões de tCO2 por megawatt-hora (tCO2/MWh). Essa métrica mede quantas toneladas de CO2 são emitidas por cada megawatt-hora de energia consumido no processo produtivo. Ao definir um limite máximo de emissões, você pode
-                  monitorar seu impacto ambiental e adotar estratégias para reduzir o consumo energético. Isso contribui para diminuir as emissões totais de CO2, tornando a operação mais sustentável e alinhada com padrões de eficiência energética.
+                  Defina um limite para as emissões de CO2 (tCO2/MWh) por megawatt-hora consumido. Essa métrica ajuda a monitorar o impacto ambiental e a adotar estratégias para reduzir o consumo energético, promovendo uma operação mais sustentável e
+                  alinhada a padrões de eficiência.
                 </p>
               </div>
               <div class="content-metrica">
                 <div class="title">
                   <div class="div_sep">
                     <img src="./../assets/imgs/dashboard/iconraio.svg" alt="energia" />
-                    <h4>Consumo total de energia no mês (kWh)</h4>
+                    <h4>Consumo total de energia no mês (KWh)</h4>
                   </div>
                   <div class="div_sep">
-                    <input type="number" oninput="enforceMaxLength(this)" maxlength="3" placeholder="10" />
-                    <p>(kWh)</p>
+                    <p>Valor em KWh</p>
+                    <input type="number" oninput="enforceMaxLength(this)" maxlength="5" placeholder="KWh" />
+                    <div class="delete" onclick="deletarMetrica()"></div>
                   </div>
                 </div>
                 <p>
-                  Na métrica de consumo total de energia no mês, você pode definir um limite máximo de consumo (em kWh) que não pretende ultrapassar. Essa definição serve como uma meta de economia de energia, ajudando a manter o consumo sob controle
-                  e a evitar custos elevados. Com essa meta, o sistema pode monitorar o consumo ao longo do mês, alertando quando o consumo estiver se aproximando do limite, o que permite tomar ações corretivas para otimizar o uso de energia e evitar
-                  excessos.
+                  Defina um limite máximo de consumo mensal (em kWh) para controlar o uso de energia e evitar custos excessivos. Essa métrica ajuda a estabelecer metas de eficiência energética e permite monitorar o consumo ao longo do mês, alertando
+                  quando o limite estiver próximo. Isso possibilita a tomada de ações corretivas para otimizar o uso de energia e reduzir despesas operacionais.
                 </p>
               </div>
               <div class="content-metrica">
                 <div class="title">
                   <div class="div_sep">
                     <img src="./../assets/imgs/dashboard/iconraio.svg" alt="energia" />
-                    <h4>Máximo desperdício de energia no mês (kWh)</h4>
+                    <h4>Limite de Potência Reativa Adiantada Semanal (KVarh)</h4>
                   </div>
                   <div class="div_sep">
-                    <input type="number" oninput="enforceMaxLength(this)" maxlength="3" placeholder="10" />
-                    <p>(kWh)</p>
+                    <p>Valor em KVarh</p>
+                    <input type="number" oninput="enforceMaxLength(this)" maxlength="5" placeholder="KVarh" />
+                    <div class="delete" onclick="deletarMetrica()"></div>
                   </div>
                 </div>
                 <p>
-                  A métrica de meta de máximo desperdício de energia define um limite tolerável de energia desperdiçada. Esta métrica permite monitorar a quantidade de energia que não está sendo usada de maneira produtiva, como perdas em equipamentos
-                  ineficientes, processos ociosos ou fugas de energia. Ao estabelecer uma meta de desperdício máximo, você pode acompanhar de perto os pontos de ineficiência e implementar melhorias para reduzir o desperdício, economizando nos custos
-                  operacionais e promovendo uma operação mais sustentável.
+                  Monitore o limite máximo de potência reativa adiantada consumida semanalmente. Essa métrica ajuda a identificar desequilíbrios na rede elétrica e otimizar a qualidade de energia. Manter esse parâmetro controlado reduz custos
+                  associados a perdas e melhora a eficiência do sistema.
                 </p>
               </div>
-              <button>Aplicar</button>
+              <div class="content-metrica">
+                <div class="title">
+                  <div class="div_sep">
+                    <img src="./../assets/imgs/dashboard/iconraio.svg" alt="energia" />
+                    <h4>Limite de Potência Reativa Atrasada Semanal (KVarh)</h4>
+                  </div>
+                  <div class="div_sep">
+                    <p>Valor em KVarh</p>
+                    <input type="number" oninput="enforceMaxLength(this)" maxlength="5" placeholder="KVarh" />
+                    <div class="delete" onclick="deletarMetrica()"></div>
+                  </div>
+                </div>
+                <p>
+                  Acompanhe a potência reativa atrasada máxima semanal para minimizar os impactos no sistema elétrico. Essa métrica é essencial para evitar penalizações por consumo excessivo de potência reativa, promovendo uma operação mais eficiente
+                  e sustentável.
+                </p>
+              </div>
+              <div class="content-metrica">
+                <div class="title">
+                  <div class="div_sep">
+                    <img src="./../assets/imgs/dashboard/iconraio.svg" alt="energia" />
+                    <h4>Limite de Fator de Potência Adiantado Diário (%)</h4>
+                  </div>
+                  <div class="div_sep">
+                    <p>Valor em %</p>
+                    <input type="number" oninput="enforceMaxLength(this)" maxlength="5" placeholder="%" />
+                    <div class="delete" onclick="deletarMetrica()"></div>
+                  </div>
+                </div>
+                <p>
+                  Estabeleça um limite mínimo para o fator de potência adiantado diário, garantindo que os equipamentos funcionem com maior eficiência elétrica. Controlar essa métrica reduz perdas energéticas e melhora a confiabilidade do sistema.
+                </p>
+              </div>
+              <div class="content-metrica">
+                <div class="title">
+                  <div class="div_sep">
+                    <img src="./../assets/imgs/dashboard/iconraio.svg" alt="energia" />
+                    <h4>Limite de Fator de Potência Atrasado Diário (%)</h4>
+                  </div>
+                  <div class="div_sep">
+                    <p>Valor em %</p>
+                    <input type="number" oninput="enforceMaxLength(this)" maxlength="3" placeholder="%" />
+                    <div class="delete" onclick="deletarMetrica()"></div>
+                  </div>
+                </div>
+                <p>Defina um limite mínimo para o fator de potência atrasado diário, assegurando uma operação energética eficiente. Um fator de potência adequado reduz custos com energia reativa e melhora a estabilidade da rede elétrica.</p>
+              </div>
             </div>
           </div>
-        </section>
+        </form>
       </section>
     </main>
   </body>
   <script src="../js/metricafront.js"></script>
+  <script src="../js/metrica.js"></script>
 </html>

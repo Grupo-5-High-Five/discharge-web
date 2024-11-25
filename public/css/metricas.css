@@ -57,10 +57,48 @@ main {
   width: 100%;
   color: var(--azul);
 
+  & .div_sep_btn {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    width: 100%;
+
+    & button {
+      padding: 0.6rem;
+      border-radius: 4px;
+      background-color: #1e1e1e;
+      border: none;
+      color: white;
+      transition: all 0.4s;
+      cursor: pointer;
+      font-weight: 700;
+
+      &:hover {
+        transform: scale(1.05);
+        background-color: #000000;
+      }
+    }
+  }
+
   & h1 {
     font-size: 24px;
     width: 100%;
   }
+}
+
+.container-metricas {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.content-metrica {
+  border: solid;
+  border-color: var(--azul);
+  border-width: 1px;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
 
   & h4 {
     font-size: 20px;
@@ -84,44 +122,46 @@ main {
     font-size: 20px;
     width: 100%;
   }
-}
-
-.content-metrica {
-  border: solid;
-  border-color: var(--azul);
-  border-width: 1px;
-  border-radius: 12px;
-  padding: 1rem;
-  box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
 
   & input {
-    border-color: var(--azul);
-    border-radius: 10px;
-    border-width: 1px;
     text-align: center;
-    height: 40px;
-    width: 150px;
-    font-size: large;
+    color: dimgrey;
+    width: 70px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 2px;
+    padding: 0.5rem 0rem 0.5rem 0.5rem;
+
+    &:focus {
+      outline: 1px solid #529fe3e5;
+    }
+
+    &::placeholder {
+      text-align: center;
+    }
   }
 }
 
-.container-metricas {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+.delete {
+  width: 36px;
+  height: 36px;
+  border-radius: 2px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  transition: 0.4s;
+  padding: 1rem;
 
-  & button {
-    background-color: var(--azul);
-    color: #f0f0f0;
-    font-size: 20px;
-    width: 150px;
-    height: 50px;
-    border-radius: 10px;
-    cursor: pointer;
+  &:hover {
+    transform: scale(1.05);
   }
+}
 
-  & button:active {
-    transition: 0.1s;
-    background-color: #013869;
+.delete {
+  background-color: #e35252;
+  background-image: url(../assets/imgs/dashboard/delete.svg);
+
+  &:hover {
+    background-color: #bd3131;
   }
 }
