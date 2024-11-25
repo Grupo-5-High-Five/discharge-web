@@ -55,16 +55,17 @@ FOREIGN KEY ForeignKey_fkEmpresa (fkempresa) REFERENCES empresa (id)
 ) COMMENT 'Tabela que armazena o histórico de mensagens da empresa';
 
 CREATE TABLE IF NOT EXISTS metrica (
-id			            			INT 				AUTO_INCREMENT						COMMENT 'Identificador único de métricas de cada empresa',
-consumo_maximo		            	VARCHAR(45) 											COMMENT 'Métrica de Consumo máximo antes do alerta',
-desperdicio_maximo               	VARCHAR(45) 											COMMENT 'Métrica de Desperdício máximo da metalurgica',
-co2_maximo			            	VARCHAR(45) 											COMMENT 'Métrica de CO2 máxima antes do alerta',
-potencia_reativa_atrasada_maxima   	VARCHAR(45) 											COMMENT 'Métrica de Potência Reativa Atrasada máxima antes do alerta',
-potencia_reativa_adiantada_maxima  	VARCHAR(45) 											COMMENT 'Métrica de Potência Reativa Adiantada máxima antes do alerta',
-fkempresa			            	INT 				NOT NULL 							COMMENT 'Chave estrangeira que referencia a empresa à qual o funcionário pertence',
+id 											INT 			AUTO_INCREMENT 					COMMENT 'Identificador único de métricas de cada empresa',    
+co2_maximo_anual 							FLOAT 			NOT NULL DEFAULT 200.00       	COMMENT 'Métrica de CO2 máxima antes do alerta',
+consumo_maximo_mensal 						FLOAT			NOT NULL DEFAULT 65000.00      	COMMENT 'Métrica de Consumo máximo antes do alerta',
+potencia_reativa_atrasada_maxima_semanal 	FLOAT 			NOT NULL DEFAULT 36000.00 		COMMENT 'Potência Reativa Atrasada máxima semanal antes do alerta',
+potencia_reativa_adiantada_maxima_semanal 	FLOAT 			NOT NULL DEFAULT 36000.00 		COMMENT 'Potência Reativa Adiantada máxima semanal antes do alerta',
+fator_potencia_atrasado_maxima_diario		FLOAT 			NOT NULL DEFAULT 92 			COMMENT 'Fator de Potência Reativo Atrasado máximo diário antes do alerta',
+fator_potencia_adiantado_maxima_diario 		FLOAT 			NOT NULL DEFAULT 92 			COMMENT 'Fator de Potência Reativo Adiantado máximo diário antes do alerta',
+fkempresa 									INT 			NOT NULL 						COMMENT 'Chave estrangeira para a empresa',
 PRIMARY KEY (id),
-FOREIGN KEY ForeignKey_fkEmpresa (fkempresa) REFERENCES empresa (id)
-) COMMENT 'Tabela que armazena o métricas de cada empresa';
+CONSTRAINT ForeignKey_fkEmpresa  FOREIGN KEY (fkempresa) REFERENCES empresa (id)
+) COMMENT = 'Tabela que armazena as métricas de cada empresa';
 
 CREATE TABLE IF NOT EXISTS tokens_recuperacao (
 id		         					INT 			AUTO_INCREMENT 							COMMENT 'Identificador único de métricas de cada token',
