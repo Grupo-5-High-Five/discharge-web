@@ -1,31 +1,31 @@
 var metricasModel = require("../models/metricasModel");
 
 function cadastrar(req, res) {
-  // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
-  var consumo_maximo = req.body.consumo_maximo;
-  var desperdicio_maximo = req.body.desperdicio_maximo;
-  var co2_maximo = req.body.co2_maximo;
-  var potencia_reativa_atrasada_maxima = req.body.potencia_reativa_atrasada_maxima;
-  var potencia_reativa_adiantada_maxima = req.body.potencia_reativa_adiantada_maxima;
   var fkempresa = req.params.fkempresa;
+  var co2 = req.body.co2;
+  var consumo = req.body.consumo;
+  var reativa_atrasada = req.body.reativa_atrasada;
+  var reativa_adiantada = req.body.reativa_adiantada;
+  var fator_potencia_atrasado = req.body.fator_potencia_atrasado;
+  var fator_potencia_adiantado = req.body.fator_potencia_adiantado;
 
-  // Faça as validações dos valores
-  if (consumo_maximo == undefined) {
-    res.status(400).send("O consumo máximo está undefined!");
-  } else if (desperdicio_maximo == undefined) {
-    res.status(400).send("O desperdicio máximo está undefined!");
-  } else if (co2_maximo == undefined) {
-    res.status(400).send("O CO2 máximo está undefined!");
-  } else if (potencia_reativa_atrasada_maxima == undefined) {
-    res.status(400).send("A potencia reativa atrasada está undefined!");
-  } else if (potencia_reativa_adiantada_maxima == undefined) {
-    res.status(400).send("O potencia adiantada atrasada máximo está undefined!");
+  if (co2 == undefined) {
+    res.status(400).send("O CO2 máximo anual está undefined!");
+  } else if (consumo == undefined) {
+    res.status(400).send("O consumo máximo mensal está undefined!");
+  } else if (reativa_atrasada == undefined) {
+    res.status(400).send("A potência reativa atrasada máxima semanal está undefined!");
+  } else if (reativa_adiantada == undefined) {
+    res.status(400).send("A potência reativa adiantada máxima semanal está undefined!");
+  } else if (fator_potencia_atrasado == undefined) {
+    res.status(400).send("O fator de potência atrasado máximo diário está undefined!");
+  } else if (fator_potencia_adiantado == undefined) {
+    res.status(400).send("O fator de potência adiantado máximo diário está undefined!");
   } else if (fkempresa == undefined) {
-    res.status(400).send("Sua empresa está undefined!");
+    res.status(400).send("A empresa está undefined!");
   } else {
-    // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
     metricasModel
-      .cadastrar(energiaMaxima, co2Maximo, fkempresa)
+      .cadastrar(consumo, co2, reativa_atrasada, reativa_adiantada, fator_potencia_atrasado, fator_potencia_adiantado, fkempresa)
       .then(function (resultado) {
         res.json(resultado);
       })
@@ -45,23 +45,40 @@ function listar(req, res) {
 }
 
 function editarMetrica(req, res) {
-  var consumo_maximo = req.body.consumo_maximo;
-  var desperdicio_maximo = req.body.desperdicio_maximo;
-  var co2_maximo = req.body.co2_maximo;
-  var potencia_reativa_atrasada_maxima = req.body.potencia_reativa_atrasada_maxima;
-  var potencia_reativa_adiantada_maxima = req.body.potencia_reativa_adiantada_maxima;
   var fkempresa = req.params.fkempresa;
+  var co2 = req.body.co2;
+  var consumo = req.body.consumo;
+  var reativa_atrasada = req.body.reativa_atrasada;
+  var reativa_adiantada = req.body.reativa_adiantada;
+  var fator_potencia_atrasado = req.body.fator_potencia_atrasado;
+  var fator_potencia_adiantado = req.body.fator_potencia_adiantado;
 
-  metricasModel
-    .editarMetrica(consumo_maximo, desperdicio_maximo, co2_maximo, potencia_reativa_atrasada_maxima, potencia_reativa_adiantada_maxima, fkempresa)
-    .then(function (resultado) {
-      res.json(resultado);
-    })
-    .catch(function (erro) {
-      console.log(erro);
-      console.log("Houve um erro ao realizar o post: ", erro.sqlMessage);
-      res.status(500).json(erro.sqlMessage);
-    });
+  if (!co2) {
+    return res.status(400).send("O CO2 máximo anual está indefinido ou vazio!");
+  } else if (!consumo) {
+    return res.status(400).send("O consumo máximo mensal está indefinido ou vazio!");
+  } else if (!reativa_atrasada) {
+    return res.status(400).send("A potência reativa atrasada máxima semanal está indefinida ou vazia!");
+  } else if (!reativa_adiantada) {
+    return res.status(400).send("A potência reativa adiantada máxima semanal está indefinida ou vazia!");
+  } else if (!fator_potencia_atrasado) {
+    return res.status(400).send("O fator de potência atrasado máximo diário está indefinido ou vazio!");
+  } else if (!fator_potencia_adiantado) {
+    return res.status(400).send("O fator de potência adiantado máximo diário está indefinido ou vazio!");
+  } else if (!fkempresa) {
+    return res.status(400).send("A empresa está indefinida ou vazia!");
+  } else {
+    metricasModel
+      .editarMetrica(consumo, co2, reativa_atrasada, reativa_adiantada, fator_potencia_atrasado, fator_potencia_adiantado, fkempresa)
+      .then(function (resultado) {
+        res.json(resultado);
+      })
+      .catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao realizar o post: ", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+      });
+  }
 }
 
 function deletar(req, res) {

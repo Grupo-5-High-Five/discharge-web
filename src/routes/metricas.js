@@ -15,7 +15,7 @@ router.put("/editarMetrica/:fkempresa", function (req, res) {
   metricasController.editarMetrica(req, res);
 });
 
-router.delete("/deletar/:fkempresa", function (req, res) {
+router.put("/deletar/:fkempresa", function (req, res) {
   metricasController.deletar(req, res);
 });
 
