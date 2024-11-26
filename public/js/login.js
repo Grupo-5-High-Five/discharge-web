@@ -233,7 +233,7 @@ function modal(titulo, msg, tipo, action) {
     },
   }).then((result) => {
     if (action && result.dismiss === Swal.DismissReason.timer) {
-      window.location.href = "../dashboard/home.html";
+      window.location.href = "../dashboard/dashboard.html";
     }
   });
 }
