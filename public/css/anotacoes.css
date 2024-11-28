@@ -36,5 +36,119 @@ main {
   width: 100%;
   height: 100vh;
   background-color: var(--fundo);
-  /* gap: 1rem; */
+}
+
+/* Post - Geral */
+
+.anot {
+  width: calc(100% - 4.4%);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  overflow-y: scroll;
+  height: 75%;
+}
+
+.anot_content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 1rem 0 0 0;
+}
+
+/* User */
+
+.postit {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  width: 75%;
+  height: 100%;
+}
+
+/* Empresa */
+
+.postit_empresa {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  width: 25%;
+  height: 100%;
+}
+
+/* Post */
+
+.post {
+  width: 100px; /* Define uma largura visível */
+  height: 100px; /* Define uma altura visível */
+  border-radius: 2px;
+  background-color: #529fe3;
+  display: flex; /* Para garantir que o conteúdo interno seja exibido */
+  align-items: center;
+  justify-content: center;
+  color: #fff; /* Para contraste */
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Send */
+
+.send {
+  width: calc(100% - 4.4%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 25%;
+  box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.15);
+}
+
+.send_content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  gap: 1rem;
+
+  & textarea {
+    color: dimgrey;
+    width: 30%;
+    height: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 2px;
+    padding: 1rem;
+    resize: none;
+
+    &:focus {
+      outline: 1px solid #529fe3e5;
+    }
+  }
+
+  & button {
+    width: 30%;
+    height: 100%;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    background-color: #529fe3;
+  }
 }
