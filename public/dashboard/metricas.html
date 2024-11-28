@@ -6,7 +6,11 @@
     <title>Discharge</title>
     <link rel="stylesheet" href="./../css/metricas.css" />
     <link rel="stylesheet" href="./../css/navbar.css" />
-    <link rel="shortcut icon" href="./../assets/icon/logo_flavicon.svg" type="image/x-icon" />
+    <link
+      rel="shortcut icon"
+      href="./../assets/icon/logo_flavicon.svg"
+      type="image/x-icon"
+    />
   </head>
 
   <body onload="listarMetricas()">
@@ -24,19 +28,28 @@
           <li class="ul_espacamento">
             <a class="link_dash" href="./dashboard.html">
               <article>
-                <img src="./../assets/imgs/dashboard/grafico-de-pizza.png" alt="dashboard" />
+                <img
+                  src="./../assets/imgs/dashboard/grafico-de-pizza.png"
+                  alt="dashboard"
+                />
                 <h3>Dashboard</h3>
               </article>
             </a>
             <a class="link_dash active" href="./metricas.html">
               <article>
-                <img src="./../assets/imgs/dashboard/metrica.svg" alt="métricas" />
+                <img
+                  src="./../assets/imgs/dashboard/metrica.svg"
+                  alt="métricas"
+                />
                 <h3>Métricas</h3>
               </article>
             </a>
             <a class="link_dash" href="./anotacoes.html">
               <article>
-                <img src="./../assets/imgs/dashboard/anotacao.svg" alt="metrica" />
+                <img
+                  src="./../assets/imgs/dashboard/anotacao.svg"
+                  alt="metrica"
+                />
                 <h3>Anotações</h3>
               </article>
             </a>
@@ -51,15 +64,25 @@
             </a> -->
             <a class="link_dash" href="./funcionario.html">
               <article>
-                <img src="./../assets/imgs/dashboard/func.svg" alt="configurações" />
+                <img
+                  src="./../assets/imgs/dashboard/func.svg"
+                  alt="configurações"
+                />
                 <h3>Funcionários</h3>
               </article>
             </a>
             <span class="link_dash" onclick="menu()">
               <article class="link_dash_user">
-                <img src="./../assets/imgs/dashboard/user.svg" alt="Ícone de Usuário" />
+                <img
+                  src="./../assets/imgs/dashboard/user.svg"
+                  alt="Ícone de Usuário"
+                />
                 <h3 id="name_user"></h3>
-                <img onclick="sair()" src="./../assets/imgs/dashboard/sair.png" alt="Sair" />
+                <img
+                  onclick="sair()"
+                  src="./../assets/imgs/dashboard/sair.png"
+                  alt="Sair"
+                />
               </article>
             </span>
           </li>
@@ -71,112 +94,196 @@
             <div class="title">
               <h1>Métricas de Eficiência</h1>
               <div class="div_sep_btn">
-                <button type="submit" onclick="cadastrarMetrica(event)" id="btn_cad">Cadastrar</button>
-                <button type="submit" onclick="editarMetrica(event)">Redefinir</button>
+                <button
+                  type="submit"
+                  onclick="cadastrarMetrica(event)"
+                  id="btn_cad"
+                >
+                  Cadastrar
+                </button>
+                <button type="submit" onclick="editarMetrica(event)">
+                  Redefinir
+                </button>
               </div>
             </div>
             <p>
-              Personalize como as métricas impactarão os indicadores de monitoramento. Tenha uma visão mais direcionada e significativa dos dados, fatores que influenciam o sucesso e eficiência de seus processos. Ao selecionar as métricas, você pode
-              ajustar os indicadores de forma a refletir melhor a realidade do seu negócio ou operação.
+              Personalize como as métricas impactarão os indicadores de
+              monitoramento. Tenha uma visão mais direcionada e significativa
+              dos dados, fatores que influenciam o sucesso e eficiência de seus
+              processos. Ao selecionar as métricas, você pode ajustar os
+              indicadores de forma a refletir melhor a realidade do seu negócio
+              ou operação.
             </p>
             <div class="container-metricas">
               <div class="content-metrica">
                 <div class="title">
                   <div class="div_sep">
-                    <img src="./../assets/imgs/dashboard/iconco2.svg" alt="co2" />
+                    <img
+                      src="./../assets/imgs/dashboard/iconco2.svg"
+                      alt="co2"
+                    />
                     <h4>Limite de emissão de CO2 no anual (tCO2)</h4>
                   </div>
                   <div class="div_sep">
                     <p>Valor em tco2</p>
-                    <input type="number" oninput="enforceMaxLength(this)" maxlength="3" placeholder="tCO2" />
+                    <input
+                      type="number"
+                      oninput="enforceMaxLength(this)"
+                      maxlength="3"
+                      placeholder="tCO2"
+                    />
                     <div class="delete" onclick="deletarMetrica()"></div>
                   </div>
                 </div>
                 <p>
-                  Defina um limite para as emissões de CO2 (tCO2/MWh) por megawatt-hora consumido. Essa métrica ajuda a monitorar o impacto ambiental e a adotar estratégias para reduzir o consumo energético, promovendo uma operação mais sustentável e
+                  Defina um limite para as emissões de CO2 (tCO2/MWh) por
+                  megawatt-hora consumido. Essa métrica ajuda a monitorar o
+                  impacto ambiental e a adotar estratégias para reduzir o
+                  consumo energético, promovendo uma operação mais sustentável e
                   alinhada a padrões de eficiência.
                 </p>
               </div>
               <div class="content-metrica">
                 <div class="title">
                   <div class="div_sep">
-                    <img src="./../assets/imgs/dashboard/iconraio.svg" alt="energia" />
+                    <img
+                      src="./../assets/imgs/dashboard/iconraio.svg"
+                      alt="energia"
+                    />
                     <h4>Consumo total de energia no mês (KWh)</h4>
                   </div>
                   <div class="div_sep">
                     <p>Valor em KWh</p>
-                    <input type="number" oninput="enforceMaxLength(this)" maxlength="5" placeholder="KWh" />
+                    <input
+                      type="number"
+                      oninput="enforceMaxLength(this)"
+                      maxlength="5"
+                      placeholder="KWh"
+                    />
                     <div class="delete" onclick="deletarMetrica()"></div>
                   </div>
                 </div>
                 <p>
-                  Defina um limite máximo de consumo mensal (em kWh) para controlar o uso de energia e evitar custos excessivos. Essa métrica ajuda a estabelecer metas de eficiência energética e permite monitorar o consumo ao longo do mês, alertando
-                  quando o limite estiver próximo. Isso possibilita a tomada de ações corretivas para otimizar o uso de energia e reduzir despesas operacionais.
+                  Defina um limite máximo de consumo mensal (em kWh) para
+                  controlar o uso de energia e evitar custos excessivos. Essa
+                  métrica ajuda a estabelecer metas de eficiência energética e
+                  permite monitorar o consumo ao longo do mês, alertando quando
+                  o limite estiver próximo. Isso possibilita a tomada de ações
+                  corretivas para otimizar o uso de energia e reduzir despesas
+                  operacionais.
                 </p>
               </div>
               <div class="content-metrica">
                 <div class="title">
                   <div class="div_sep">
-                    <img src="./../assets/imgs/dashboard/iconraio.svg" alt="energia" />
-                    <h4>Limite de Potência Reativa Adiantada Semanal (KVarh)</h4>
+                    <img
+                      src="./../assets/imgs/dashboard/iconraio.svg"
+                      alt="energia"
+                    />
+                    <h4>
+                      Limite de Potência Reativa Adiantada Semanal (KVarh)
+                    </h4>
                   </div>
                   <div class="div_sep">
                     <p>Valor em KVarh</p>
-                    <input type="number" oninput="enforceMaxLength(this)" maxlength="5" placeholder="KVarh" />
+                    <input
+                      type="number"
+                      oninput="enforceMaxLength(this)"
+                      maxlength="5"
+                      placeholder="KVarh"
+                    />
                     <div class="delete" onclick="deletarMetrica()"></div>
                   </div>
                 </div>
                 <p>
-                  Monitore o limite máximo de potência reativa adiantada consumida semanalmente. Essa métrica ajuda a identificar desequilíbrios na rede elétrica e otimizar a qualidade de energia. Manter esse parâmetro controlado reduz custos
+                  Monitore o limite máximo de potência reativa adiantada
+                  consumida semanalmente. Essa métrica ajuda a identificar
+                  desequilíbrios na rede elétrica e otimizar a qualidade de
+                  energia. Manter esse parâmetro controlado reduz custos
                   associados a perdas e melhora a eficiência do sistema.
                 </p>
               </div>
               <div class="content-metrica">
                 <div class="title">
                   <div class="div_sep">
-                    <img src="./../assets/imgs/dashboard/iconraio.svg" alt="energia" />
+                    <img
+                      src="./../assets/imgs/dashboard/iconraio.svg"
+                      alt="energia"
+                    />
                     <h4>Limite de Potência Reativa Atrasada Semanal (KVarh)</h4>
                   </div>
                   <div class="div_sep">
                     <p>Valor em KVarh</p>
-                    <input type="number" oninput="enforceMaxLength(this)" maxlength="5" placeholder="KVarh" />
+                    <input
+                      type="number"
+                      oninput="enforceMaxLength(this)"
+                      maxlength="5"
+                      placeholder="KVarh"
+                    />
                     <div class="delete" onclick="deletarMetrica()"></div>
                   </div>
                 </div>
                 <p>
-                  Acompanhe a potência reativa atrasada máxima semanal para minimizar os impactos no sistema elétrico. Essa métrica é essencial para evitar penalizações por consumo excessivo de potência reativa, promovendo uma operação mais eficiente
-                  e sustentável.
+                  Acompanhe a potência reativa atrasada máxima semanal para
+                  minimizar os impactos no sistema elétrico. Essa métrica é
+                  essencial para evitar penalizações por consumo excessivo de
+                  potência reativa, promovendo uma operação mais eficiente e
+                  sustentável.
                 </p>
               </div>
               <div class="content-metrica">
                 <div class="title">
                   <div class="div_sep">
-                    <img src="./../assets/imgs/dashboard/iconraio.svg" alt="energia" />
+                    <img
+                      src="./../assets/imgs/dashboard/iconraio.svg"
+                      alt="energia"
+                    />
                     <h4>Limite de Fator de Potência Adiantado Diário (%)</h4>
                   </div>
                   <div class="div_sep">
                     <p>Valor em %</p>
-                    <input type="number" oninput="enforceMaxLength(this)" maxlength="5" placeholder="%" />
+                    <input
+                      type="number"
+                      oninput="enforceMaxLength(this)"
+                      maxlength="5"
+                      placeholder="%"
+                    />
                     <div class="delete" onclick="deletarMetrica()"></div>
                   </div>
                 </div>
                 <p>
-                  Estabeleça um limite mínimo para o fator de potência adiantado diário, garantindo que os equipamentos funcionem com maior eficiência elétrica. Controlar essa métrica reduz perdas energéticas e melhora a confiabilidade do sistema.
+                  Estabeleça um limite mínimo para o fator de potência adiantado
+                  diário, garantindo que os equipamentos funcionem com maior
+                  eficiência elétrica. Controlar essa métrica reduz perdas
+                  energéticas e melhora a confiabilidade do sistema.
                 </p>
               </div>
               <div class="content-metrica">
                 <div class="title">
                   <div class="div_sep">
-                    <img src="./../assets/imgs/dashboard/iconraio.svg" alt="energia" />
+                    <img
+                      src="./../assets/imgs/dashboard/iconraio.svg"
+                      alt="energia"
+                    />
                     <h4>Limite de Fator de Potência Atrasado Diário (%)</h4>
                   </div>
                   <div class="div_sep">
                     <p>Valor em %</p>
-                    <input type="number" oninput="enforceMaxLength(this)" maxlength="3" placeholder="%" />
+                    <input
+                      type="number"
+                      oninput="enforceMaxLength(this)"
+                      maxlength="3"
+                      placeholder="%"
+                    />
                     <div class="delete" onclick="deletarMetrica()"></div>
                   </div>
                 </div>
-                <p>Defina um limite mínimo para o fator de potência atrasado diário, assegurando uma operação energética eficiente. Um fator de potência adequado reduz custos com energia reativa e melhora a estabilidade da rede elétrica.</p>
+                <p>
+                  Defina um limite mínimo para o fator de potência atrasado
+                  diário, assegurando uma operação energética eficiente. Um
+                  fator de potência adequado reduz custos com energia reativa e
+                  melhora a estabilidade da rede elétrica.
+                </p>
               </div>
             </div>
           </div>

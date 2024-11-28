@@ -7,7 +7,14 @@ function cadastrarMetrica(event) {
   const inputs = form.querySelectorAll('input[type="number"]');
 
   let met = {};
-  const metricas = ["co2", "consumo", "reativa_atrasada", "reativa_adiantada", "fator_potencia_atrasado", "fator_potencia_adiantado"];
+  const metricas = [
+    "co2",
+    "consumo",
+    "reativa_atrasada",
+    "reativa_adiantada",
+    "fator_potencia_atrasado",
+    "fator_potencia_adiantado",
+  ];
 
   inputs.forEach((input, index) => {
     const name = metricas[index];
@@ -73,7 +80,14 @@ function editarMetrica() {
   const inputs = form.querySelectorAll('input[type="number"]');
 
   let met = {};
-  const metricas = ["co2", "consumo", "reativa_atrasada", "reativa_adiantada", "fator_potencia_atrasado", "fator_potencia_adiantado"];
+  const metricas = [
+    "co2",
+    "consumo",
+    "reativa_atrasada",
+    "reativa_adiantada",
+    "fator_potencia_atrasado",
+    "fator_potencia_adiantado",
+  ];
 
   inputs.forEach((input, index) => {
     const name = metricas[index];
@@ -100,7 +114,10 @@ function editarMetrica() {
       } else if (resposta.status == 404) {
         window.alert("Deu 404!"); // Precisamos colocar alguma tela ou modal aqui
       } else {
-        throw "Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status; // Precisamos colocar alguma tela ou modal aqui
+        throw (
+          "Houve um erro ao tentar realizar a postagem! Código da resposta: " +
+          resposta.status
+        ); // Precisamos colocar alguma tela ou modal aqui
       }
     })
     .catch(function (resposta) {
@@ -117,12 +134,19 @@ function deletarMetrica() {
   })
     .then(function (resposta) {
       if (resposta.ok) {
-        window.alert("Post deletado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
+        window.alert(
+          "Post deletado com sucesso pelo usuario de email: " +
+            sessionStorage.getItem("EMAIL_USUARIO") +
+            "!"
+        );
         window.location = "/dashboard/mural.html";
       } else if (resposta.status == 404) {
         window.alert("Deu 404!");
       } else {
-        throw "Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status;
+        throw (
+          "Houve um erro ao tentar realizar a postagem! Código da resposta: " +
+          resposta.status
+        );
       }
     })
     .catch(function (resposta) {
