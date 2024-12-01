@@ -112,7 +112,7 @@ function cadastrar(formValues) {
         let timerInterval;
         Swal.fire({
           showConfirmButton: false,
-          title: "Deletado com sucesso!",
+          title: "Cadastrado com sucesso!",
           html: "A página será recarregada, aguarde um instante.",
           icon: "success",
           timer: 2000,
