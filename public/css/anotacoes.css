@@ -34,69 +34,8 @@ main {
   justify-content: center;
   align-items: flex-end;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   background-color: var(--fundo);
-}
-
-/* Post - Geral */
-
-.anot {
-  width: calc(100% - 4.4%);
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  overflow-y: scroll;
-  height: 75%;
-}
-
-.anot_content {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  padding: 1rem 0 0 0;
-}
-
-/* User */
-
-.postit {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  align-items: center;
-  justify-content: center;
-  width: 75%;
-  height: 100%;
-}
-
-/* Empresa */
-
-.postit_empresa {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  align-items: center;
-  justify-content: center;
-  width: 25%;
-  height: 100%;
-}
-
-/* Post */
-
-.post {
-  width: 100px; /* Define uma largura visível */
-  height: 100px; /* Define uma altura visível */
-  border-radius: 2px;
-  background-color: #529fe3;
-  display: flex; /* Para garantir que o conteúdo interno seja exibido */
-  align-items: center;
-  justify-content: center;
-  color: #fff; /* Para contraste */
-  font-size: 14px;
-  text-align: center;
 }
 
 /* Send */
@@ -107,7 +46,7 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 25%;
+  height: 35vh;
   box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.15);
 }
 
@@ -122,7 +61,7 @@ main {
 
 .form {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   width: 100%;
@@ -132,7 +71,7 @@ main {
   & textarea {
     color: dimgrey;
     width: 30%;
-    height: 100%;
+    height: 20vh;
     border: 1px solid rgba(0, 0, 0, 0.3);
     border-radius: 2px;
     padding: 1rem;
@@ -150,5 +89,280 @@ main {
     border-radius: 2px;
     cursor: pointer;
     background-color: #529fe3;
+  }
+}
+
+/* Title */
+
+.title {
+  width: calc(100% - 4.4%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 10%;
+}
+
+.title_content {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0 0 0;
+
+  & h1 {
+    font-size: 24px;
+  }
+
+  & h2 {
+    font-size: 18px;
+  }
+}
+
+/* Post - Geral */
+
+.anot {
+  width: calc(100% - 4.4%);
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  height: 100%;
+  padding: 1rem 0 0 0;
+}
+
+.anot_content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+}
+
+/* User */
+
+.label {
+  display: flex;
+  position: relative;
+}
+
+.postit {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 75%;
+  height: 100%;
+}
+
+/* Post */
+
+.post,
+.label {
+  display: block;
+  position: relative;
+  -user-select: none;
+  --webkit-user-select: none;
+  --moz-user-select: none;
+  width: 22%;
+  height: 100%;
+  padding: 1rem;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff; /* Para contraste */
+  font-size: 16px;
+  text-align: center;
+  box-shadow: 2px 2px 1px 0.5px rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  word-break: break-all;
+}
+
+label.label.p_emp {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  & i {
+    font-size: 12px;
+  }
+}
+
+.label input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.label .checkmark {
+  --clr: #005ac2;
+  position: absolute;
+  bottom: 88%; /* Ajuste para centralizar verticalmente */
+  left: 95%;
+  height: 1.3em;
+  width: 1.3em;
+  background-color: #b4b4b4;
+  border-radius: 50%;
+  transition: 300ms;
+  cursor: pointer;
+}
+
+.label input:checked ~ .checkmark {
+  background-color: var(--clr);
+  border-radius: 0.5rem;
+  animation: pulse 500ms ease-in-out;
+}
+
+.label .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.label input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.label .checkmark:after {
+  left: 0.45em;
+  top: 0.25em;
+  width: 0.25em;
+  height: 0.5em;
+  border: solid #e0e0e2;
+  border-width: 0 0.15em 0.15em 0;
+  transform: rotate(45deg);
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 #0b3e6e67;
+    rotate: 20deg;
+  }
+
+  50% {
+    rotate: -20deg;
+  }
+
+  75% {
+    box-shadow: 0 0 0 10px #0b3e6e67;
+  }
+
+  100% {
+    box-shadow: 0 0 0 13px #0b3e6e67;
+    rotate: 0;
+  }
+}
+
+/* Container btns */
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.controls button {
+  padding: 0.5rem 1rem;
+  background-color: #529fe3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.controls button:hover {
+  background-color: #407ab3;
+}
+
+.hidden {
+  display: none;
+}
+
+.flex {
+  display: flex;
+}
+
+/* Buttons */
+
+.btn_send,
+.all,
+.delete,
+.edit,
+.select {
+  width: 24px;
+  height: 24px;
+  border-radius: 2px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  transition: 0.4s;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.btn_send {
+  background-color: #2d5fbd;
+  background-image: url(../assets/imgs/dashboard/send.svg);
+
+  &:hover {
+    background-color: #4e82e2;
+  }
+}
+
+.all {
+  background-color: #832dbd;
+  background-image: url(../assets/imgs/dashboard/all.svg);
+
+  &:hover {
+    background-color: #9542cc;
+  }
+}
+
+.delete {
+  background-color: #e35252;
+  background-image: url(../assets/imgs/dashboard/delete.svg);
+
+  &:hover {
+    background-color: #bd3131;
+  }
+}
+
+.edit {
+  background-color: #3cc043;
+  background-image: url(../assets/imgs/dashboard/edit.svg);
+
+  &:hover {
+    background-color: #309635;
+  }
+}
+
+.select {
+  background-color: #e0cc11;
+  background-image: url(../assets/imgs/dashboard/select.svg);
+
+  &:hover {
+    background-color: #d6c910;
+  }
+}
+
+/* Empresa */
+
+.postit_empresa {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: center;
+  justify-content: flex-end;
+  width: 22%;
+  height: 100%;
+
+  & .post {
+    width: 80%;
   }
 }
