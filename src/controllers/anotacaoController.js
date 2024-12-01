@@ -3,7 +3,6 @@ var anotacaoModel = require("../models/anotacaoModel");
 function listar(req, res) {
   var fkUser = req.params.id;
   var fkEmp = req.params.fkempresa;
-  console.log(fkUser, fkEmp);
 
   anotacaoModel
     .listar(fkUser, fkEmp)
@@ -25,7 +24,6 @@ function publicar(req, res) {
   var fkfuncionario = req.params.id;
   var fkempresa = req.params.fkempresa;
   var texto = req.body.textServer;
-  console.log(fkfuncionario, fkempresa, texto);
 
   if (texto == undefined) {
     res.status(400).send("A texto está indefinido!");
@@ -48,19 +46,16 @@ function publicar(req, res) {
 }
 
 function editar(req, res) {
-  var titulo = req.body.titulo;
-  var texto = req.body.texto;
   var id = req.params.id;
+  var texto = req.body.text;
 
-  if (titulo == undefined) {
-    res.status(400).send("O título está indefinido!");
-  } else if (texto == undefined) {
+  if (texto == undefined) {
     res.status(400).send("A texto está indefinido!");
   } else if (id == undefined) {
     res.status(403).send("O id do funcionário está indefinido!");
   } else {
     anotacaoModel
-      .editarAnotacaoUsuario(titulo, texto, id)
+      .editar(id, texto)
       .then(function (resultado) {
         res.json(resultado);
       })

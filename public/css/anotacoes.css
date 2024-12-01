@@ -92,6 +92,31 @@ main {
   }
 }
 
+.swal-input {
+  color: dimgrey;
+  width: 100%;
+  height: 20vh;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 2px;
+  padding: 1rem;
+  resize: none;
+
+  &:focus {
+    outline: 1px solid #529fe3e5;
+  }
+}
+
+div.edit_input {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  & p {
+    display: flex;
+    align-items: flex-end;
+  }
+}
+
 /* Title */
 
 .title {

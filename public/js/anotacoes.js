@@ -266,8 +266,7 @@ function listar() {
     });
 }
 
-async function confirmar(event, type) {
-  // const posts = document.querySelectorAll(".post");
+async function confirmarDel(event, type) {
   const checkboxes = document.querySelectorAll(".post_checkbox");
 
   const selectedCheckboxes = Array.from(checkboxes).filter((checkbox) => checkbox.checked);
@@ -356,87 +355,79 @@ function deletarAnotacoes(arrayList) {
     });
 }
 
-async function editarFuncionario(event) {
-  const func = {
-    id: linha.dataset.id,
-    nome: linha.dataset.nome,
-    email: linha.dataset.email,
-    senha: linha.dataset.senha,
-    cargo: linha.dataset.cargo,
-    cargoSelect: linha.dataset.cargoSelect,
-  };
+async function confirmarEdit(event) {
+  const checkboxes = document.querySelectorAll(".post_checkbox");
+
+  const selectedCheckboxes = Array.from(checkboxes).filter((checkbox) => checkbox.checked);
+
+  let anot = {};
+
+  if (selectedCheckboxes.length === 0) {
+    Swal.fire({
+      icon: "error",
+      title: "Nenhum item selecionado",
+      text: "Por favor, selecione pelo menos um item para continuar.",
+    });
+    return;
+  } else if (selectedCheckboxes.length > 1) {
+    Swal.fire({
+      icon: "error",
+      title: "Mais de um item selecionado",
+      text: "Por favor, selecione um item para continuar.",
+    });
+    return;
+  } else {
+    selectedCheckboxes.forEach((selected) => {
+      const label = selected.closest("label");
+      if (label) {
+        const paragraph = label.querySelector("p");
+        if (paragraph) {
+          anot.text = paragraph.textContent;
+        }
+        anot.id = label.dataset.id;
+      }
+    });
+    console.log(anot);
+  }
 
   const { value: formValues } = await Swal.fire({
-    title: `Editar: ${func.nome}`,
+    title: `Editar anotação selecionada`,
     showCancelButton: true,
-    confirmButtonText: "Alterar",
+    confirmButtonText: "Editar",
     confirmButtonColor: "#3085d6",
     cancelButtonText: `Cancelar`,
     cancelButtonColor: "#d33",
     html: `
-    <div class="edit_modal"> 
+     <div class="edit_modal">
 
       <div class="edit_input">
-        <p>Nome:</p>
-        <input id="swal-input1" class="swal-input" placeholder="Nome do Funcionário" value="${func.nome}">
+        <p>Editar texto:</p>
+        <textarea id="swal-input1" class="swal-input" placeholder="Escreva sua anotação" data-id="${anot.id}">${anot.text}</textarea>
       </div>
       
-      <div class="edit_input">
-        <p>E-mail:</p>
-        <input id="swal-input2" class="swal-input" placeholder="E-mail do Funcionário" value="${func.email}">
-      </div>
-  
-      <div class="edit_input">
-        <p>Senha:</p>
-        <input id="swal-input3" type="password" class="swal-input" placeholder="Senha do Funcionário" value="${func.senha}">
-      </div>
-
-      <div class="edit_input"> 
-        <p>Cargo:</p>
-         <select id="swal-input4" class="swal-input" title="slc_cargo">
-          <option value="admin">Admin</option>
-          <option value="eletricista">Eletricista</option>
-          <option value="financeiro">Financeiro</option>
-        </select>
-      </div>
-
     </div>
   `,
-    didOpen: () => {
-      const selectElement = document.getElementById("swal-input4");
-      for (const option of selectElement.options) {
-        if (option.value == func.cargoSelect) {
-          option.selected = true;
-          break;
-        }
-      }
-    },
     preConfirm: () => {
       return {
-        nome: document.getElementById("swal-input1").value,
-        email: document.getElementById("swal-input2").value,
-        senha: document.getElementById("swal-input3").value,
-        cargo: document.getElementById("swal-input4").value,
+        text: document.getElementById("swal-input1").value,
+        id: document.getElementById("swal-input1").dataset.id,
       };
     },
   });
 
   if (formValues) {
-    confirmar(func, formValues);
+    editar(formValues);
   }
 }
 
 function editar(values) {
-  fetch(`/usuario/editar/`, {
+  fetch(`/anotacao/editar/${values.id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      nome: values.nome,
-      email: values.email,
-      senha: values.senha,
-      cargo: values.cargo,
+      text: values.text,
     }),
   })
     .then(function (resposta) {
@@ -445,14 +436,14 @@ function editar(values) {
       } else if (resposta.status == 404) {
         throw new Error("404 nas alterações");
       } else {
-        throw new Error(`Houve um erro ao tentar alterar usuário: ${resposta.status}`);
+        throw new Error(`Houve um erro ao tentar alterar anotação: ${resposta.status}`);
       }
     })
     .then(function (dados) {
       let timerInterval;
       Swal.fire({
         showConfirmButton: false,
-        title: "Alterado com sucesso!",
+        title: "Editado com sucesso!",
         html: "A página será recarregada, aguarde um instante.",
         icon: "success",
         timer: 2000,
@@ -467,7 +458,7 @@ function editar(values) {
         },
       }).then((result) => {
         if (result.dismiss === Swal.DismissReason.timer) {
-          window.location.href = "./funcionario.html";
+          window.location.href = "./anotacoes.html";
         }
       });
     })
@@ -476,26 +467,3 @@ function editar(values) {
       console.error(`#ERRO: ${erro}`);
     });
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-  const checkboxes = document.querySelectorAll(".post_checkbox");
-
-  // Editar
-  const editButton = document.getElementById("edit_selected"); // Botão de editar
-
-  // Evento no botão de editar
-  editButton.addEventListener("click", () => {
-    const selectedCheckboxes = Array.from(checkboxes).filter((checkbox) => checkbox.checked);
-
-    if (selectedCheckboxes.length === 0) {
-      alert("Nenhum item selecionado!"); // Alerta se nada estiver selecionado
-    } else if (selectedCheckboxes.length > 1) {
-      alert("Apenas um item pode ser selecionado por vez!"); // Alerta se mais de um estiver selecionado
-    } else {
-      // Apenas um item selecionado
-      const label = selectedCheckboxes[0].closest(".label"); // Captura a label correspondente
-      const text = label.textContent.trim(); // Pega o texto da label
-      input.value = text;
-    }
-  });
-});
