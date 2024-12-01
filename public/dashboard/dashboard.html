@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="./../css/dashboard.css" />
     <link rel="stylesheet" href="./../css/navbar.css" />
 
-  <body>
+  <body onload="atualizarTodasKpis(fkEmpresa)">
     <main>
       <nav id="nav">
         <ul>
@@ -74,7 +74,7 @@
           <div class="container">
             <!-- KPIs -->
   
-            <div class="kpi-content">
+            <!-- <div class="kpi-content">
               <div class="title">
                 <h1>Visão Eficiência Energética</h1>
                 <div class="info-dash">
@@ -138,8 +138,68 @@
                 </div>
               </div>
             </div>
+          </div> -->
+          <div class="kpi-content">
+            <div class="title">
+              <h1>Visão Eficiência Energética</h1>
+              <div class="info-dash">
+                <img src="./../assets/imgs/dashboard/info.svg" alt="Glossário" />
+              </div>
+            </div>
+          
+            <div class="grid-kpi">
+              <div class="kpi bom">
+                <span class="titulo-kpi">Média mensal de emissão CO2 em XXXX(tCO2)</span>
+                <div class="conteudo-kpi">
+                  <span class="info-kpi" id="media-mensal-co2"></span>
+                  <img class="icon-kpi" src="./../assets/imgs/dashboard/iconco2.svg" alt="co2" />
+                </div>
+              </div>
+          
+              <div class="kpi bom">
+                <span class="titulo-kpi">Emissão de CO2 em XXXX(tCO2)</span>
+                <div class="conteudo-kpi">
+                  <span class="info-kpi" id="emissao-co2" ></span>
+                  <img class="icon-kpi" src="./../assets/imgs/dashboard/iconco2.svg" alt="co2" />
+                </div>
+              </div>
+          
+              <div class="kpi critico" id="kpi-reativa-adiantada">
+                <span class="titulo-kpi">% Meta de emissão atingido</span>
+                <div class="conteudo-kpi">
+                  <span class="info-kpi" id="meta-emissao"></span>
+                  <img class="icon-kpi" src="./../assets/imgs/dashboard/iconco2.svg" alt="energia" />
+                </div>
+              </div>
+          
+              <div class="kpi critico">
+                <span class="titulo-kpi">Média mensal do Consumo Energia em XXXX(KWh)</span>
+                <div class="conteudo-kpi">
+                  <span class="info-kpi" id="media-mensal-energia" ></span>
+                  <img class="icon-kpi" src="./../assets/imgs/dashboard/iconraio.svg" alt="energia" />
+                </div>
+              </div>
+              
+              <div class="kpi alerta">
+                <span class="titulo-kpi">Consumo Energia em Janeiro(KWh)</span>
+                <div class="conteudo-kpi">
+                  <span class="info-kpi" id="consumo-janeiro"></span>
+                  <img class="icon-kpi" src="./../assets/imgs/dashboard/iconraio.svg" alt="energia" />
+                </div>
+              </div>
+          
+              <div class="kpi bom">
+                <span class="titulo-kpi">% Meta de consumo (KWh) atingida</span>
+                <div class="conteudo-kpi">
+                  <span class="info-kpi" id="meta-consumo" ></span>
+                  <img class="icon-kpi" src="./../assets/imgs/dashboard/iconraio.svg" alt="energia" />
+                </div>
+              </div>
+            </div>
           </div>
         </section>
+
+        
   
         <!-- Troca de pastas -->
   

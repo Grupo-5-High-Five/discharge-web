@@ -316,7 +316,7 @@ new Chart(graficoEmissaoGases, {
       },
       {
         label: "Consumo de Energia",
-        data: [5,6,3,9,6,4,6],
+        data: [5, 6, 3, 9, 6, 4, 6],
         borderColor: "#DBB100",
         backgroundColor: "#DBB10077",
         borderWidth: 2,
@@ -336,7 +336,7 @@ new Chart(graficoEmissaoGases, {
       },
     },
   },
-    // type: "bar",
+  // type: "bar",
   // data: {
   //   labels: [
   //     "Segunda",
@@ -391,3 +391,39 @@ new Chart(graficoEmissaoGases, {
   //   },
   // },
 });
+
+var fkEmpresa = sessionStorage.ID_EMPRESA;
+
+function atualizarTodasKpis(fkEmpresa) {
+
+  var mediamensalco2 = document.getElementById('media-mensal-co2');
+  var emissaoco2 = document.getElementById('emissao-co2');
+  var metaemissao = document.getElementById('meta-emissao');
+  var mediamensalenergia = document.getElementById('media-mensal-energia');
+  var consumojaneiro = document.getElementById('consumo-janeiro');
+  var metaconsumo = document.getElementById('meta-consumo');
+
+  fetch(`/dashboard/listarMetricas/${fkEmpresa}`)
+  .then(function (response) {
+      if (response.ok) {
+          response.json().then(function (resposta) {
+              console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+              mediamensalco2.innerHTML = resposta[0].media_emissao;
+              emissaoco2.innerHTML = resposta[1].media_emissao;
+              metaemissao.innerHTML = `${resposta[2].media_emissao}%`;
+              mediamensalenergia.innerHTML = resposta[3].media_emissao;
+              consumojaneiro.innerHTML = resposta[4].media_emissao;
+              metaconsumo.innerHTML = `${resposta[5].media_emissao}%`;
+          });
+      } else {
+          console.log("Nenhum valor encontrado ou ocorreu algum erro na API!");
+          alert("Nenhum valor encontrado ou ocorreu algum erro na API!");
+      }
+  })
+  .catch(function (error) {
+      console.log(`Erro na captura dos dados para o gráfico: ${error.message}`);
+      // alert(`Erro na captura dos dados para o gráfico: ${error.message}`);
+  });
+
+return false;
+}

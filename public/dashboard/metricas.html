@@ -93,7 +93,7 @@
           <div class="container">
             <div class="title">
               <h1>Métricas de Eficiência</h1>
-              <div class="div_sep_btn">
+              <!-- <div class="div_sep_btn">
                 <button
                   type="submit"
                   onclick="cadastrarMetrica(event)"
@@ -101,10 +101,7 @@
                 >
                   Cadastrar
                 </button>
-                <button type="submit" onclick="editarMetrica(event)">
-                  Redefinir
-                </button>
-              </div>
+              </div> -->
             </div>
             <p>
               Personalize como as métricas impactarão os indicadores de
@@ -131,9 +128,13 @@
                       oninput="enforceMaxLength(this)"
                       maxlength="3"
                       placeholder="tCO2"
+                      id="input_co2_maximo_anual"
                     />
-                    <div class="delete" onclick="deletarMetrica()"></div>
-                  </div>
+                    <div class="delete" onclick="deletarMetrica('co2_maximo_anual', document.getElementById('input_co2_maximo_anual'))" ></div>
+                    <button type="submit" onclick="editarMetrica('co2_maximo_anual', document.getElementById('input_co2_maximo_anual').value)" >
+                      Enviar
+                    </button>
+                  </div>  
                 </div>
                 <p>
                   Defina um limite para as emissões de CO2 (tCO2/MWh) por
@@ -159,8 +160,12 @@
                       oninput="enforceMaxLength(this)"
                       maxlength="5"
                       placeholder="KWh"
+                      id="input_consumo_maximo_mensal"
                     />
-                    <div class="delete" onclick="deletarMetrica()"></div>
+                    <div class="delete" onclick="deletarMetrica('consumo_maximo_mensal', document.getElementById('input_consumo_maximo_mensal'))"></div>
+                    <button type="submit" onclick="editarMetrica('consumo_maximo_mensal', document.getElementById('input_consumo_maximo_mensal').value)">
+                      Enviar
+                    </button>
                   </div>
                 </div>
                 <p>
@@ -191,8 +196,12 @@
                       oninput="enforceMaxLength(this)"
                       maxlength="5"
                       placeholder="KVarh"
+                      id="input_potencia_reativa_atrasada_maxima_semanal"
                     />
-                    <div class="delete" onclick="deletarMetrica()"></div>
+                    <div class="delete" onclick="deletarMetrica('potencia_reativa_atrasada_maxima_semanal', document.getElementById('input_potencia_reativa_atrasada_maxima_semanal'))"></div>
+                    <button type="submit" onclick="editarMetrica('potencia_reativa_atrasada_maxima_semanal', document.getElementById('input_potencia_reativa_atrasada_maxima_semanal').value)">
+                      Enviar
+                    </button>
                   </div>
                 </div>
                 <p>
@@ -219,8 +228,12 @@
                       oninput="enforceMaxLength(this)"
                       maxlength="5"
                       placeholder="KVarh"
+                      id="input_potencia_reativa_adiantada_maxima_semanal"
                     />
-                    <div class="delete" onclick="deletarMetrica()"></div>
+                    <div class="delete" onclick="deletarMetrica('potencia_reativa_adiantada_maxima_semanal', document.getElementById('input_potencia_reativa_adiantada_maxima_semanal'))"></div>
+                    <button type="submit" onclick="editarMetrica('potencia_reativa_adiantada_maxima_semanal', document.getElementById('input_potencia_reativa_adiantada_maxima_semanal').value)">
+                      Enviar
+                    </button>
                   </div>
                 </div>
                 <p>
@@ -247,8 +260,12 @@
                       oninput="enforceMaxLength(this)"
                       maxlength="5"
                       placeholder="%"
+                      id="input_fator_potencia_adiantado_maxima_diario"
                     />
-                    <div class="delete" onclick="deletarMetrica()"></div>
+                    <div class="delete" onclick="deletarMetrica('fator_potencia_adiantado_maxima_diario', document.getElementById('input_fator_potencia_adiantado_maxima_diario'))"></div>
+                    <button type="submit" onclick="editarMetrica('fator_potencia_adiantado_maxima_diario', document.getElementById('input_fator_potencia_adiantado_maxima_diario').value)">
+                      Enviar
+                    </button>
                   </div>
                 </div>
                 <p>
@@ -274,8 +291,12 @@
                       oninput="enforceMaxLength(this)"
                       maxlength="3"
                       placeholder="%"
+                      id="input_fator_potencia_atrasado_maxima_diario"
                     />
-                    <div class="delete" onclick="deletarMetrica()"></div>
+                    <div class="delete" onclick="deletarMetrica('fator_potencia_atrasado_maxima_diario',document.getElementById('input_fator_potencia_atrasado_maxima_diario'))"></div>
+                    <button type="submit" onclick="editarMetrica('fator_potencia_atrasado_maxima_diario', document.getElementById('input_fator_potencia_atrasado_maxima_diario').value)">
+                      Enviar
+                    </button>
                   </div>
                 </div>
                 <p>
