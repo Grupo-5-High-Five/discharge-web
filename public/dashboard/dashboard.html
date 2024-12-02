@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Discharge</title>
-
+    <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/animations/scale.css" />
     <link rel="shortcut icon" href="./../assets/icon/logo_flavicon.svg" type="image/x-icon" />
     <link rel="stylesheet" href="./../css/dashboard.css" />
     <link rel="stylesheet" href="./../css/navbar.css" />
@@ -59,17 +59,22 @@
       <section class="global">
         <section class="kpis">
           <div class="container">
+            <!-- ----------------------------------------------------------- -->
             <!-- KPIs -->
+            <!-- ----------------------------------------------------------- -->
 
             <div class="kpi-content">
               <div class="title">
                 <h1>Visão Eficiência Energética</h1>
                 <div class="info-dash">
-                  <img src="./../assets/imgs/dashboard/info.svg" alt="Glossário" />
+                  <img id="infoTooltip" src="./../assets/imgs/dashboard/info.svg" alt="Glossário" />
                 </div>
               </div>
 
               <div class="grid-kpi">
+                <!-- ----------------------------------------------------------- -->
+                <!-- CO2 -->
+                <!-- ----------------------------------------------------------- -->
                 <div class="kpi bom">
                   <span class="titulo-kpi">Média mensal de emissão CO2 em XXXX(tCO2)</span>
                   <div class="conteudo-kpi">
@@ -95,6 +100,20 @@
                     <img class="icon-kpi" src="./../assets/imgs/dashboard/iconco2.svg" alt="energia" />
                   </div>
                 </div>
+                <!-- ----------------------------------------------------------- -->
+                <!-- AVISOS -->
+                <!-- ----------------------------------------------------------- -->
+                <div class="aviso">
+                  <span class="titulo-aviso">Avisos</span>
+                  <div class="conteudo-aviso">
+                    <span class="info-aviso">
+                      <p>Se continuar dessa maneira, vai atingir sua meta de consumo de energia no(s) próximo(s): 2 meses</p>
+                    </span>
+                  </div>
+                </div>
+                <!-- ----------------------------------------------------------- -->
+                <!-- ENERGIA -->
+                <!-- ----------------------------------------------------------- -->
                 <div class="kpi critico">
                   <span class="titulo-kpi">Média mensal do Consumo Energia em XXXX(KWh)</span>
                   <div class="conteudo-kpi">
@@ -125,7 +144,9 @@
           </div>
         </section>
 
+        <!-- ----------------------------------------------------------- -->
         <!-- Troca de pastas -->
+        <!-- ----------------------------------------------------------- -->
 
         <section class="pasta">
           <div class="container">
@@ -136,17 +157,24 @@
           </div>
         </section>
 
+        <!-- ----------------------------------------------------------- -->
         <!-- Dashboards -->
+        <!-- ----------------------------------------------------------- -->
 
         <section class="dash">
           <div class="container">
             <div class="dash-content">
               <div class="dash-tec-title"><h2>Qualidade Energética Geral</h2></div>
+
+              <!-- ----------------------------------------------------------- -->
               <!-- Dash Técnica -->
+              <!-- ----------------------------------------------------------- -->
+
               <article class="dash-tec" id="dash-tec">
                 <div class="box-graph">
                   <div class="title-graph">
                     <h2>Tendência de Consumo de Energia</h2>
+                    <h3>Σ: 200</h3>
                   </div>
                   <div class="grafico max">
                     <div id="graph_emissao"></div>
@@ -155,6 +183,7 @@
                 <div class="box-graph">
                   <div class="title-graph">
                     <h2>Potência Reativa e Fator Potência(Atrasada)</h2>
+                    <h3>Σ: 200</h3>
                   </div>
                   <div class="grafico max">
                     <div id="graph_ener_atr"></div>
@@ -163,13 +192,18 @@
                 <div class="box-graph">
                   <div class="title-graph">
                     <h2>Potência Reativa e Fator Potência(Adiantada)</h2>
+                    <h3>Σ: 200</h3>
                   </div>
                   <div class="grafico max">
                     <div id="graph_ener_adi"></div>
                   </div>
                 </div>
               </article>
+
+              <!-- ----------------------------------------------------------- -->
               <!-- Dash consumo -->
+              <!-- ----------------------------------------------------------- -->
+
               <article class="dash-con" id="dash-con">
                 <div class="kpi-con">
                   <div class="kpi critico">
@@ -217,9 +251,15 @@
                     </div>
                   </div>
                 </div>
+
+                <!-- ----------------------------------------------------------- -->
+                <!-- Gráfico Consumo -->
+                <!-- ----------------------------------------------------------- -->
+
                 <div class="box-graph">
                   <div class="title-graph">
                     <h2>Consumo de Energia</h2>
+                    <h3>Σ: 200</h3>
                   </div>
                   <div class="grafico">
                     <div id="graph_con_med"></div>
@@ -232,6 +272,8 @@
       </section>
     </main>
   </body>
+  <script src="https://unpkg.com/@popperjs/core@2"></script>
+  <script src="https://unpkg.com/tippy.js@6"></script>
   <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
   <script src="../js/dashboard.js"></script>
   <script src="../js/dashfront.js"></script>

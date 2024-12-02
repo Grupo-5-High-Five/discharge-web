@@ -241,3 +241,26 @@ var options = {
     categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999],
   },
 };
+
+tippy("#infoTooltip", {
+  content: `
+      <div>
+          <strong>Limites definidos Σ:</strong><br><br>
+          <ul>
+              <li>Σ - Emissão CO2 anual: 50</li>
+              <li>Σ - Consumo de energia no mês: 45</li>
+              <li>Σ - Potência Reativa Adiantada Semanal: 234</li>
+              <li>Σ - Potência Reativa Atrasada Semanal: 243</li>
+              <li>Σ - Fator de Potência Adiantado Semanal: 1</li>
+              <li>Σ - Fator de Potência Adiantado Atrasado: 1</li>
+          </ul>
+      </div>
+  `,
+  allowHTML: true, // Enable HTML content
+  theme: "custom",
+  animation: "scale",
+  interactive: true, // Allow interaction with the tooltip
+  placement: "right", // Change position
+  arrow: true,
+  maxWidth: 250, // Max width of the tooltip
+});

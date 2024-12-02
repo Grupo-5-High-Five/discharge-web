@@ -44,7 +44,7 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 70%;
+  height: 60%;
   width: calc(100% - 4.4%);
 }
 
@@ -136,7 +136,7 @@ main {
 
 .grid-kpi {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   justify-items: center;
   align-items: center;
@@ -157,6 +157,46 @@ main {
   box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
   border-left: solid red;
   border-width: 7px;
+}
+
+.aviso {
+  height: 100%;
+  grid-row: span 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  background-color: #f2ae2e;
+  border-radius: 12px;
+  width: 90%;
+  box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
+  padding: 1rem;
+
+  .titulo-aviso {
+    position: absolute;
+    padding: 1rem;
+    left: 0;
+    top: 0;
+    font-size: 18px;
+    align-self: flex-start;
+    font-weight: 600;
+  }
+
+  .conteudo-aviso {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 2rem;
+    text-align: justify;
+    font-weight: 400;
+  }
+
+  .info-aviso {
+    & p {
+      font-size: 16px;
+    }
+  }
 }
 
 .bom {
@@ -298,10 +338,16 @@ div#graph_ener_atr {
 
 .title-graph {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   width: 100%;
   padding-bottom: 0.5rem;
   & h2 {
+    font-size: 14px;
+    font-weight: 700;
+    width: 100%;
+  }
+  & h3 {
     font-size: 14px;
     font-weight: 700;
     width: 100%;
@@ -311,60 +357,5 @@ div#graph_ener_atr {
     width: 20%;
     justify-content: flex-end;
     gap: 0.3rem;
-    & img,
-    .tooltip {
-      width: 30%;
-      cursor: pointer;
-      transition: 0.5s;
-      &:hover {
-        transform: scale(1.1);
-      }
-    }
   }
-}
-
-/* Tooltip */
-.tooltip {
-  background-image: url("../assets/imgs/dashboard/info.svg");
-  background-position: center;
-  background-repeat: none;
-  background-size: cover;
-  position: relative;
-  display: inline-block;
-  width: 100%;
-}
-
-.tooltip .tooltiptext {
-  text-align: start;
-  visibility: hidden;
-  width: 200px;
-  background-color: black;
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-  padding: 0.5rem;
-
-  position: absolute;
-  z-index: 1;
-  bottom: 125%;
-  left: 50%;
-  transform: translateX(-52%);
-
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-
-.tooltip .tooltiptext::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  border-width: 5px;
-  border-style: solid;
-  border-color: black transparent transparent transparent;
-}
-
-.tooltip:hover .tooltiptext {
-  visibility: visible;
-  opacity: 1;
 }
