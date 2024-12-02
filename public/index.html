@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
       rel="stylesheet"
@@ -178,11 +179,11 @@
         <div class="container">
           <div class="box-contato">
             <figure class="image-form"></figure>
-            <form id="contatoForm" action="" class="formulario">
+            <form id="contatoForm" class="formulario">
               <h2>Contate-nos</h2>
               <div class="div__input__name">
                 <label for="input_nome">
-                  <p>Nome</p>
+                  <p>Nome <span style="color: red">*</span></p>
                   <input
                     class="formulario__input"
                     id="input_nome"
@@ -192,7 +193,7 @@
                 </label>
 
                 <label for="input_sobrenome">
-                  <p>Sobrenome</p>
+                  <p>Sobrenome <span style="color: red">*</span></p>
                   <input
                     class="formulario__input"
                     id="input_sobrenome"
@@ -203,7 +204,7 @@
               </div>
 
               <label for="input_email">
-                <p>E-mail</p>
+                <p>E-mail <span style="color: red">*</span></p>
                 <input
                   class="formulario__input"
                   id="input_email"
@@ -213,7 +214,7 @@
               </label>
 
               <label for="input_celular">
-                <p>DDD + Celular</p>
+                <p>DDD + Celular <span style="color: red">*</span></p>
                 <input
                   class="formulario__input"
                   id="input_celular"
@@ -267,8 +268,8 @@
       <h2>Copyright © Discharge | 2024</h2>
     </div>
   </body>
-
-  <script src="./js/contato.js"></script>
   <script src="./js/signin.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="./js/contato.js"></script>
 </html>
