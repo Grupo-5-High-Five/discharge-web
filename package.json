@@ -21,7 +21,7 @@
     "jquery": "^3.7.1",
     "mysql2": "^3.9.4",
     "nodemailer": "^6.9.15",
-    "nodemon": "^2.0.7",
+    "nodemon": "^2.0.22",
     "path": "^0.12.7",
     "sweetalert2": "^11.14.5",
     "tippy.js": "^6.3.7"

@@ -44,7 +44,8 @@ function trocarDash(index) {
 
     dashCon.style.display = "grid";
     dashTec.style.display = "none";
-    dashConTitle.innerHTML = "<h1>Eficiência Energética entre XX/XX e XX/XX (XXXX)</h1>";
+    dashConTitle.innerHTML =
+      "<h1>Eficiência Energética entre XX/XX e XX/XX (XXXX)</h1>";
   }
 }
 
@@ -100,7 +101,10 @@ var optionsEnergiaAtrasada = {
   tooltip: { shared: true, intersect: false },
 };
 
-new ApexCharts(document.querySelector("#graph_ener_atr"), optionsEnergiaAtrasada).render();
+new ApexCharts(
+  document.querySelector("#graph_ener_atr"),
+  optionsEnergiaAtrasada
+).render();
 
 // ----------------------------------------------------------
 // Gráfico: Potência Reativa Atrasada
@@ -150,7 +154,10 @@ var optionsEnergiaAdiantada = {
   tooltip: { shared: true, intersect: false },
 };
 
-new ApexCharts(document.querySelector("#graph_ener_adi"), optionsEnergiaAdiantada).render();
+new ApexCharts(
+  document.querySelector("#graph_ener_adi"),
+  optionsEnergiaAdiantada
+).render();
 
 // ----------------------------------------------------------
 // Gráfico: Consumo de Energia com Média Móvel
@@ -189,7 +196,10 @@ var optionsConsumoMedia = {
   tooltip: { shared: true, intersect: false },
 };
 
-new ApexCharts(document.querySelector("#graph_con_med"), optionsConsumoMedia).render();
+new ApexCharts(
+  document.querySelector("#graph_con_med"),
+  optionsConsumoMedia
+).render();
 
 // ----------------------------------------------------------
 // Gráfico: Emissão de Gases
@@ -220,12 +230,28 @@ var optionsEmissaoGases = {
     },
   ],
   xaxis: {
-    categories: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
+    categories: [
+      "Jan",
+      "Fev",
+      "Mar",
+      "Abr",
+      "Mai",
+      "Jun",
+      "Jul",
+      "Ago",
+      "Set",
+      "Out",
+      "Nov",
+      "Dez",
+    ],
   },
   colors: ["#4BC0C0", "#DBB100"],
 };
 
-var chart = new ApexCharts(document.querySelector("#graph_emissao"), optionsEmissaoGases).render();
+var chart = new ApexCharts(
+  document.querySelector("#graph_emissao"),
+  optionsEmissaoGases
+).render();
 
 var options = {
   chart: {
@@ -264,3 +290,42 @@ tippy("#infoTooltip", {
   arrow: true,
   maxWidth: 250, // Max width of the tooltip
 });
+
+// ----------------------------------------------------------
+// Fetch
+// ----------------------------------------------------------
+
+var fkEmpresa = sessionStorage.ID_EMPRESA;
+
+function atualizarTodasKpis(fkEmpresa) {
+  var mediamensalco2 = document.getElementById("media-mensal-co2");
+  var emissaoco2 = document.getElementById("emissao-co2");
+  var metaemissao = document.getElementById("meta-emissao");
+  var mediamensalenergia = document.getElementById("media-mensal-energia");
+  var consumojaneiro = document.getElementById("consumo-janeiro");
+  var metaconsumo = document.getElementById("meta-consumo");
+
+  fetch(`/dashboard/listarMetricas/${fkEmpresa}`)
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(function (resposta) {
+          console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+          mediamensalco2.innerHTML = resposta[0].media_emissao;
+          emissaoco2.innerHTML = resposta[1].media_emissao;
+          metaemissao.innerHTML = `${resposta[2].media_emissao}%`;
+          mediamensalenergia.innerHTML = resposta[3].media_emissao;
+          consumojaneiro.innerHTML = resposta[4].media_emissao;
+          metaconsumo.innerHTML = `${resposta[5].media_emissao}%`;
+        });
+      } else {
+        console.log("Nenhum valor encontrado ou ocorreu algum erro na API!");
+        alert("Nenhum valor encontrado ou ocorreu algum erro na API!");
+      }
+    })
+    .catch(function (error) {
+      console.log(`Erro na captura dos dados para o gráfico: ${error.message}`);
+      // alert(`Erro na captura dos dados para o gráfico: ${error.message}`);
+    });
+
+  return false;
+}
