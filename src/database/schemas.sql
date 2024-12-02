@@ -1,6 +1,6 @@
--- DROP DATABASE IF EXISTS discharge;
--- CREATE DATABASE IF NOT EXISTS discharge;
--- USE discharge;
+DROP DATABASE IF EXISTS discharge;
+CREATE DATABASE IF NOT EXISTS discharge;
+USE discharge;
 
 CREATE TABLE IF NOT EXISTS empresa (
     id                                  INT                 AUTO_INCREMENT                      COMMENT 'Identificador único da empresa', 
@@ -77,7 +77,6 @@ CREATE TABLE IF NOT EXISTS tokens_recuperacao (
 
 CREATE TABLE IF NOT EXISTS anotacoes (
     id                                  INT                 AUTO_INCREMENT                      COMMENT 'Identificardor único das anotações',
-    titulo                              VARCHAR(45)         NOT NULL                            COMMENT 'Título da anotação feita pelo usuário',
     texto                               VARCHAR(255)        NOT NULL                            COMMENT 'Texto na anotação feita pelo usuário',
     fkfuncionario                       INT                 NOT NULL                            COMMENT 'Chave estrangeira que referencia o funcionário que realizou a anotação',
     fkempresa                           INT                 NULL                                COMMENT 'Chave estrangeira que referencia a empresa à qual o funcionário pertence',
