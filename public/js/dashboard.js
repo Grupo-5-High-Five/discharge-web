@@ -38,7 +38,6 @@ function trocarDash(index) {
     dashTec.style.display = "grid";
     dashCon.style.display = "none";
     dashConTitle.innerHTML = "<h1>Qualidade Energética Geral</h1>";
-
   } else {
     btnCon.classList.add("ativo");
     btnTec.classList.remove("ativo");
@@ -49,345 +48,196 @@ function trocarDash(index) {
   }
 }
 
-// Dashboard Status
+// ----------------------------------------------------------
+// Configuração dos gráficos com ApexCharts
+// ----------------------------------------------------------
 
-const graficoEnergiaAtrasada = document.getElementById("graph_ener_atr");
+// ----------------------------------------------------------
+// Gráfico: Potência Reativa Adiantada
+// ----------------------------------------------------------
 
-new Chart(graficoEnergiaAtrasada, {
-  type: "bar",
-  data: {
-    labels: [
-      "Segunda",
-      "Terça",
-      "Quarta",
-      "Quinta",
-      "Sexta",
-      "Sábado",
-      "Domingo",
-    ],
-    datasets: [
-      {
-        label: "Potência Reativa Adiantada (kVarh)",
-        data: [30, 22, 31, 18, 25, 21, 23],
-        borderWidth: 1,
-        borderColor: "#22AF2F",
-        backgroundColor: "#22AF2F77",
-        yAxisID: "y1",
-        order: 2,
-      },
-      {
-        label: "Fator de Potência Adiantada",
-        data: [0.85, 0.87, 0.83, 0.86, 0.84, 0.82, 0.88],
-        type: "line",
-        borderColor: "#E0841F",
-        backgroundColor: "#E0841F77",
-        fill: false,
-        yAxisID: "y2",
-        order: 1,
-      },
-    ],
+var optionsEnergiaAtrasada = {
+  chart: {
+    type: "line",
+    width: "100%",
+    height: "100%",
   },
-  options: {
-    scales: {
-      y1: {
-        beginAtZero: true,
-        position: "left",
-        grid: { display: false },
-      },
-      y2: {
-        beginAtZero: true,
-        max: 1,
-        position: "right",
-      },
-    },
-    plugins: {
-      legend: {
-        display: false,
-      },
-      tooltip: {
-        callbacks: {
-          label: function (context) {
-            return `${context.dataset.label}: ${context.raw}`;
-          },
-        },
-      },
-    },
+  stroke: {
+    width: [2, 4],
+    curve: "smooth",
+    colors: ["#47c753", "#E0841F"],
   },
-});
-
-const graficoEnergiaAdiantada = document.getElementById("graph_ener_adi");
-
-new Chart(graficoEnergiaAdiantada, {
-  type: "bar",
-  data: {
-    labels: [
-      "Segunda",
-      "Terça",
-      "Quarta",
-      "Quinta",
-      "Sexta",
-      "Sábado",
-      "Domingo",
-    ],
-    datasets: [
-      {
-        label: "Potência Reativa Atrasado (kVarh)",
-        data: [43, 57, 51, 52, 32, 57, 65],
-        borderWidth: 1,
-        borderColor: "#3B4FEB",
-        backgroundColor: "#3B4FEB77",
-        yAxisID: "y1",
-        order: 2,
-      },
-      {
-        label: "Fator de Potência Atrasado",
-        data: [0.9, 0.21, 0.83, 0.56, 0.3, 0.87, 0.85],
-        type: "line",
-        borderColor: "#DBB100",
-        backgroundColor: "#DBB10077",
-        fill: false,
-        yAxisID: "y2",
-        order: 1,
-      },
-    ],
+  markers: {
+    size: 4,
+    colors: ["#E0841F"],
   },
-  options: {
-    scales: {
-      y1: {
-        beginAtZero: true,
-        position: "left",
-        grid: { display: false },
-      },
-      y2: {
-        beginAtZero: true,
-        max: 1,
-        position: "right",
-      },
+  series: [
+    {
+      name: "Potência Reativa",
+      type: "column",
+      data: [30, 22, 31, 18, 25, 21, 23],
     },
-    plugins: {
-      legend: {
-        display: false,
-      },
-      tooltip: {
-        callbacks: {
-          label: function (context) {
-            return `${context.dataset.label}: ${context.raw}`;
-          },
-        },
-      },
+    {
+      name: "Fator de Potência",
+      type: "line",
+      data: [0.85, 0.87, 0.83, 0.86, 0.84, 0.82, 0.88],
     },
+  ],
+  xaxis: {
+    categories: ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"],
   },
-});
-
-const graficoUtilIndutiva = document.getElementById("graph_util_indutiva");
-
-new Chart(graficoUtilIndutiva, {
-  type: "bar",
-  data: {
-    labels: [
-      "Domingo",
-      "Segunda",
-      "Terça",
-      "Quarta",
-      "Quinta",
-      "Sexta",
-      "Sábado",
-    ],
-    datasets: [
-      {
-        label: "Energia Útil",
-        data: [12, 19, 3, 5, 2, 3, 5],
-        borderWidth: 1,
-      },
-      {
-        label: "Energia Indutiva",
-        data: [7, 2, 3, 14, 5, 2, 8],
-        borderWidth: 1,
-      },
-    ],
-  },
-  options: {
-    plugins: {
-      legend: {
-        display: false,
-      },
+  yaxis: [
+    {
+      title: { text: "Potência Reativa" },
     },
-    scales: {
-      y: {
-        beginAtZero: true,
-      },
+    {
+      opposite: true,
+      max: 1,
+      title: { text: "Fator de Potência" },
     },
+  ],
+  colors: ["#5af76988", "#E0841F"],
+  tooltip: { shared: true, intersect: false },
+};
+
+new ApexCharts(document.querySelector("#graph_ener_atr"), optionsEnergiaAtrasada).render();
+
+// ----------------------------------------------------------
+// Gráfico: Potência Reativa Atrasada
+// ----------------------------------------------------------
+
+var optionsEnergiaAdiantada = {
+  chart: {
+    type: "line",
+    width: "100%",
+    height: "100%",
   },
-});
+  stroke: {
+    width: [2, 4],
+    curve: "smooth",
+    colors: ["#0026ff", "#ebc000"],
+  },
+  markers: {
+    size: 4,
+    colors: ["#ebc000"],
+  },
+  series: [
+    {
+      name: "Potência Reativa",
+      type: "column",
+      data: [43, 57, 51, 52, 32, 57, 65],
+    },
+    {
+      name: "Fator de Potência",
+      type: "line",
+      data: [0.9, 0.21, 0.83, 0.56, 0.3, 0.87, 0.85],
+    },
+  ],
+  xaxis: {
+    categories: ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"],
+  },
+  yaxis: [
+    {
+      title: { text: "Potência Reativa" },
+    },
+    {
+      opposite: true,
+      max: 1,
+      title: { text: "Fator de Potência" },
+    },
+  ],
+  colors: ["#405bf3af", "#ebc000"],
+  tooltip: { shared: true, intersect: false },
+};
 
-// Dashboard Consumo
+new ApexCharts(document.querySelector("#graph_ener_adi"), optionsEnergiaAdiantada).render();
 
-const graficoConsumoMedia = document.getElementById("graph_con_med");
-
-function calcularMediaMovel(data, windowSize) {
-  let result = [];
-  for (let i = 0; i < data.length; i++) {
-    if (i < windowSize - 1) {
-      result.push(null);
-    } else {
-      let sum = 0;
-      for (let j = 0; j < windowSize; j++) {
-        sum += data[i - j];
-      }
-      result.push(sum / windowSize);
-    }
-  }
-  return result;
-}
+// ----------------------------------------------------------
+// Gráfico: Consumo de Energia com Média Móvel
+// ----------------------------------------------------------
 
 const dadosConsumo = [12, 19, 3, 5, 2, 3, 8, 12];
-const mediaMovel = calcularMediaMovel(dadosConsumo, 3);
 
-new Chart(graficoConsumoMedia, {
-  type: "line",
-  data: {
-    labels: [
-      "Domingo",
-      "Segunda",
-      "Terça",
-      "Quarta",
-      "Quinta",
-      "Sexta",
-      "Sábado",
-    ],
-    datasets: [
-      {
-        label: "Consumo de Energia",
-        data: dadosConsumo,
-        borderColor: "rgba(75, 192, 192, 1)",
-        borderWidth: 2,
-        fill: false,
-      },
-      {
-        label: "Média Móvel",
-        data: mediaMovel,
-        borderColor: "rgba(255, 99, 132, 1)",
-        borderWidth: 2,
-        fill: false,
-        borderDash: [5, 5],
-      },
-    ],
+var optionsConsumoMedia = {
+  chart: {
+    type: "line",
+    width: "100%",
+    height: "100%",
   },
-  options: {
-    plugins: {
-      legend: {
-        display: false,
-      },
-    },
-    scales: {
-      y: {
-        beginAtZero: true,
-      },
-    },
+  stroke: {
+    width: 4,
+    curve: "smooth",
   },
-});
+  markers: {
+    size: 5,
+    colors: ["#4BC0C0", "#FF6384"],
+  },
+  series: [
+    {
+      name: "Consumo de Energia",
+      data: dadosConsumo,
+    },
+    {
+      name: "Média Móvel",
+      data: [11, 14, 8, 6, 5, 4, 6, 10], // Calculada separadamente
+    },
+  ],
+  xaxis: {
+    categories: ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"],
+  },
+  colors: ["#4BC0C0", "#FF6384"],
+  tooltip: { shared: true, intersect: false },
+};
 
-const graficoEmissaoGases = document.getElementById("graph_emissao");
+new ApexCharts(document.querySelector("#graph_con_med"), optionsConsumoMedia).render();
 
-new Chart(graficoEmissaoGases, {
-  type: "line",
-  data: {
-    labels: [
-      "Jan",
-      "Fev",
-      "Mar",
-      "Abr",
-      "Mai",
-      "Jun",
-      "Jul",
-      "Ago",
-      "Set",
-      "Out",
-      "Nov",
-      "Dez",
-    ],
-    datasets: [
-      {
-        label: "Consumo de Energia",
-        data: dadosConsumo,
-        borderColor: "rgba(75, 192, 192, 1)",
-        borderWidth: 2,
-        fill: false,
-      },
-      {
-        label: "Consumo de Energia",
-        data: [5,6,3,9,6,4,6],
-        borderColor: "#DBB100",
-        backgroundColor: "#DBB10077",
-        borderWidth: 2,
-        fill: false,
-      },
-    ],
+// ----------------------------------------------------------
+// Gráfico: Emissão de Gases
+// ----------------------------------------------------------
+
+var optionsEmissaoGases = {
+  chart: {
+    type: "line",
+    width: "100%",
+    height: "100%",
   },
-  options: {
-    plugins: {
-      legend: {
-        display: false,
-      },
-    },
-    scales: {
-      y: {
-        beginAtZero: true,
-      },
-    },
+  stroke: {
+    width: 4,
+    curve: "smooth",
   },
-    // type: "bar",
-  // data: {
-  //   labels: [
-  //     "Segunda",
-  //     "Terça",
-  //     "Quarta",
-  //     "Quinta",
-  //     "Sexta",
-  //     "Sábado",
-  //     "Domingo",
-  //   ],
-  //   datasets: [
-  //     {
-  //       label: "Emissão de CO₂ (tCO2)",
-  //       data: [120, 150, 130, 160, 145, 110, 100],
-  //       backgroundColor: [
-  //         "rgba(75, 192, 192, 0.7)",
-  //         "rgba(54, 162, 235, 0.7)",
-  //         "rgba(255, 205, 86, 0.7)",
-  //         "rgba(153, 102, 255, 0.7)",
-  //         "rgba(255, 99, 132, 0.7)",
-  //         "rgba(201, 203, 207, 0.7)",
-  //         "rgba(255, 159, 64, 0.7)",
-  //       ],
-  //       borderColor: [
-  //         "rgba(75, 192, 192, 1)",
-  //         "rgba(54, 162, 235, 1)",
-  //         "rgba(255, 205, 86, 1)",
-  //         "rgba(153, 102, 255, 1)",
-  //         "rgba(255, 99, 132, 1)",
-  //         "rgba(201, 203, 207, 1)",
-  //         "rgba(255, 159, 64, 1)",
-  //       ],
-  //       borderWidth: 1,
-  //     },
-  //   ],
-  // },
-  // options: {
-  //   scales: {
-  //     y: {
-  //       beginAtZero: true,
-  //     },
-  //   },
-  //   plugins: {
-  //     legend: { display: false },
-  //     tooltip: {
-  //       callbacks: {
-  //         label: function (context) {
-  //           return `Emissão de CO₂: ${context.raw} (tCO2)`;
-  //         },
-  //       },
-  //     },
-  //   },
-  // },
-});
+  markers: {
+    size: 5,
+    colors: ["#4BC0C0", "#DBB100"],
+  },
+  series: [
+    {
+      name: "Consumo de Energia",
+      data: dadosConsumo,
+    },
+    {
+      name: "Emissão",
+      data: [5, 6, 3, 9, 6, 4, 6],
+    },
+  ],
+  xaxis: {
+    categories: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
+  },
+  colors: ["#4BC0C0", "#DBB100"],
+};
+
+var chart = new ApexCharts(document.querySelector("#graph_emissao"), optionsEmissaoGases).render();
+
+var options = {
+  chart: {
+    type: "line",
+  },
+  series: [
+    {
+      name: "sales",
+      data: [30, 40, 35, 50, 49, 60, 70, 91, 125],
+    },
+  ],
+  xaxis: {
+    categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999],
+  },
+};

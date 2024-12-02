@@ -64,11 +64,14 @@ main {
   width: 100%;
   height: 100%;
 
-  & .espaco{
+  & .espaco {
     align-items: center;
     justify-content: space-around;
-    
   }
+}
+
+.dash-content {
+  gap: 1rem;
 }
 
 .pasta-content {
@@ -184,7 +187,6 @@ main {
   justify-content: center;
   align-items: center;
   padding-top: 0.5rem;
-  
 }
 
 .info-kpi {
@@ -257,7 +259,7 @@ main {
     flex-direction: column;
     width: 100%;
     height: 100%;
-    gap: 1rem;
+    gap: 2rem;
   }
 }
 
@@ -265,7 +267,6 @@ main {
   display: flex;
   flex-direction: column;
   width: 90%;
-
   height: 100%;
 }
 
@@ -278,7 +279,21 @@ main {
   width: 100%;
   height: 100%;
   box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
-  padding: 0.2rem;
+  padding: 0.1rem;
+}
+
+.max {
+  height: 35vh !important;
+}
+
+div#graph_emissao,
+div#graph_con_med,
+div#graph_ener_adi,
+div#graph_ener_atr {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 .title-graph {
@@ -289,7 +304,7 @@ main {
   & h2 {
     font-size: 14px;
     font-weight: 700;
-    width: 80%;
+    width: 100%;
   }
   & .info-graph {
     display: flex;
@@ -353,4 +368,3 @@ main {
   visibility: visible;
   opacity: 1;
 }
-
