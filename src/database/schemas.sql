@@ -85,6 +85,35 @@ CREATE TABLE IF NOT EXISTS anotacoes (
     FOREIGN KEY ForeignKey_fkFuncionario (fkfuncionario) REFERENCES funcionario (id)
 ) COMMENT 'Tabela que armazena as anotações realizadas pelos funcionários de determinada empresa';
 
+DELIMITER $$
+
+CREATE TRIGGER after_empresa_insert
+AFTER INSERT ON empresa
+FOR EACH ROW
+BEGIN
+    -- Inserir métricas padrão para a nova empresa
+    INSERT INTO metrica (
+        co2_maximo_anual,
+        consumo_maximo_mensal,
+        potencia_reativa_atrasada_maxima_semanal,
+        potencia_reativa_adiantada_maxima_semanal,
+        fator_potencia_atrasado_maxima_diario,
+        fator_potencia_adiantado_maxima_diario,
+        fkempresa
+    ) VALUES (
+        0,  
+        0, 
+        0,  
+        0,  
+        0,     
+        0,     
+        NEW.id      
+    );
+END$$
+
+DELIMITER ;
+
+
 -- Inserir empresa SteelForge
 INSERT INTO empresa (nome_fantasia, email, telefone, cnpj, cep, status_empresa)
 VALUES ('SteelForge', 'contato@steelforge.com', '1234567890', '12345678000190', '12345678', 'ativo');

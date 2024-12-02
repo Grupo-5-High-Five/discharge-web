@@ -1,7 +1,7 @@
 var database = require("../database/config");
 
 function listar(fkempresa) {
-    var instrucaoSql = `
+  var instrucaoSql = `
 
 -- Média das emissões (todos os meses)
 SELECT 
@@ -101,10 +101,10 @@ FROM (
         DATE_FORMAT(l.dt, '%Y-%m') DESC
     LIMIT 1
 ) AS ultima_meta_consumo;
-    `
-    return database.executar(instrucaoSql);
+    `;
+  return database.executar(instrucaoSql);
 }
 
 module.exports = {
-    listar
+  listar,
 };

@@ -23,27 +23,23 @@ function listarMetricas() {
             metrica.consumo_maximo_mensal || 0;
           document.getElementById(
             "input_potencia_reativa_atrasada_maxima_semanal"
-          ).value =
-            metrica.potencia_reativa_atrasada_maxima_semanal || 0;
+          ).value = metrica.potencia_reativa_atrasada_maxima_semanal || 0;
           document.getElementById(
             "input_potencia_reativa_adiantada_maxima_semanal"
-          ).value =
-            metrica.potencia_reativa_adiantada_maxima_semanal || 0;
+          ).value = metrica.potencia_reativa_adiantada_maxima_semanal || 0;
           document.getElementById(
             "input_fator_potencia_atrasado_maxima_diario"
-          ).value =
-            metrica.fator_potencia_atrasado_maxima_diario || 0;
+          ).value = metrica.fator_potencia_atrasado_maxima_diario || 0;
           document.getElementById(
             "input_fator_potencia_adiantado_maxima_diario"
-          ).value =
-            metrica.fator_potencia_adiantado_maxima_diario || 0;
+          ).value = metrica.fator_potencia_adiantado_maxima_diario || 0;
         });
       } else {
-        sessionStorage.removeItem("ID_METRICA");
-        // Opcional: Limpar os inputs caso não haja métricas
-        document.querySelectorAll('input[type="number"]').forEach((input) => {
-          input.value = "";
-        });
+        // sessionStorage.removeItem("ID_METRICA");
+        // // Opcional: Limpar os inputs caso não haja métricas
+        // document.querySelectorAll('input[type="number"]').forEach((input) => {
+        //   input.value = "";
+        // });
       }
     })
     .catch(function (erro) {
@@ -54,12 +50,12 @@ function listarMetricas() {
 function editarMetrica(column, value) {
   event.preventDefault();
 
-    if (!value || value == null) {
-      value = 0.0
-    }
+  if (!value || value == null) {
+    value = 0.0;
+  }
 
   fetch(`/metricas/editarMetrica/${fkEmpresa}/${column}/${value}`, {
-    method: "PUT"
+    method: "PUT",
   })
     .then(function (resposta) {
       if (resposta.ok) {
@@ -75,22 +71,22 @@ function editarMetrica(column, value) {
     })
     .catch(function (erro) {
       console.error("#ERRO:", erro);
-      window.alert("Ocorreu um erro inesperado ao tentar atualizar as métricas.");
+      window.alert(
+        "Ocorreu um erro inesperado ao tentar atualizar as métricas."
+      );
     });
 }
 
-
 function deletarMetrica(column, value) {
-
   fetch(`/metricas/deletar/${fkEmpresa}/${column}`, {
-    method: "PUT"
+    method: "PUT",
   })
     .then(function (resposta) {
       if (resposta.ok) {
         window.alert(
           "Post deletado com sucesso pelo usuario de email: " +
-          sessionStorage.getItem("EMAIL_USUARIO") +
-          "!"
+            sessionStorage.getItem("EMAIL_USUARIO") +
+            "!"
         );
         const input = value;
         if (input) {
@@ -108,5 +104,4 @@ function deletarMetrica(column, value) {
     .catch(function (resposta) {
       console.log(`#ERRO: ${resposta}`);
     });
-
 }

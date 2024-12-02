@@ -30,9 +30,8 @@ function deletar(coluna, fkempresa) {
          SET 
               ${coluna} = 0
          WHERE fkempresa = ${fkempresa};`;
-
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
 }
 
 module.exports = {
