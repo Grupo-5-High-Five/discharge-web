@@ -44,8 +44,7 @@ function trocarDash(index) {
 
     dashCon.style.display = "grid";
     dashTec.style.display = "none";
-    dashConTitle.innerHTML =
-      "<h1>Eficiência Energética entre XX/XX e XX/XX (XXXX)</h1>";
+    dashConTitle.innerHTML = "<h1>Eficiência Energética entre XX/XX e XX/XX (XXXX)</h1>";
   }
 }
 
@@ -76,12 +75,12 @@ var optionsEnergiaAtrasada = {
     {
       name: "Potência Reativa",
       type: "column",
-      data: [30, 22, 31, 18, 25, 21, 23],
+      data: [],
     },
     {
       name: "Fator de Potência",
       type: "line",
-      data: [0.85, 0.87, 0.83, 0.86, 0.84, 0.82, 0.88],
+      data: [],
     },
   ],
   xaxis: {
@@ -93,7 +92,7 @@ var optionsEnergiaAtrasada = {
     },
     {
       opposite: true,
-      max: 1,
+      max: 10,
       title: { text: "Fator de Potência" },
     },
   ],
@@ -101,10 +100,8 @@ var optionsEnergiaAtrasada = {
   tooltip: { shared: true, intersect: false },
 };
 
-new ApexCharts(
-  document.querySelector("#graph_ener_atr"),
-  optionsEnergiaAtrasada
-).render();
+let graphPotenciaAtrasada = new ApexCharts(document.querySelector("#graph_ener_atr"), optionsEnergiaAtrasada);
+graphPotenciaAtrasada.render();
 
 // ----------------------------------------------------------
 // Gráfico: Potência Reativa Atrasada
@@ -129,12 +126,12 @@ var optionsEnergiaAdiantada = {
     {
       name: "Potência Reativa",
       type: "column",
-      data: [43, 57, 51, 52, 32, 57, 65],
+      data: [],
     },
     {
       name: "Fator de Potência",
       type: "line",
-      data: [0.9, 0.21, 0.83, 0.56, 0.3, 0.87, 0.85],
+      data: [],
     },
   ],
   xaxis: {
@@ -146,7 +143,7 @@ var optionsEnergiaAdiantada = {
     },
     {
       opposite: true,
-      max: 1,
+      max: 10,
       title: { text: "Fator de Potência" },
     },
   ],
@@ -154,10 +151,8 @@ var optionsEnergiaAdiantada = {
   tooltip: { shared: true, intersect: false },
 };
 
-new ApexCharts(
-  document.querySelector("#graph_ener_adi"),
-  optionsEnergiaAdiantada
-).render();
+let graphPotenciaAdiantada = new ApexCharts(document.querySelector("#graph_ener_adi"), optionsEnergiaAdiantada);
+graphPotenciaAdiantada.render();
 
 // ----------------------------------------------------------
 // Gráfico: Consumo de Energia com Média Móvel
@@ -182,11 +177,11 @@ var optionsConsumoMedia = {
   series: [
     {
       name: "Consumo de Energia",
-      data: dadosConsumo,
+      data: [],
     },
     {
       name: "Média Móvel",
-      data: [11, 14, 8, 6, 5, 4, 6, 10], // Calculada separadamente
+      data: [], // Calculada separadamente
     },
   ],
   xaxis: {
@@ -196,13 +191,10 @@ var optionsConsumoMedia = {
   tooltip: { shared: true, intersect: false },
 };
 
-new ApexCharts(
-  document.querySelector("#graph_con_med"),
-  optionsConsumoMedia
-).render();
+new ApexCharts(document.querySelector("#graph_con_med"), optionsConsumoMedia).render();
 
 // ----------------------------------------------------------
-// Gráfico: Emissão de Gases
+// Gráfico: Consumo de energia
 // ----------------------------------------------------------
 
 var optionsEmissaoGases = {
@@ -222,51 +214,21 @@ var optionsEmissaoGases = {
   series: [
     {
       name: "Consumo de Energia",
-      data: dadosConsumo,
+      data: [],
     },
     {
       name: "Consumo de Energia Ano Anterior",
-      data: [5, 6, 3, 9, 6, 4, 6],
+      data: [],
     },
   ],
   xaxis: {
-    categories: [
-      "Jan",
-      "Fev",
-      "Mar",
-      "Abr",
-      "Mai",
-      "Jun",
-      "Jul",
-      "Ago",
-      "Set",
-      "Out",
-      "Nov",
-      "Dez",
-    ],
+    categories: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
   },
   colors: ["#4BC0C0", "#DBB100"],
 };
 
-var chart = new ApexCharts(
-  document.querySelector("#graph_emissao"),
-  optionsEmissaoGases
-).render();
-
-var options = {
-  chart: {
-    type: "line",
-  },
-  series: [
-    {
-      name: "sales",
-      data: [30, 40, 35, 50, 49, 60, 70, 91, 125],
-    },
-  ],
-  xaxis: {
-    categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999],
-  },
-};
+let graphEmissao = new ApexCharts(document.querySelector("#graph_emissao"), optionsEmissaoGases);
+graphEmissao.render();
 
 tippy("#infoTooltip", {
   content: `
@@ -299,29 +261,38 @@ var fkEmpresa = sessionStorage.ID_EMPRESA;
 
 function atualizarGraph() {
   listarVisaoEnergetica(fkEmpresa);
+  listarGraphTendencia(fkEmpresa);
+  listarGraphAtrasado(fkEmpresa);
+  listarGraphAdiantado(fkEmpresa);
+  // listarGraphConsumo(fkEmpresa);
+  // listarQualidade(fkEmpresa);
 
-  setTimeout(atualizarGraph(), 300000);
+  setTimeout(() => {
+    atualizarGraph();
+  }, 3000); // 5 minutos
 }
 
 function listarVisaoEnergetica(fkEmpresa) {
-  var mediamensalco2 = document.getElementById("media-mensal-co2");
-  var emissaoco2 = document.getElementById("emissao-co2");
-  var metaemissao = document.getElementById("meta-emissao");
-  var mediamensalenergia = document.getElementById("media-mensal-energia");
-  var consumojaneiro = document.getElementById("consumo-janeiro");
-  var metaconsumo = document.getElementById("meta-consumo");
+  var media_co2 = document.getElementById("media_co2");
+  var emissao_co2 = document.getElementById("emissao_co2");
+  var meta_emissao = document.getElementById("meta_emissao");
+
+  var media_consumo = document.getElementById("media_consumo");
+  var consumo_ano = document.getElementById("consumo_ano");
+  var meta_consumo = document.getElementById("meta_consumo");
 
   fetch(`/dashboard/listarVisaoEnergetica/${fkEmpresa}`)
     .then(function (response) {
       if (response.ok) {
         response.json().then(function (resposta) {
           console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-          // mediamensalco2.innerHTML = resposta[0].media_emissao;
-          // emissaoco2.innerHTML = resposta[1].media_emissao;
-          // metaemissao.innerHTML = `${resposta[2].media_emissao}%`;
-          // mediamensalenergia.innerHTML = resposta[3].media_emissao;
-          // consumojaneiro.innerHTML = resposta[4].media_emissao;
-          // metaconsumo.innerHTML = `${resposta[5].media_emissao}%`;
+          media_co2.textContent = resposta[0].media_emissao;
+          emissao_co2.textContent = resposta[0].emissao_ano;
+          meta_emissao.innerHTML = `${resposta[0].meta_emissao}%<p>6</p>`;
+
+          media_consumo.textContent = resposta[0].media_consumo;
+          consumo_ano.textContent = resposta[0].consumo_ano;
+          meta_consumo.innerHTML = `${resposta[0].meta_consumo}%<p>6</p>`;
         });
       } else {
         console.log("Nenhum valor encontrado ou ocorreu algum erro na API!");
@@ -342,6 +313,19 @@ function listarGraphTendencia(fkEmpresa) {
       if (response.ok) {
         response.json().then(function (resposta) {
           console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+          optionsEmissaoGases.series[0].data = [];
+          optionsEmissaoGases.series[1].data = [];
+
+          for (let i = 0; i < 12; i++) {
+            // Convertendo os valores de consumo para números
+            let consumoAtual = parseFloat(resposta[i].consumo_atual);
+            let consumoPassado = parseFloat(resposta[i].consumo_passado);
+            // Adicionando os valores ao gráfico
+            optionsEmissaoGases.series[0].data.push(consumoAtual);
+            optionsEmissaoGases.series[1].data.push(consumoPassado);
+          }
+
+          graphEmissao.updateSeries(optionsEmissaoGases.series);
         });
       } else {
         console.log("Nenhum valor encontrado ou ocorreu algum erro na API!");
@@ -362,6 +346,23 @@ function listarGraphAtrasado(fkEmpresa) {
       if (response.ok) {
         response.json().then(function (resposta) {
           console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+          optionsEnergiaAtrasada.series[0].data = [];
+          optionsEnergiaAtrasada.series[1].data = [];
+
+          for (let i = 0; i < 7; i++) {
+            // Formatando o fator de potência total
+            let fatorPotenciaTotal = (parseFloat(resposta[i].fator_potencia_total) / 1000).toFixed(1).replace(".", ",");
+            console.log(fatorPotenciaTotal);
+
+            // Mantendo a potência reativa atrasada sem alteração
+            let potenciaReativaAtrasada = resposta[i].potencia_reativa_atrasada;
+
+            // Adicionando os valores ao gráfico
+            optionsEnergiaAtrasada.series[0].data.push(potenciaReativaAtrasada);
+            optionsEnergiaAtrasada.series[1].data.push(fatorPotenciaTotal);
+          }
+
+          graphPotenciaAtrasada.updateSeries(optionsEnergiaAtrasada.series);
         });
       } else {
         console.log("Nenhum valor encontrado ou ocorreu algum erro na API!");
@@ -382,6 +383,23 @@ function listarGraphAdiantado(fkEmpresa) {
       if (response.ok) {
         response.json().then(function (resposta) {
           console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+          optionsEnergiaAdiantada.series[0].data = [];
+          optionsEnergiaAdiantada.series[1].data = [];
+
+          for (let i = 0; i < 7; i++) {
+            // Formatando o fator de potência total
+            let fatorPotenciaTotal = (parseFloat(resposta[i].fator_potencia_total) / 1000).toFixed(1).replace(".", ",");
+            console.log(fatorPotenciaTotal);
+
+            // Mantendo a potência reativa atrasada sem alteração
+            let potenciaReativaAdiantado = resposta[i].potencia_reativa_adiantada;
+
+            // Adicionando os valores ao gráfico
+            optionsEnergiaAdiantada.series[0].data.push(potenciaReativaAdiantado);
+            optionsEnergiaAdiantada.series[1].data.push(fatorPotenciaTotal);
+          }
+
+          graphPotenciaAdiantada.updateSeries(optionsEnergiaAdiantada.series);
         });
       } else {
         console.log("Nenhum valor encontrado ou ocorreu algum erro na API!");

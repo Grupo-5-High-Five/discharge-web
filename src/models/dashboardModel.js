@@ -6,7 +6,7 @@ SELECT
     -- Média das emissões (todos os meses)
     (SELECT 
         ROUND(AVG(emissao_mensal), 3)
-    FROM (
+     FROM (
         SELECT 
             DATE_FORMAT(dt, '%Y-%m') AS mes,
             SUM(emissao) AS emissao_mensal
@@ -16,120 +16,137 @@ SELECT
             fkempresa = ?
         GROUP BY 
             DATE_FORMAT(dt, '%Y-%m')
-    ) AS soma_dos_ultimos_meses) AS media_emissao,
+     ) AS soma_dos_ultimos_meses) AS media_emissao,
 
     -- Emissão de tCO2 (ano atual)
     (SELECT 
         ROUND(SUM(emissao), 3)
-    FROM 
+     FROM 
         leitura
-    WHERE 
-        DATE_FORMAT(dt, '%Y') = (
+     WHERE 
+        fkempresa = ?
+        AND DATE_FORMAT(dt, '%Y') = (
             SELECT 
                 MAX(DATE_FORMAT(dt, '%Y'))
             FROM 
                 leitura
+            WHERE 
+                fkempresa = ?
         )) AS emissao_ano,
 
     -- Meta de emissão (metricaAnual / 100 * emissão de tCO2 ano atual)
-    (SELECT 
-        ROUND((metricaAnual / 100) * emissao_atual, 3)
-    FROM (
-        SELECT 
-            SUM(emissao) AS emissao_atual,
-            (SELECT 
-                co2_maximo_anual
+    IFNULL(
+        (SELECT 
+            ROUND((emissao_atual / metricaAnual) * 100, 3)
+         FROM (
+            SELECT 
+                SUM(emissao) AS emissao_atual,
+                (SELECT 
+                    co2_maximo_anual
+                 FROM 
+                    metrica 
+                 WHERE 
+                    fkempresa = ?) AS metricaAnual
             FROM 
-                metrica 
+                leitura
             WHERE 
-                fkempresa = ?) AS metricaAnual
-        FROM 
-            leitura
-        WHERE 
-            YEAR(dt) = (SELECT MAX(YEAR(dt)) FROM leitura)
-    ) AS emissoes_anuais) AS meta_emissao,
+                fkempresa = ?
+                AND YEAR(dt) = (SELECT MAX(YEAR(dt)) FROM leitura WHERE fkempresa = ?)
+         ) AS emissoes_anuais),
+        0
+    ) AS meta_emissao,
 
     -- Média mensal do consumo (todos os meses)
     (SELECT 
         ROUND(AVG(consumo_mensal), 3)
-    FROM (
+     FROM (
         SELECT 
             DATE_FORMAT(dt, '%Y-%m') AS mes,
             SUM(consumo) AS consumo_mensal
         FROM 
             leitura
+        WHERE 
+            fkempresa = ?
         GROUP BY 
             DATE_FORMAT(dt, '%Y-%m')
-    ) AS soma_dos_ultimos_meses) AS media_consumo,
+     ) AS soma_dos_ultimos_meses) AS media_consumo,
 
     -- Consumo do mês atual
     (SELECT 
         ROUND(SUM(consumo), 3)
-    FROM 
+     FROM 
         leitura
-    WHERE 
-        DATE_FORMAT(dt, '%Y') = (
+     WHERE 
+        fkempresa = ?
+        AND DATE_FORMAT(dt, '%Y') = (
             SELECT 
                 MAX(DATE_FORMAT(dt, '%Y'))
             FROM 
                 leitura
-        )) AS consumo_atual,
+            WHERE 
+                fkempresa = ?
+        )) AS consumo_ano,
 
     -- Meta de consumo (metricaAnual / 100 * Consumo de energia mês atual)
-    (SELECT 
-        ROUND((SUM(l.consumo) / m.consumo_maximo_mensal) * 100, 3)
-    FROM 
-        leitura l
-    JOIN 
-        empresa e ON e.id = l.fkempresa
-    JOIN 
-        metrica m ON e.id = m.fkempresa
-    WHERE 
-        l.fkempresa = ?
-    GROUP BY 
-        DATE_FORMAT(l.dt, '%Y-%m'), m.consumo_maximo_mensal
-    ORDER BY 
-        DATE_FORMAT(l.dt, '%Y-%m') DESC
-    LIMIT 1) AS meta_consumo;
-    `;
-  return database.executar(instrucaoSql, [fkempresa, fkempresa, fkempresa]);
+    IFNULL(
+        (SELECT 
+            ROUND((SUM(l.consumo) / m.consumo_maximo_mensal) * 100, 3)
+         FROM 
+            leitura l
+         JOIN 
+            empresa e ON e.id = l.fkempresa
+         JOIN 
+            metrica m ON e.id = m.fkempresa
+         WHERE 
+            l.fkempresa = ?
+         GROUP BY 
+            DATE_FORMAT(l.dt, '%Y-%m'), m.consumo_maximo_mensal
+         ORDER BY 
+            DATE_FORMAT(l.dt, '%Y-%m') DESC
+         LIMIT 1), 
+        0
+    ) AS meta_consumo;
+      `;
+  return database.executar(instrucaoSql, [fkempresa, fkempresa, fkempresa, fkempresa, fkempresa, fkempresa, fkempresa, fkempresa, fkempresa, fkempresa]);
 }
 
 function listarGraphTendencia(fkempresa) {
   var instrucaoSql = `
-        SELECT 
-            l1.mes,
-            l1.ano AS ano_atual,
-            COALESCE(l1.consumo_total, 0) AS consumo_atual,
-            l2.ano AS ano_passado,
-            COALESCE(l2.consumo_total, 0) AS consumo_passado
-        FROM (
-            SELECT 
-                YEAR(dt) AS ano,
-                MONTH(dt) AS mes,
-                SUM(consumo) AS consumo_total
-            FROM 
-                leitura
-            WHERE 
-                YEAR(dt) = (SELECT DATE_FORMAT(MAX(dt), '%Y') FROM leitura)
-            GROUP BY 
-                YEAR(dt), MONTH(dt)
-        ) l1
-        LEFT JOIN (
-            SELECT 
-                YEAR(dt) AS ano,
-                MONTH(dt) AS mes,
-                SUM(consumo) AS consumo_total
-            FROM 
-                leitura
-            WHERE 
-                YEAR(dt) = (SELECT DATE_FORMAT(MAX(dt), '%Y') FROM leitura) - 1
-            GROUP BY 
-                YEAR(dt), MONTH(dt)
-        ) l2
-        ON l1.mes = l2.mes;
-      `;
-  return database.executar(instrucaoSql, [fkempresa]);
+          SELECT 
+              l1.mes,
+              l1.ano AS ano_atual,
+              COALESCE(l1.consumo_total, 0) AS consumo_atual,
+              l2.ano AS ano_passado,
+              COALESCE(l2.consumo_total, 0) AS consumo_passado
+          FROM (
+              SELECT 
+                  YEAR(dt) AS ano,
+                  MONTH(dt) AS mes,
+                  SUM(consumo) AS consumo_total
+              FROM 
+                  leitura
+              WHERE 
+                  fkempresa = ?
+                  AND YEAR(dt) = (SELECT DATE_FORMAT(MAX(dt), '%Y') FROM leitura WHERE fkempresa = ?)
+              GROUP BY 
+                  YEAR(dt), MONTH(dt)
+          ) l1
+          LEFT JOIN (
+              SELECT 
+                  YEAR(dt) AS ano,
+                  MONTH(dt) AS mes,
+                  SUM(consumo) AS consumo_total
+              FROM 
+                  leitura
+              WHERE 
+                  fkempresa = ?
+                  AND YEAR(dt) = (SELECT DATE_FORMAT(MAX(dt), '%Y') FROM leitura WHERE fkempresa = ?) - 1
+              GROUP BY 
+                  YEAR(dt), MONTH(dt)
+          ) l2
+          ON l1.mes = l2.mes;
+        `;
+  return database.executar(instrucaoSql, [fkempresa, fkempresa, fkempresa, fkempresa]);
 }
 
 function listarGraphAtrasado(fkempresa) {
@@ -174,8 +191,24 @@ function listarGraphAdiantado(fkempresa) {
 
 function listarGraphConsumo(fkempresa) {
   var instrucaoSql = `
+    -- Previsão consumo de energia semana atual (últimos 3 dias / 3)
+    SELECT 
+        AVG(consumo_energia) AS previsao_consumo_proximo_dia
+    FROM 
+        (
+        SELECT 
+            DATE(dt) AS dia, -- Agrupa por dia
+            SUM(consumo) AS consumo_energia
+        FROM 
+            leitura
+        WHERE 
+            fkempresa = ? -- Filtro por empresa
+            AND dt >= DATE_SUB((SELECT MAX(dt) FROM leitura WHERE fkempresa = ?), INTERVAL 3 DAY) -- Últimos 3 dias
+        GROUP BY 
+            DATE(dt) -- Agrupa por dia
+    ) AS ultimos_3_dias;
           `;
-  return database.executar(instrucaoSql, [fkempresa]);
+  return database.executar(instrucaoSql, [fkempresa, fkempresa]);
 }
 
 function listarQualidade(fkempresa) {
@@ -289,14 +322,7 @@ function listarQualidade(fkempresa) {
         LIMIT 7
     ) AS ultima_semana) AS potencia_reativa_atrasada_ultimos_7_dias;
             `;
-  return database.executar(instrucaoSql, [
-    fkempresa,
-    fkempresa,
-    fkempresa,
-    fkempresa,
-    fkempresa,
-    fkempresa,
-  ]);
+  return database.executar(instrucaoSql, [fkempresa, fkempresa, fkempresa, fkempresa, fkempresa, fkempresa, fkempresa, fkempresa]);
 }
 
 module.exports = {

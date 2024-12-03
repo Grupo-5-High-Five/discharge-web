@@ -157,6 +157,7 @@ main {
   box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
   border-left: solid red;
   border-width: 7px;
+  transition: all 0.3s;
 }
 
 .aviso {
@@ -233,7 +234,7 @@ main {
   display: flex;
   position: relative;
   gap: 0.4rem;
-  font-size: 40px;
+  font-size: 30px;
 
   & p {
     position: absolute;

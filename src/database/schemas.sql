@@ -65,7 +65,6 @@ CREATE TABLE IF NOT EXISTS metrica (
     CONSTRAINT ForeignKey_fkEmpresa  FOREIGN KEY (fkempresa) REFERENCES empresa (id)
 ) COMMENT = 'Tabela que armazena as métricas de cada empresa';
 
-
 CREATE TABLE IF NOT EXISTS tokens_recuperacao (
     id                                  INT                 AUTO_INCREMENT                      COMMENT 'Identificador único de métricas de cada token',
     email                               VARCHAR(255)        NOT NULL UNIQUE                     COMMENT 'Email do funcionário que solicitou a troca de senha',
