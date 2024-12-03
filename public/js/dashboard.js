@@ -225,7 +225,7 @@ var optionsEmissaoGases = {
       data: dadosConsumo,
     },
     {
-      name: "Emissão",
+      name: "Consumo de Energia Ano Anterior",
       data: [5, 6, 3, 9, 6, 4, 6],
     },
   ],
@@ -297,7 +297,13 @@ tippy("#infoTooltip", {
 
 var fkEmpresa = sessionStorage.ID_EMPRESA;
 
-function atualizarTodasKpis(fkEmpresa) {
+function atualizarGraph() {
+  listarVisaoEnergetica(fkEmpresa);
+
+  setTimeout(atualizarGraph(), 300000);
+}
+
+function listarVisaoEnergetica(fkEmpresa) {
   var mediamensalco2 = document.getElementById("media-mensal-co2");
   var emissaoco2 = document.getElementById("emissao-co2");
   var metaemissao = document.getElementById("meta-emissao");
@@ -305,17 +311,117 @@ function atualizarTodasKpis(fkEmpresa) {
   var consumojaneiro = document.getElementById("consumo-janeiro");
   var metaconsumo = document.getElementById("meta-consumo");
 
-  fetch(`/dashboard/listarMetricas/${fkEmpresa}`)
+  fetch(`/dashboard/listarVisaoEnergetica/${fkEmpresa}`)
     .then(function (response) {
       if (response.ok) {
         response.json().then(function (resposta) {
           console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-          mediamensalco2.innerHTML = resposta[0].media_emissao;
-          emissaoco2.innerHTML = resposta[1].media_emissao;
-          metaemissao.innerHTML = `${resposta[2].media_emissao}%`;
-          mediamensalenergia.innerHTML = resposta[3].media_emissao;
-          consumojaneiro.innerHTML = resposta[4].media_emissao;
-          metaconsumo.innerHTML = `${resposta[5].media_emissao}%`;
+          // mediamensalco2.innerHTML = resposta[0].media_emissao;
+          // emissaoco2.innerHTML = resposta[1].media_emissao;
+          // metaemissao.innerHTML = `${resposta[2].media_emissao}%`;
+          // mediamensalenergia.innerHTML = resposta[3].media_emissao;
+          // consumojaneiro.innerHTML = resposta[4].media_emissao;
+          // metaconsumo.innerHTML = `${resposta[5].media_emissao}%`;
+        });
+      } else {
+        console.log("Nenhum valor encontrado ou ocorreu algum erro na API!");
+        alert("Nenhum valor encontrado ou ocorreu algum erro na API!");
+      }
+    })
+    .catch(function (error) {
+      console.log(`Erro na captura dos dados para o gráfico: ${error.message}`);
+      // alert(`Erro na captura dos dados para o gráfico: ${error.message}`);
+    });
+
+  return false;
+}
+
+function listarGraphTendencia(fkEmpresa) {
+  fetch(`/dashboard/listarGraphTendencia/${fkEmpresa}`)
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(function (resposta) {
+          console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+        });
+      } else {
+        console.log("Nenhum valor encontrado ou ocorreu algum erro na API!");
+        alert("Nenhum valor encontrado ou ocorreu algum erro na API!");
+      }
+    })
+    .catch(function (error) {
+      console.log(`Erro na captura dos dados para o gráfico: ${error.message}`);
+      // alert(`Erro na captura dos dados para o gráfico: ${error.message}`);
+    });
+
+  return false;
+}
+
+function listarGraphAtrasado(fkEmpresa) {
+  fetch(`/dashboard/listarGraphAtrasado/${fkEmpresa}`)
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(function (resposta) {
+          console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+        });
+      } else {
+        console.log("Nenhum valor encontrado ou ocorreu algum erro na API!");
+        alert("Nenhum valor encontrado ou ocorreu algum erro na API!");
+      }
+    })
+    .catch(function (error) {
+      console.log(`Erro na captura dos dados para o gráfico: ${error.message}`);
+      // alert(`Erro na captura dos dados para o gráfico: ${error.message}`);
+    });
+
+  return false;
+}
+
+function listarGraphAdiantado(fkEmpresa) {
+  fetch(`/dashboard/listarGraphAdiantado/${fkEmpresa}`)
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(function (resposta) {
+          console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+        });
+      } else {
+        console.log("Nenhum valor encontrado ou ocorreu algum erro na API!");
+        alert("Nenhum valor encontrado ou ocorreu algum erro na API!");
+      }
+    })
+    .catch(function (error) {
+      console.log(`Erro na captura dos dados para o gráfico: ${error.message}`);
+      // alert(`Erro na captura dos dados para o gráfico: ${error.message}`);
+    });
+
+  return false;
+}
+
+function listarGraphConsumo(fkEmpresa) {
+  fetch(`/dashboard/listarGraphConsumo/${fkEmpresa}`)
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(function (resposta) {
+          console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+        });
+      } else {
+        console.log("Nenhum valor encontrado ou ocorreu algum erro na API!");
+        alert("Nenhum valor encontrado ou ocorreu algum erro na API!");
+      }
+    })
+    .catch(function (error) {
+      console.log(`Erro na captura dos dados para o gráfico: ${error.message}`);
+      // alert(`Erro na captura dos dados para o gráfico: ${error.message}`);
+    });
+
+  return false;
+}
+
+function listarQualidade(fkEmpresa) {
+  fetch(`/dashboard/listarQualidade/${fkEmpresa}`)
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(function (resposta) {
+          console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
         });
       } else {
         console.log("Nenhum valor encontrado ou ocorreu algum erro na API!");
