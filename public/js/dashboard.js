@@ -92,7 +92,7 @@ var optionsEnergiaAtrasada = {
     },
     {
       opposite: true,
-      max: 10,
+      max: 100,
       title: { text: "Fator de Potência" },
     },
   ],
@@ -143,7 +143,7 @@ var optionsEnergiaAdiantada = {
     },
     {
       opposite: true,
-      max: 10,
+      max: 100,
       title: { text: "Fator de Potência" },
     },
   ],
@@ -260,10 +260,10 @@ tippy("#infoTooltip", {
 var fkEmpresa = sessionStorage.ID_EMPRESA;
 
 function atualizarGraph() {
-  listarVisaoEnergetica(fkEmpresa);
-  listarGraphTendencia(fkEmpresa);
+  // listarVisaoEnergetica(fkEmpresa);
+  // listarGraphTendencia(fkEmpresa);
   listarGraphAtrasado(fkEmpresa);
-  listarGraphAdiantado(fkEmpresa);
+  // listarGraphAdiantado(fkEmpresa);
   // listarGraphConsumo(fkEmpresa);
   // listarQualidade(fkEmpresa);
 
@@ -286,13 +286,14 @@ function listarVisaoEnergetica(fkEmpresa) {
       if (response.ok) {
         response.json().then(function (resposta) {
           console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-          media_co2.textContent = resposta[0].media_emissao;
-          emissao_co2.textContent = resposta[0].emissao_ano;
-          meta_emissao.innerHTML = `${resposta[0].meta_emissao}%<p>6</p>`;
 
-          media_consumo.textContent = resposta[0].media_consumo;
-          consumo_ano.textContent = resposta[0].consumo_ano;
-          meta_consumo.innerHTML = `${resposta[0].meta_consumo}%<p>6</p>`;
+          media_co2.textContent = parseFloat(resposta[0].media_emissao).toFixed(2);
+          emissao_co2.textContent = parseFloat(resposta[0].emissao_ano).toFixed(2);
+          meta_emissao.innerHTML = `${parseFloat(resposta[0].meta_emissao).toFixed(0)}%<p>6</p>`;
+
+          media_consumo.textContent = Math.round(parseFloat(resposta[0].media_consumo)).toLocaleString("pt-BR");
+          consumo_ano.textContent = Math.round(parseFloat(resposta[0].consumo_ano)).toLocaleString("pt-BR");
+          meta_consumo.innerHTML = `${parseFloat(resposta[0].meta_consumo).toFixed(0)}%<p>6</p>`;
         });
       } else {
         console.log("Nenhum valor encontrado ou ocorreu algum erro na API!");
@@ -351,8 +352,7 @@ function listarGraphAtrasado(fkEmpresa) {
 
           for (let i = 0; i < 7; i++) {
             // Formatando o fator de potência total
-            let fatorPotenciaTotal = (parseFloat(resposta[i].fator_potencia_total) / 1000).toFixed(1).replace(".", ",");
-            console.log(fatorPotenciaTotal);
+            let fatorPotenciaTotal = parseFloat();
 
             // Mantendo a potência reativa atrasada sem alteração
             let potenciaReativaAtrasada = resposta[i].potencia_reativa_atrasada;
@@ -440,6 +440,14 @@ function listarQualidade(fkEmpresa) {
       if (response.ok) {
         response.json().then(function (resposta) {
           console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+          emissao_7dias.textContent = parseFloat(resposta[0].emissao_tco2_ultimos_7_dias).toFixed(2);
+          emissao_proximos_7dias.textContent = parseFloat(resposta[0].previsao_emissao_proxima_semana).toFixed(2);
+
+          consumo_7dias.textContent = parseFloat(resposta[0].consumo_ultimos_7_dias).toFixed(2);
+          consumo_proximos_7dias.textContent = parseFloat(resposta[0].previsao_consumo_proxima_semana).toFixed(2);
+
+          potencia_adiantada_7dias.textContent = parseFloat(resposta[0].potencia_reativa_adiantada_ultimos_7_dias).toFixed(2);
+          potencia_atrasada_7dias.textContent = parseFloat(resposta[0].potencia_reativa_atrasada_ultimos_7_dias).toFixed(2);
         });
       } else {
         console.log("Nenhum valor encontrado ou ocorreu algum erro na API!");
