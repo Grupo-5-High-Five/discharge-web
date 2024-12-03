@@ -84,6 +84,20 @@ function listarQualidade(req, res) {
     });
 }
 
+function listarMetricas(req, res) {
+  var fkempresa = req.params.fkEmpresa;
+
+  dashboardModel
+    .listarMetricas(fkempresa)
+    .then((resultado) => {
+      res.status(200).json(resultado); // Retorna os dados no formato esperado
+    })
+    .catch((err) => {
+      console.error("Erro ao listar superiores:", err);
+      res.status(500).json({ error: "Erro ao buscar KPIs." }); // Tratamento de erro
+    });
+}
+
 module.exports = {
   listarVisaoEnergetica,
   listarGraphTendencia,
@@ -91,4 +105,5 @@ module.exports = {
   listarGraphAdiantado,
   listarGraphConsumo,
   listarQualidade,
+  listarMetricas,
 };

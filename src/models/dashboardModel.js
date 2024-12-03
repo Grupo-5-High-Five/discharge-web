@@ -154,9 +154,7 @@ function listarGraphAtrasado(fkempresa) {
     SELECT 
         DATE(dt) AS dia, -- Agrupamento diário
         SUM(COALESCE(potencia_reativa_atrasada, 0)) AS potencia_reativa_atrasada,
-        SUM(COALESCE(fator_potencia_atrasado, 0) * COALESCE(potencia_reativa_atrasada, 0)) +
-        SUM(COALESCE(fator_potencia_adiantado, 0) * COALESCE(potencia_reativa_adiantada, 0)) /
-        SUM(COALESCE(potencia_reativa_atrasada, 0) + COALESCE(potencia_reativa_adiantada, 0)) AS fator_potencia_total
+        AVG(COALESCE(fator_potencia_atrasado, 0)) AS fator_potencia_total
     FROM 
         leitura
     WHERE fkempresa = ? and
@@ -174,9 +172,7 @@ function listarGraphAdiantado(fkempresa) {
     SELECT 
         DATE(dt) AS dia, -- Agrupamento diário
         SUM(COALESCE(potencia_reativa_adiantada, 0)) AS potencia_reativa_adiantada,
-        SUM(COALESCE(fator_potencia_atrasado, 0) * COALESCE(potencia_reativa_atrasada, 0)) +
-        SUM(COALESCE(fator_potencia_adiantado, 0) * COALESCE(potencia_reativa_adiantada, 0)) /
-        SUM(COALESCE(potencia_reativa_atrasada, 0) + COALESCE(potencia_reativa_adiantada, 0)) AS fator_potencia_total
+        AVG(COALESCE(fator_potencia_atrasado, 0)) AS fator_potencia_total
     FROM 
         leitura
     WHERE fkempresa = ? and
@@ -191,24 +187,46 @@ function listarGraphAdiantado(fkempresa) {
 
 function listarGraphConsumo(fkempresa) {
   var instrucaoSql = `
-    -- Previsão consumo de energia semana atual (últimos 3 dias / 3)
-    SELECT 
-        AVG(consumo_energia) AS previsao_consumo_proximo_dia
-    FROM 
-        (
+    WITH 
+    consumo_diario AS (
         SELECT 
-            DATE(dt) AS dia, -- Agrupa por dia
-            SUM(consumo) AS consumo_energia
+            DATE(dt) AS data,
+            SUM(consumo) AS consumo_diario
         FROM 
             leitura
         WHERE 
-            fkempresa = ? -- Filtro por empresa
-            AND dt >= DATE_SUB((SELECT MAX(dt) FROM leitura WHERE fkempresa = ?), INTERVAL 3 DAY) -- Últimos 3 dias
+            fkempresa = ? -- Filtrar pela empresa
         GROUP BY 
-            DATE(dt) -- Agrupa por dia
-    ) AS ultimos_3_dias;
+            DATE(dt)
+    ),
+    previsao_consumo AS (
+        SELECT 
+            c1.data,
+            AVG(c2.consumo_diario) AS previsao_consumo_proximo_dia
+        FROM 
+            consumo_diario c1
+        JOIN 
+            consumo_diario c2
+        ON 
+            c2.data BETWEEN DATE_SUB(c1.data, INTERVAL 3 DAY) AND DATE_SUB(c1.data, INTERVAL 1 DAY)
+        GROUP BY 
+            c1.data
+            )
+        SELECT 
+            c.data,
+            c.consumo_diario AS consumo_ultimos_7_dias,
+            p.previsao_consumo_proximo_dia
+        FROM 
+            consumo_diario c
+        LEFT JOIN 
+            previsao_consumo p
+        ON 
+            c.data = p.data
+        ORDER BY 
+            c.data DESC
+        LIMIT 7;
           `;
-  return database.executar(instrucaoSql, [fkempresa, fkempresa]);
+  return database.executar(instrucaoSql, [fkempresa]);
 }
 
 function listarQualidade(fkempresa) {
@@ -325,6 +343,21 @@ function listarQualidade(fkempresa) {
   return database.executar(instrucaoSql, [fkempresa, fkempresa, fkempresa, fkempresa, fkempresa, fkempresa, fkempresa, fkempresa]);
 }
 
+function listarMetricas(fkempresa) {
+  var instrucaoSql = `
+      -- Métricas
+      SELECT 
+			co2_maximo_anual as co2, 
+			consumo_maximo_mensal as consumo, 
+			potencia_reativa_atrasada_maxima_semanal as reativa_atrasada, 
+			potencia_reativa_adiantada_maxima_semanal as reativa_adiantada, 
+			fator_potencia_atrasado_maxima_diario as fator_atrasado, 
+			fator_potencia_adiantado_maxima_diario as fator_adiantada 
+        FROM metrica;
+            `;
+  return database.executar(instrucaoSql, [fkempresa, fkempresa]);
+}
+
 module.exports = {
   listarVisaoEnergetica,
   listarGraphTendencia,
@@ -332,4 +365,5 @@ module.exports = {
   listarGraphAdiantado,
   listarGraphConsumo,
   listarQualidade,
+  listarMetricas,
 };

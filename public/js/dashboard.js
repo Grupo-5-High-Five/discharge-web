@@ -160,7 +160,7 @@ graphPotenciaAdiantada.render();
 
 const dadosConsumo = [12, 19, 3, 5, 2, 3, 8, 12];
 
-var optionsConsumoMedia = {
+var optionsConsumoPrevisao = {
   chart: {
     type: "line",
     width: "100%",
@@ -191,13 +191,14 @@ var optionsConsumoMedia = {
   tooltip: { shared: true, intersect: false },
 };
 
-new ApexCharts(document.querySelector("#graph_con_med"), optionsConsumoMedia).render();
+let graphConsumo = new ApexCharts(document.querySelector("#graph_con_med"), optionsConsumoPrevisao);
+graphConsumo.render();
 
 // ----------------------------------------------------------
 // Gráfico: Consumo de energia
 // ----------------------------------------------------------
 
-var optionsEmissaoGases = {
+var optionsTendenciaAnual = {
   chart: {
     type: "line",
     width: "100%",
@@ -227,8 +228,8 @@ var optionsEmissaoGases = {
   colors: ["#4BC0C0", "#DBB100"],
 };
 
-let graphEmissao = new ApexCharts(document.querySelector("#graph_emissao"), optionsEmissaoGases);
-graphEmissao.render();
+let graphTendencia = new ApexCharts(document.querySelector("#graph_emissao"), optionsTendenciaAnual);
+graphTendencia.render();
 
 tippy("#infoTooltip", {
   content: `
@@ -260,16 +261,17 @@ tippy("#infoTooltip", {
 var fkEmpresa = sessionStorage.ID_EMPRESA;
 
 function atualizarGraph() {
-  // listarVisaoEnergetica(fkEmpresa);
-  // listarGraphTendencia(fkEmpresa);
+  listarVisaoEnergetica(fkEmpresa);
+  listarGraphTendencia(fkEmpresa);
   listarGraphAtrasado(fkEmpresa);
-  // listarGraphAdiantado(fkEmpresa);
-  // listarGraphConsumo(fkEmpresa);
-  // listarQualidade(fkEmpresa);
+  listarGraphAdiantado(fkEmpresa);
+  listarGraphConsumo(fkEmpresa);
+  listarQualidade(fkEmpresa);
+  listarMetricas(fkEmpresa);
 
   setTimeout(() => {
     atualizarGraph();
-  }, 3000); // 5 minutos
+  }, 120000); // 2 minutos
 }
 
 function listarVisaoEnergetica(fkEmpresa) {
@@ -314,19 +316,19 @@ function listarGraphTendencia(fkEmpresa) {
       if (response.ok) {
         response.json().then(function (resposta) {
           console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-          optionsEmissaoGases.series[0].data = [];
-          optionsEmissaoGases.series[1].data = [];
+          optionsTendenciaAnual.series[0].data = [];
+          optionsTendenciaAnual.series[1].data = [];
 
-          for (let i = 0; i < 12; i++) {
+          for (let i = 0; i < resposta.length; i++) {
             // Convertendo os valores de consumo para números
-            let consumoAtual = parseFloat(resposta[i].consumo_atual);
-            let consumoPassado = parseFloat(resposta[i].consumo_passado);
+            let consumoAtual = Math.round(parseFloat(resposta[i].consumo_atual)).toLocaleString("pt-BR");
+            let consumoPassado = Math.round(parseFloat(resposta[i].consumo_passado)).toLocaleString("pt-BR");
             // Adicionando os valores ao gráfico
-            optionsEmissaoGases.series[0].data.push(consumoAtual);
-            optionsEmissaoGases.series[1].data.push(consumoPassado);
+            optionsTendenciaAnual.series[0].data.push(consumoAtual);
+            optionsTendenciaAnual.series[1].data.push(consumoPassado);
           }
 
-          graphEmissao.updateSeries(optionsEmissaoGases.series);
+          graphTendencia.updateSeries(optionsTendenciaAnual.series);
         });
       } else {
         console.log("Nenhum valor encontrado ou ocorreu algum erro na API!");
@@ -352,7 +354,7 @@ function listarGraphAtrasado(fkEmpresa) {
 
           for (let i = 0; i < 7; i++) {
             // Formatando o fator de potência total
-            let fatorPotenciaTotal = parseFloat();
+            let fatorPotenciaTotal = Math.round(parseFloat(resposta[i].fator_potencia_total)).toLocaleString("pt-BR");
 
             // Mantendo a potência reativa atrasada sem alteração
             let potenciaReativaAtrasada = resposta[i].potencia_reativa_atrasada;
@@ -388,8 +390,7 @@ function listarGraphAdiantado(fkEmpresa) {
 
           for (let i = 0; i < 7; i++) {
             // Formatando o fator de potência total
-            let fatorPotenciaTotal = (parseFloat(resposta[i].fator_potencia_total) / 1000).toFixed(1).replace(".", ",");
-            console.log(fatorPotenciaTotal);
+            let fatorPotenciaTotal = Math.round(parseFloat(resposta[i].fator_potencia_total)).toLocaleString("pt-BR");
 
             // Mantendo a potência reativa atrasada sem alteração
             let potenciaReativaAdiantado = resposta[i].potencia_reativa_adiantada;
@@ -420,6 +421,19 @@ function listarGraphConsumo(fkEmpresa) {
       if (response.ok) {
         response.json().then(function (resposta) {
           console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+          optionsConsumoPrevisao.series[0].data = [];
+          optionsConsumoPrevisao.series[1].data = [];
+
+          for (let i = 0; i < resposta.length; i++) {
+            // Convertendo os valores de consumo para números
+            let consumo7dias = Math.round(parseFloat(resposta[i].consumo_ultimos_7_dias)).toLocaleString("pt-BR");
+            let previsaoConsumo = Math.round(parseFloat(resposta[i].previsao_consumo_proximo_dia)).toLocaleString("pt-BR");
+            // Adicionando os valores ao gráfico
+            optionsConsumoPrevisao.series[0].data.push(consumo7dias);
+            optionsConsumoPrevisao.series[1].data.push(previsaoConsumo);
+          }
+
+          graphConsumo.updateSeries(optionsConsumoPrevisao.series);
         });
       } else {
         console.log("Nenhum valor encontrado ou ocorreu algum erro na API!");
@@ -435,6 +449,15 @@ function listarGraphConsumo(fkEmpresa) {
 }
 
 function listarQualidade(fkEmpresa) {
+  emissao_7dias = document.getElementById("emissao_7dias");
+  emissao_proximos_7dias = document.getElementById("emissao_proximos_7dias");
+
+  consumo_7dias = document.getElementById("consumo_7dias");
+  consumo_proximos_7dias = document.getElementById("consumo_proximos_7dias");
+
+  potencia_adiantada_7dias = document.getElementById("potencia_adiantada_7dias");
+  potencia_atrasada_7dias = document.getElementById("potencia_atrasada_7dias");
+
   fetch(`/dashboard/listarQualidade/${fkEmpresa}`)
     .then(function (response) {
       if (response.ok) {
@@ -443,11 +466,31 @@ function listarQualidade(fkEmpresa) {
           emissao_7dias.textContent = parseFloat(resposta[0].emissao_tco2_ultimos_7_dias).toFixed(2);
           emissao_proximos_7dias.textContent = parseFloat(resposta[0].previsao_emissao_proxima_semana).toFixed(2);
 
-          consumo_7dias.textContent = parseFloat(resposta[0].consumo_ultimos_7_dias).toFixed(2);
-          consumo_proximos_7dias.textContent = parseFloat(resposta[0].previsao_consumo_proxima_semana).toFixed(2);
+          consumo_7dias.textContent = Math.round(parseFloat(resposta[0].consumo_ultimos_7_dias)).toLocaleString("pt-BR");
+          consumo_proximos_7dias.textContent = Math.round(parseFloat(resposta[0].previsao_consumo_proxima_semana)).toLocaleString("pt-BR");
 
-          potencia_adiantada_7dias.textContent = parseFloat(resposta[0].potencia_reativa_adiantada_ultimos_7_dias).toFixed(2);
-          potencia_atrasada_7dias.textContent = parseFloat(resposta[0].potencia_reativa_atrasada_ultimos_7_dias).toFixed(2);
+          potencia_adiantada_7dias.textContent = Math.round(parseFloat(resposta[0].potencia_reativa_adiantada_ultimos_7_dias)).toLocaleString("pt-BR");
+          potencia_atrasada_7dias.textContent = Math.round(parseFloat(resposta[0].potencia_reativa_atrasada_ultimos_7_dias)).toLocaleString("pt-BR");
+        });
+      } else {
+        console.log("Nenhum valor encontrado ou ocorreu algum erro na API!");
+        alert("Nenhum valor encontrado ou ocorreu algum erro na API!");
+      }
+    })
+    .catch(function (error) {
+      console.log(`Erro na captura dos dados para o gráfico: ${error.message}`);
+      // alert(`Erro na captura dos dados para o gráfico: ${error.message}`);
+    });
+
+  return false;
+}
+
+function listarMetricas(fkEmpresa) {
+  fetch(`/dashboard/listarVisaoEnergetica/${fkEmpresa}`)
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(function (resposta) {
+          console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
         });
       } else {
         console.log("Nenhum valor encontrado ou ocorreu algum erro na API!");

@@ -27,4 +27,8 @@ router.get("/listarQualidade/:fkEmpresa", function (req, res) {
   dashboardController.listarQualidade(req, res);
 });
 
+router.get("/listarMetricas/:fkEmpresa", function (req, res) {
+  dashboardController.listarMetricas(req, res);
+});
+
 module.exports = router;
