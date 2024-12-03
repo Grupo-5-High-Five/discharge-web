@@ -297,11 +297,11 @@ tippy("#infoTooltip", {
 
 var fkEmpresa = sessionStorage.ID_EMPRESA;
 
-function atualizarGraph() {
-  listarVisaoEnergetica(fkEmpresa);
+// function atualizarGraph() {
+//   listarVisaoEnergetica(fkEmpresa);
 
-  setTimeout(atualizarGraph(), 300000);
-}
+//   setTimeout(atualizarGraph(), 300000);
+// }
 
 function listarVisaoEnergetica(fkEmpresa) {
   var mediamensalco2 = document.getElementById("media-mensal-co2");

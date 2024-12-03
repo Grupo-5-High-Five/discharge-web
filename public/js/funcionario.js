@@ -71,6 +71,11 @@ async function cadastrarFuncionario() {
         return false;
       }
 
+    if(senha > 6 || senha <= 0){
+      Swal.showValidationMessage("Sua senha deve conter entre 1 e 6 caractéres.");
+      return false;
+    }
+
       return {
         nome: document.getElementById("swal-input1").value,
         cpf: document.getElementById("swal-input2").value,
