@@ -79,6 +79,7 @@ CREATE TABLE IF NOT EXISTS anotacoes (
     texto                               VARCHAR(255)        NOT NULL                            COMMENT 'Texto na anotação feita pelo usuário',
     fkfuncionario                       INT                 NOT NULL                            COMMENT 'Chave estrangeira que referencia o funcionário que realizou a anotação',
     fkempresa                           INT                 NULL                                COMMENT 'Chave estrangeira que referencia a empresa à qual o funcionário pertence',
+    dt_criacao                          DATETIME            DEFAULT now()                       COMMENT 'Chave estrangeira que referencia a empresa à qual o funcionário pertence',
     PRIMARY KEY (id),
     FOREIGN KEY ForeignKey_fkEmpresa (fkempresa) REFERENCES empresa (id),
     FOREIGN KEY ForeignKey_fkFuncionario (fkfuncionario) REFERENCES funcionario (id)

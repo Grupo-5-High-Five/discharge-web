@@ -3,12 +3,12 @@ var database = require("../database/config");
 function listar(fkfuncionario, fkempresa) {
   console.log("ACESSEI O ANOTACAO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
   var instrucaoSql = `
-        SELECT a.id, a.texto, a.fkfuncionario, f.nome, a.fkempresa 
+        SELECT a.id, a.texto, a.fkfuncionario, f.nome, a.fkempresa, a.dt_criacao 
           FROM anotacoes a
           INNER JOIN funcionario f
           ON a.fkfuncionario = f.id
-        WHERE a.fkfuncionario = ? OR a.fkempresa = ?
-        ORDER BY desc;
+        WHERE a.fkfuncionario = 1 OR a.fkempresa = 1
+        ORDER BY a.dt_criacao desc;
     `;
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql, [fkfuncionario, fkempresa]);
