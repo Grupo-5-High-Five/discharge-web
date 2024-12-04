@@ -345,7 +345,7 @@ function listarGraphAtrasado(fkEmpresa) {
           optionsEnergiaAtrasada.series[0].data = [];
           optionsEnergiaAtrasada.series[1].data = [];
 
-          for (let i = 0; i < 7; i++) {
+          for (let i = 0; i < resposta.length; i++) {
             // Formatando o fator de potência total
             let fatorPotenciaTotal = Math.round(parseFloat(resposta[i].fator_potencia_total)).toLocaleString("pt-BR");
 
@@ -381,7 +381,7 @@ function listarGraphAdiantado(fkEmpresa) {
           optionsEnergiaAdiantada.series[0].data = [];
           optionsEnergiaAdiantada.series[1].data = [];
 
-          for (let i = 0; i < 7; i++) {
+          for (let i = 0; i < resposta.length; i++) {
             // Formatando o fator de potência total
             let fatorPotenciaTotal = Math.round(parseFloat(resposta[i].fator_potencia_total)).toLocaleString("pt-BR");
 
