@@ -7,7 +7,8 @@ function listar(fkfuncionario, fkempresa) {
           FROM anotacoes a
           INNER JOIN funcionario f
           ON a.fkfuncionario = f.id
-        WHERE a.fkfuncionario = ? OR a.fkempresa = ?;
+        WHERE a.fkfuncionario = ? OR a.fkempresa = ?
+        ORDER BY desc;
     `;
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql, [fkfuncionario, fkempresa]);
