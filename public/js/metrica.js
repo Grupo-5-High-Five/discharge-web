@@ -34,12 +34,6 @@ function listarMetricas() {
             "input_fator_potencia_adiantado_maxima_diario"
           ).value = metrica.fator_potencia_adiantado_maxima_diario || 0;
         });
-      } else {
-        // sessionStorage.removeItem("ID_METRICA");
-        // // Opcional: Limpar os inputs caso não haja métricas
-        // document.querySelectorAll('input[type="number"]').forEach((input) => {
-        //   input.value = "";
-        // });
       }
     })
     .catch(function (erro) {
@@ -50,31 +44,92 @@ function listarMetricas() {
 function editarMetrica(column, value) {
   event.preventDefault();
 
-  if (!value || value == null) {
-    value = 0.0;
-  }
-
-  fetch(`/metricas/editarMetrica/${fkEmpresa}/${column}/${value}`, {
-    method: "PUT",
-  })
-    .then(function (resposta) {
-      if (resposta.ok) {
-        window.alert("Métricas atualizadas com sucesso!");
-        // Redirecionar ou atualizar a interface
-      } else if (resposta.status == 404) {
-        window.alert("Erro 404: Endpoint não encontrado.");
-      } else {
-        throw new Error(
-          `Erro ao atualizar as métricas. Código da resposta: ${resposta.status}`
-        );
+  if (!value || value == null || isNaN(value)) {
+    let timerInterval;
+    Swal.fire({
+      showConfirmButton: false,
+      title: "Não foi possivel editar a métrica!",
+      html: "Valor inválido",
+      icon: "error",
+      timer: 2000,
+      timerProgressBar: true,
+      didOpen: () => {
+        Swal.showLoading();
+        let timerBar = document.querySelector(".swal2-timer-progress-bar");
+        timerBar.style.backgroundColor = "#80f73b";
+      },
+      willClose: () => {
+        clearInterval(timerInterval);
       }
     })
-    .catch(function (erro) {
-      console.error("#ERRO:", erro);
-      window.alert(
-        "Ocorreu um erro inesperado ao tentar atualizar as métricas."
-      );
-    });
+  }
+  else {
+    fetch(`/metricas/editarMetrica/${fkEmpresa}/${column}/${value}`, {
+      method: "PUT",
+    })
+      .then(function (resposta) {
+        if (resposta.ok) {
+          let timerInterval;
+          Swal.fire({
+            showConfirmButton: false,
+            title: "Metrica editada com sucesso!",
+            icon: "success",
+            timer: 2000,
+            timerProgressBar: true,
+            didOpen: () => {
+              Swal.showLoading();
+              let timerBar = document.querySelector(".swal2-timer-progress-bar");
+              timerBar.style.backgroundColor = "#80f73b";
+            },
+            willClose: () => {
+              clearInterval(timerInterval);
+            }
+          })
+        } else if (resposta.status == 404) {
+          let timerInterval;
+          Swal.fire({
+            showConfirmButton: false,
+            title: "Não foi possível atualizar a métrica!",
+            html: "Erro 404: Endpoint não encontrado!",
+            icon: "error",
+            timer: 2000,
+            timerProgressBar: true,
+            didOpen: () => {
+              Swal.showLoading();
+              let timerBar = document.querySelector(".swal2-timer-progress-bar");
+              timerBar.style.backgroundColor = "#80f73b";
+            },
+            willClose: () => {
+              clearInterval(timerInterval);
+            }
+          })
+        } else {
+          throw new Error(
+            `Erro ao atualizar as métricas. Código da resposta: ${resposta.status}`
+          );
+        }
+      })
+      .catch(function (erro) {
+        console.error("#ERRO:", erro);
+        let timerInterval;
+        Swal.fire({
+          showConfirmButton: false,
+          title: "Não foi possível atualizar a métrica!",
+          html: "Ocorreu um erro inesperado ao tentar atualizar as métricas!",
+          icon: "error",
+          timer: 2000,
+          timerProgressBar: true,
+          didOpen: () => {
+            Swal.showLoading();
+            let timerBar = document.querySelector(".swal2-timer-progress-bar");
+            timerBar.style.backgroundColor = "#80f73b";
+          },
+          willClose: () => {
+            clearInterval(timerInterval);
+          }
+        })
+      });
+  }
 }
 
 function deletarMetrica(column, value) {
@@ -83,17 +138,44 @@ function deletarMetrica(column, value) {
   })
     .then(function (resposta) {
       if (resposta.ok) {
-        window.alert(
-          "Post deletado com sucesso pelo usuario de email: " +
-            sessionStorage.getItem("EMAIL_USUARIO") +
-            "!"
-        );
+        let timerInterval;
+        Swal.fire({
+          showConfirmButton: false,
+          title: "Métrica deletada com sucesso!",
+          icon: "success",
+          timer: 2000,
+          timerProgressBar: true,
+          didOpen: () => {
+            Swal.showLoading();
+            let timerBar = document.querySelector(".swal2-timer-progress-bar");
+            timerBar.style.backgroundColor = "#80f73b";
+          },
+          willClose: () => {
+            clearInterval(timerInterval);
+          }
+        })
         const input = value;
         if (input) {
           input.value = 0; // Define o valor padrão como 0
         }
       } else if (resposta.status == 404) {
-        window.alert("Deu 404!");
+        let timerInterval;
+        Swal.fire({
+          showConfirmButton: false,
+          title: "Não foi possível deletar a métrica!",
+          html: "Erro 404: Endpoint não encontrado!",
+          icon: "error",
+          timer: 2000,
+          timerProgressBar: true,
+          didOpen: () => {
+            Swal.showLoading();
+            let timerBar = document.querySelector(".swal2-timer-progress-bar");
+            timerBar.style.backgroundColor = "#80f73b";
+          },
+          willClose: () => {
+            clearInterval(timerInterval);
+          }
+        })
       } else {
         throw (
           "Houve um erro ao tentar realizar a postagem! Código da resposta: " +
@@ -103,5 +185,22 @@ function deletarMetrica(column, value) {
     })
     .catch(function (resposta) {
       console.log(`#ERRO: ${resposta}`);
+      let timerInterval;
+      Swal.fire({
+        showConfirmButton: false,
+        title: "Não foi possível deletar a métrica!",
+        html: "Ocorreu um erro inesperado ao tentar deletar as métricas!",
+        icon: "error",
+        timer: 2000,
+        timerProgressBar: true,
+        didOpen: () => {
+          Swal.showLoading();
+          let timerBar = document.querySelector(".swal2-timer-progress-bar");
+          timerBar.style.backgroundColor = "#80f73b";
+        },
+        willClose: () => {
+          clearInterval(timerInterval);
+        }
+      })
     });
 }
