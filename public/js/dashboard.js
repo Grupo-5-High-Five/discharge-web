@@ -1,54 +1,3 @@
-// Função permissionamento
-
-const user = sessionStorage.getItem("NOME_USUARIO");
-const cargo = sessionStorage.getItem("CARGO_USUARIO");
-
-if (id && user) {
-  id.textContent = user;
-}
-
-const func = document.getElementById("func");
-
-if (cargo != "admin") {
-  func.style.display = "none";
-}
-
-// Abrir & Fechar menu
-
-function menu() {
-  const nav = document.getElementById("nav");
-  nav.classList.toggle("aberto");
-}
-
-function sair() {
-  sessionStorage.clear();
-  window.location.href = "../login.html";
-}
-
-const btnTec = document.getElementById("btn_tec");
-const btnCon = document.getElementById("btn_con");
-
-const dashTec = document.getElementById("dash-tec");
-const dashCon = document.getElementById("dash-con");
-
-if (cargo == "eletricista") {
-  btnCon.style.display = "none";
-
-  btnTec.classList.add("ativo");
-  btnCon.classList.remove("ativo");
-
-  dashTec.style.display = "grid";
-  dashCon.style.display = "none";
-} else if (cargo == "financeiro") {
-  btnTec.style.display = "none";
-
-  btnCon.classList.add("ativo");
-  btnTec.classList.remove("ativo");
-
-  dashCon.style.display = "grid";
-  dashTec.style.display = "none";
-}
-
 // ----------------------------------------------------------
 // Configuração dos gráficos com ApexCharts
 // ----------------------------------------------------------
@@ -818,4 +767,57 @@ function trocarDash(index) {
     dashTec.style.display = "none";
     dashTitle.textContent = `Detalhamento Energético no período de ${semana}`;
   }
+}
+
+// Função permissionamento
+
+const id = document.getElementById("name_user");
+
+const user = sessionStorage.getItem("NOME_USUARIO");
+const cargo = sessionStorage.getItem("CARGO_USUARIO");
+
+if (id && user) {
+  id.textContent = user;
+}
+
+const func = document.getElementById("func");
+
+if (cargo != "admin") {
+  func.style.display = "none";
+}
+
+// Abrir & Fechar menu
+
+function menu() {
+  const nav = document.getElementById("nav");
+  nav.classList.toggle("aberto");
+}
+
+function sair() {
+  sessionStorage.clear();
+  window.location.href = "../login.html";
+}
+
+const btnTec = document.getElementById("btn_tec");
+const btnCon = document.getElementById("btn_con");
+
+const dashTec = document.getElementById("dash-tec");
+const dashCon = document.getElementById("dash-con");
+
+if (cargo == "eletricista") {
+  btnCon.style.display = "none";
+
+  btnTec.classList.add("ativo");
+  btnCon.classList.remove("ativo");
+
+  dashTec.style.display = "grid";
+  dashCon.style.display = "none";
+} else if (cargo == "financeiro") {
+  btnTec.style.display = "none";
+
+  btnCon.classList.add("ativo");
+  btnTec.classList.remove("ativo");
+
+  dashCon.style.display = "grid";
+  dashTec.style.display = "none";
 }
