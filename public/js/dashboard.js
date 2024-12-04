@@ -196,6 +196,7 @@ function atualizarGraph() {
   listarQualidade(fkEmpresa);
 
   listarMetricas(fkEmpresa);
+  atualizarCores();
 
   setTimeout(() => {
     atualizarGraph();
@@ -604,118 +605,120 @@ const metaConsumo = metricas.consumo;
 const metaAtrasada = metricas.reativa_atrasada;
 const metaAdiantada = metricas.reativa_adiantada;
 
-if (metaEmissao != 0 && metaConsumo != 0) {
-  // ----------------------------------------------------------------------
-  // Visão energética -----------------------------------------------------
-  // ----------------------------------------------------------------------
+function atualizarCores() {
+  if (metaEmissao != 0 && metaConsumo != 0) {
+    // ----------------------------------------------------------------------
+    // Visão energética -----------------------------------------------------
+    // ----------------------------------------------------------------------
 
-  const visaoEmissao = JSON.parse(sessionStorage.getItem("EMISSAO_ANUAL"));
-  const visaoConsumo = JSON.parse(sessionStorage.getItem("CONSUMO_MENSAL"));
+    const visaoEmissao = JSON.parse(sessionStorage.getItem("EMISSAO_ANUAL"));
+    const visaoConsumo = JSON.parse(sessionStorage.getItem("CONSUMO_MENSAL"));
 
-  // Emissão Anual
+    // Emissão Anual
 
-  const kpis_emissao = document.querySelectorAll(".emissao_ano");
+    const kpis_emissao = document.querySelectorAll(".emissao_ano");
 
-  const porcentagemEmissao = metaEmissao / 100;
+    const porcentagemEmissao = metaEmissao / 100;
 
-  if (visaoEmissao.media_emissao * 12 > metaEmissao) {
-    kpis_emissao[0].classList.toggle("critico");
-  } else if (visaoEmissao.media_emissao * 12 >= porcentagemEmissao * 80) {
-    kpis_emissao[0].classList.toggle("alerta");
-  }
+    if (visaoEmissao.media_emissao * 12 > metaEmissao) {
+      kpis_emissao[0].classList.toggle("critico");
+    } else if (visaoEmissao.media_emissao * 12 >= porcentagemEmissao * 80) {
+      kpis_emissao[0].classList.toggle("alerta");
+    }
 
-  if (visaoEmissao.emissao_co2 > metaEmissao) {
-    kpis_emissao[1].classList.toggle("critico");
-  } else if (visaoEmissao.emissao_co2 * 12 >= porcentagemEmissao * 80) {
-    kpis_emissao[1].classList.toggle("alerta");
-  }
+    if (visaoEmissao.emissao_co2 > metaEmissao) {
+      kpis_emissao[1].classList.toggle("critico");
+    } else if (visaoEmissao.emissao_co2 * 12 >= porcentagemEmissao * 80) {
+      kpis_emissao[1].classList.toggle("alerta");
+    }
 
-  if (visaoEmissao.meta_emissao >= metaEmissao) {
-    kpis_emissao[2].classList.toggle("critico");
-  } else if (visaoEmissao.meta_emissao >= porcentagemEmissao * 80) {
-    kpis_emissao[2].classList.toggle("alerta");
-  }
+    if (visaoEmissao.meta_emissao >= metaEmissao) {
+      kpis_emissao[2].classList.toggle("critico");
+    } else if (visaoEmissao.meta_emissao >= porcentagemEmissao * 80) {
+      kpis_emissao[2].classList.toggle("alerta");
+    }
 
-  // Consumo mensal
+    // Consumo mensal
 
-  const kpis_consumo = document.querySelectorAll(".consumo_mes");
+    const kpis_consumo = document.querySelectorAll(".consumo_mes");
 
-  const porcentagemConsumo = metaConsumo / 100;
+    const porcentagemConsumo = metaConsumo / 100;
 
-  if (visaoConsumo.media_consumo > metaConsumo) {
-    kpis_consumo[0].classList.toggle("critico");
-  } else if (visaoConsumo.media_consumo >= porcentagemConsumo * 80) {
-    kpis_consumo[0].classList.toggle("alerta");
-  }
+    if (visaoConsumo.media_consumo > metaConsumo) {
+      kpis_consumo[0].classList.toggle("critico");
+    } else if (visaoConsumo.media_consumo >= porcentagemConsumo * 80) {
+      kpis_consumo[0].classList.toggle("alerta");
+    }
 
-  if (visaoConsumo.consumo_ano > metaConsumo) {
-    kpis_consumo[1].classList.toggle("critico");
-  } else if (visaoConsumo.consumo_ano >= porcentagemConsumo * 80) {
-    kpis_consumo[1].classList.toggle("alerta");
-  }
+    if (visaoConsumo.consumo_ano > metaConsumo) {
+      kpis_consumo[1].classList.toggle("critico");
+    } else if (visaoConsumo.consumo_ano >= porcentagemConsumo * 80) {
+      kpis_consumo[1].classList.toggle("alerta");
+    }
 
-  if (visaoConsumo.meta_consumo > metaConsumo) {
-    kpis_consumo[2].classList.toggle("critico");
-  } else if (visaoConsumo.meta_consumo >= porcentagemConsumo * 80) {
-    kpis_consumo[2].classList.toggle("alerta");
-  }
+    if (visaoConsumo.meta_consumo > metaConsumo) {
+      kpis_consumo[2].classList.toggle("critico");
+    } else if (visaoConsumo.meta_consumo >= porcentagemConsumo * 80) {
+      kpis_consumo[2].classList.toggle("alerta");
+    }
 
-  // ----------------------------------------------------------------------
-  // Detalhamento Semanal -------------------------------------------------
-  // ----------------------------------------------------------------------
+    // ----------------------------------------------------------------------
+    // Detalhamento Semanal -------------------------------------------------
+    // ----------------------------------------------------------------------
 
-  const qualidade = JSON.parse(sessionStorage.getItem("QUALIDADE"));
+    const qualidade = JSON.parse(sessionStorage.getItem("QUALIDADE"));
 
-  // Previsão emissão
+    // Previsão emissão
 
-  const kpis_prev_emissao = document.querySelectorAll(".prev_emissao");
+    const kpis_prev_emissao = document.querySelectorAll(".prev_emissao");
 
-  if (qualidade.emissao_7dias > metaEmissao / 12 / 4) {
-    kpis_prev_emissao[0].classList.toggle("critico");
-  } else if (qualidade.emissao_7dias >= (porcentagemEmissao / 12 / 4) * 80) {
-    kpis_prev_emissao[0].classList.toggle("alerta");
-  }
+    if (qualidade.emissao_7dias > metaEmissao / 12 / 4) {
+      kpis_prev_emissao[0].classList.toggle("critico");
+    } else if (qualidade.emissao_7dias >= (porcentagemEmissao / 12 / 4) * 80) {
+      kpis_prev_emissao[0].classList.toggle("alerta");
+    }
 
-  if (qualidade.emissao_proximos_7dias > metaEmissao / 12 / 4) {
-    kpis_prev_emissao[1].classList.toggle("critico");
-  } else if (qualidade.emissao_proximos_7dias >= (porcentagemEmissao / 12 / 4) * 80) {
-    kpis_prev_emissao[1].classList.toggle("alerta");
-  }
+    if (qualidade.emissao_proximos_7dias > metaEmissao / 12 / 4) {
+      kpis_prev_emissao[1].classList.toggle("critico");
+    } else if (qualidade.emissao_proximos_7dias >= (porcentagemEmissao / 12 / 4) * 80) {
+      kpis_prev_emissao[1].classList.toggle("alerta");
+    }
 
-  // Previsão consumo
+    // Previsão consumo
 
-  const kpis_prev_consumo = document.querySelectorAll(".prev_consumo");
+    const kpis_prev_consumo = document.querySelectorAll(".prev_consumo");
 
-  if (qualidade.consumo_7dias > metaConsumo / 4) {
-    kpis_prev_consumo[0].classList.toggle("critico");
-  } else if (qualidade.consumo_7dias >= (porcentagemConsumo / 4) * 80) {
-    kpis_prev_consumo[0].classList.toggle("alerta");
-  }
+    if (qualidade.consumo_7dias > metaConsumo / 4) {
+      kpis_prev_consumo[0].classList.toggle("critico");
+    } else if (qualidade.consumo_7dias >= (porcentagemConsumo / 4) * 80) {
+      kpis_prev_consumo[0].classList.toggle("alerta");
+    }
 
-  if (qualidade.consumo_proximos_7dias > metaConsumo / 4) {
-    kpis_prev_consumo[1].classList.toggle("critico");
-  } else if (qualidade.consumo_proximos_7dias >= (porcentagemConsumo / 4) * 80) {
-    kpis_prev_consumo[1].classList.toggle("alerta");
-  }
+    if (qualidade.consumo_proximos_7dias > metaConsumo / 4) {
+      kpis_prev_consumo[1].classList.toggle("critico");
+    } else if (qualidade.consumo_proximos_7dias >= (porcentagemConsumo / 4) * 80) {
+      kpis_prev_consumo[1].classList.toggle("alerta");
+    }
 
-  // Potencias
+    // Potencias
 
-  const kpis_potencias = document.querySelectorAll(".potencia");
+    const kpis_potencias = document.querySelectorAll(".potencia");
 
-  const porcentagemAdiantada = metaAdiantada / 100;
+    const porcentagemAdiantada = metaAdiantada / 100;
 
-  if (qualidade.potencia_adiantada_7dias > metaAdiantada) {
-    kpis_potencias[0].classList.toggle("critico");
-  } else if (qualidade.potencia_adiantada_7dias >= porcentagemAdiantada * 80) {
-    kpis_potencias[0].classList.toggle("alerta");
-  }
+    if (qualidade.potencia_adiantada_7dias > metaAdiantada) {
+      kpis_potencias[0].classList.toggle("critico");
+    } else if (qualidade.potencia_adiantada_7dias >= porcentagemAdiantada * 80) {
+      kpis_potencias[0].classList.toggle("alerta");
+    }
 
-  const porcentagemAtrasada = metaAtrasada / 100;
+    const porcentagemAtrasada = metaAtrasada / 100;
 
-  if (qualidade.potencia_atrasada_7dias > metaAtrasada / 4) {
-    kpis_potencias[1].classList.toggle("critico");
-  } else if (qualidade.potencia_atrasada_7dias >= porcentagemAtrasada * 80) {
-    kpis_potencias[1].classList.toggle("alerta");
+    if (qualidade.potencia_atrasada_7dias > metaAtrasada / 4) {
+      kpis_potencias[1].classList.toggle("critico");
+    } else if (qualidade.potencia_atrasada_7dias >= porcentagemAtrasada * 80) {
+      kpis_potencias[1].classList.toggle("alerta");
+    }
   }
 }
 
