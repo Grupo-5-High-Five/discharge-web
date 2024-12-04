@@ -158,7 +158,7 @@ var optionsConsumoPrevisao = {
       data: [],
     },
     {
-      name: "Média Móvel",
+      name: "Previsão de consumo",
       data: [], // Calculada separadamente
     },
   ],
