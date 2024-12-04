@@ -105,9 +105,10 @@ SELECT
             DATE_FORMAT(l.dt, '%Y-%m') DESC
          LIMIT 1), 
         0
-    ) AS meta_consumo;
+    ) AS meta_consumo,
+    (SELECT YEAR(MAX(dt)) FROM leitura WHERE fkempresa = ?) as ano_atual;
       `;
-  return database.executar(instrucaoSql, [fkempresa, fkempresa, fkempresa, fkempresa, fkempresa, fkempresa, fkempresa, fkempresa, fkempresa, fkempresa]);
+  return database.executar(instrucaoSql, [fkempresa, fkempresa, fkempresa, fkempresa, fkempresa, fkempresa, fkempresa, fkempresa, fkempresa, fkempresa, fkempresa]);
 }
 
 function listarGraphTendencia(fkempresa) {
@@ -338,9 +339,35 @@ function listarQualidade(fkempresa) {
         ORDER BY 
             DATE(dt) DESC
         LIMIT 7
-    ) AS ultima_semana) AS potencia_reativa_atrasada_ultimos_7_dias;
+    ) AS ultima_semana) AS potencia_reativa_atrasada_ultimos_7_dias,
+    (SELECT 
+    CONCAT(
+        DATE_FORMAT(MIN(data), '%Y-%m-%d'),
+        ' à ',
+        DATE_FORMAT(MAX(data), '%Y-%m-%d')
+        ) AS periodo_ultimos_7_dias
+    FROM (
+        SELECT 
+            DATE(dt) AS data
+        FROM 
+            leitura
+        WHERE 
+            fkempresa = ?
+        GROUP BY 
+            DATE(dt)
+        ORDER BY 
+            DATE(dt) DESC
+        LIMIT 7
+    ) AS ultimos_sete_dias) AS periodo_ultimos_7_dias,
+     (SELECT 
+            DATE_FORMAT(MAX(DATE(dt)), '%m') AS mes_atual
+        FROM 
+            leitura
+        WHERE 
+            fkempresa = ?
+    ) as mes_atual;
             `;
-  return database.executar(instrucaoSql, [fkempresa, fkempresa, fkempresa, fkempresa, fkempresa, fkempresa, fkempresa, fkempresa]);
+  return database.executar(instrucaoSql, [fkempresa, fkempresa, fkempresa, fkempresa, fkempresa, fkempresa, fkempresa, fkempresa, fkempresa, fkempresa]);
 }
 
 function listarMetricas(fkempresa) {
@@ -353,7 +380,7 @@ function listarMetricas(fkempresa) {
 			potencia_reativa_adiantada_maxima_semanal as reativa_adiantada, 
 			fator_potencia_atrasado_maxima_diario as fator_atrasado, 
 			fator_potencia_adiantado_maxima_diario as fator_adiantada 
-        FROM metrica;
+      FROM metrica;
             `;
   return database.executar(instrucaoSql, [fkempresa, fkempresa]);
 }
