@@ -44,7 +44,8 @@ function trocarDash(index) {
 
     dashCon.style.display = "grid";
     dashTec.style.display = "none";
-    dashConTitle.innerHTML = "<h1>Eficiência Energética entre XX/XX e XX/XX (XXXX)</h1>";
+    dashConTitle.innerHTML =
+      "<h1>Eficiência Energética entre XX/XX e XX/XX (XXXX)</h1>";
   }
 }
 
@@ -100,7 +101,10 @@ var optionsEnergiaAtrasada = {
   tooltip: { shared: true, intersect: false },
 };
 
-let graphPotenciaAtrasada = new ApexCharts(document.querySelector("#graph_ener_atr"), optionsEnergiaAtrasada);
+let graphPotenciaAtrasada = new ApexCharts(
+  document.querySelector("#graph_ener_atr"),
+  optionsEnergiaAtrasada
+);
 graphPotenciaAtrasada.render();
 
 // ----------------------------------------------------------
@@ -151,7 +155,10 @@ var optionsEnergiaAdiantada = {
   tooltip: { shared: true, intersect: false },
 };
 
-let graphPotenciaAdiantada = new ApexCharts(document.querySelector("#graph_ener_adi"), optionsEnergiaAdiantada);
+let graphPotenciaAdiantada = new ApexCharts(
+  document.querySelector("#graph_ener_adi"),
+  optionsEnergiaAdiantada
+);
 graphPotenciaAdiantada.render();
 
 // ----------------------------------------------------------
@@ -191,7 +198,10 @@ var optionsConsumoPrevisao = {
   tooltip: { shared: true, intersect: false },
 };
 
-let graphConsumo = new ApexCharts(document.querySelector("#graph_con_med"), optionsConsumoPrevisao);
+let graphConsumo = new ApexCharts(
+  document.querySelector("#graph_con_med"),
+  optionsConsumoPrevisao
+);
 graphConsumo.render();
 
 // ----------------------------------------------------------
@@ -223,36 +233,29 @@ var optionsTendenciaAnual = {
     },
   ],
   xaxis: {
-    categories: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
+    categories: [
+      "Jan",
+      "Fev",
+      "Mar",
+      "Abr",
+      "Mai",
+      "Jun",
+      "Jul",
+      "Ago",
+      "Set",
+      "Out",
+      "Nov",
+      "Dez",
+    ],
   },
   colors: ["#4BC0C0", "#DBB100"],
 };
 
-let graphTendencia = new ApexCharts(document.querySelector("#graph_emissao"), optionsTendenciaAnual);
+let graphTendencia = new ApexCharts(
+  document.querySelector("#graph_emissao"),
+  optionsTendenciaAnual
+);
 graphTendencia.render();
-
-tippy("#infoTooltip", {
-  content: `
-      <div>
-          <strong>Limites definidos Σ:</strong><br><br>
-          <ul>
-              <li>Σ - Emissão CO2 anual: 50</li>
-              <li>Σ - Consumo de energia no mês: 45</li>
-              <li>Σ - Potência Reativa Adiantada Semanal: 234</li>
-              <li>Σ - Potência Reativa Atrasada Semanal: 243</li>
-              <li>Σ - Fator de Potência Adiantado Semanal: 1</li>
-              <li>Σ - Fator de Potência Adiantado Atrasado: 1</li>
-          </ul>
-      </div>
-  `,
-  allowHTML: true, // Enable HTML content
-  theme: "custom",
-  animation: "scale",
-  interactive: true, // Allow interaction with the tooltip
-  placement: "right", // Change position
-  arrow: true,
-  maxWidth: 250, // Max width of the tooltip
-});
 
 // ----------------------------------------------------------
 // Fetch
@@ -262,11 +265,12 @@ var fkEmpresa = sessionStorage.ID_EMPRESA;
 
 function atualizarGraph() {
   listarVisaoEnergetica(fkEmpresa);
-  listarGraphTendencia(fkEmpresa);
-  listarGraphAtrasado(fkEmpresa);
-  listarGraphAdiantado(fkEmpresa);
-  listarGraphConsumo(fkEmpresa);
-  listarQualidade(fkEmpresa);
+  // listarGraphTendencia(fkEmpresa);
+  // listarGraphAtrasado(fkEmpresa);
+  // listarGraphAdiantado(fkEmpresa);
+  // listarGraphConsumo(fkEmpresa);
+  // listarQualidade(fkEmpresa);
+
   listarMetricas(fkEmpresa);
 
   setTimeout(() => {
@@ -275,13 +279,13 @@ function atualizarGraph() {
 }
 
 function listarVisaoEnergetica(fkEmpresa) {
-  var media_co2 = document.getElementById("media_co2");
-  var emissao_co2 = document.getElementById("emissao_co2");
-  var meta_emissao = document.getElementById("meta_emissao");
+  const media_co2 = document.getElementById("media_co2");
+  const emissao_co2 = document.getElementById("emissao_co2");
+  const meta_emissao = document.getElementById("meta_emissao");
 
-  var media_consumo = document.getElementById("media_consumo");
-  var consumo_ano = document.getElementById("consumo_ano");
-  var meta_consumo = document.getElementById("meta_consumo");
+  const media_consumo = document.getElementById("media_consumo");
+  const consumo_ano = document.getElementById("consumo_ano");
+  const meta_consumo = document.getElementById("meta_consumo");
 
   fetch(`/dashboard/listarVisaoEnergetica/${fkEmpresa}`)
     .then(function (response) {
@@ -289,13 +293,43 @@ function listarVisaoEnergetica(fkEmpresa) {
         response.json().then(function (resposta) {
           console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
-          media_co2.textContent = parseFloat(resposta[0].media_emissao).toFixed(2);
-          emissao_co2.textContent = parseFloat(resposta[0].emissao_ano).toFixed(2);
-          meta_emissao.innerHTML = `${parseFloat(resposta[0].meta_emissao).toFixed(0)}%<p>6</p>`;
+          media_co2.textContent = parseFloat(resposta[0].media_emissao).toFixed(
+            2
+          );
+          emissao_co2.textContent = parseFloat(resposta[0].emissao_ano).toFixed(
+            2
+          );
+          meta_emissao.textContent = `${parseFloat(
+            resposta[0].meta_emissao
+          ).toFixed(0)}%`;
 
-          media_consumo.textContent = Math.round(parseFloat(resposta[0].media_consumo)).toLocaleString("pt-BR");
-          consumo_ano.textContent = Math.round(parseFloat(resposta[0].consumo_ano)).toLocaleString("pt-BR");
-          meta_consumo.innerHTML = `${parseFloat(resposta[0].meta_consumo).toFixed(0)}%<p>6</p>`;
+          sessionStorage.EMISSAO_ANUAL = JSON.stringify({
+            media_co2: parseFloat(resposta[0].media_emissao).toFixed(2),
+            emissao_co2: parseFloat(resposta[0].emissao_ano).toFixed(2),
+            meta_emissao: parseFloat(resposta[0].meta_emissao).toFixed(0),
+          });
+
+          media_consumo.textContent = Math.round(
+            parseFloat(resposta[0].media_consumo)
+          ).toLocaleString("pt-BR");
+          consumo_ano.textContent = Math.round(
+            parseFloat(resposta[0].consumo_ano)
+          ).toLocaleString("pt-BR");
+          meta_consumo.innerHTML = `${parseFloat(
+            resposta[0].meta_consumo
+          ).toFixed(0)}%`;
+
+          sessionStorage.CONSUMO_MENSAL = JSON.stringify({
+            media_consumo: Math.round(
+              parseFloat(resposta[0].media_consumo)
+            ).toLocaleString("pt-BR"),
+            consumo_ano: Math.round(
+              parseFloat(resposta[0].consumo_ano)
+            ).toLocaleString("pt-BR"),
+            meta_consumo: parseFloat(resposta[0].meta_consumo).toFixed(0),
+          });
+
+          return true;
         });
       } else {
         console.log("Nenhum valor encontrado ou ocorreu algum erro na API!");
@@ -321,8 +355,12 @@ function listarGraphTendencia(fkEmpresa) {
 
           for (let i = 0; i < resposta.length; i++) {
             // Convertendo os valores de consumo para números
-            let consumoAtual = Math.round(parseFloat(resposta[i].consumo_atual)).toLocaleString("pt-BR");
-            let consumoPassado = Math.round(parseFloat(resposta[i].consumo_passado)).toLocaleString("pt-BR");
+            let consumoAtual = Math.round(
+              parseFloat(resposta[i].consumo_atual)
+            ).toLocaleString("pt-BR");
+            let consumoPassado = Math.round(
+              parseFloat(resposta[i].consumo_passado)
+            ).toLocaleString("pt-BR");
             // Adicionando os valores ao gráfico
             optionsTendenciaAnual.series[0].data.push(consumoAtual);
             optionsTendenciaAnual.series[1].data.push(consumoPassado);
@@ -354,7 +392,9 @@ function listarGraphAtrasado(fkEmpresa) {
 
           for (let i = 0; i < 7; i++) {
             // Formatando o fator de potência total
-            let fatorPotenciaTotal = Math.round(parseFloat(resposta[i].fator_potencia_total)).toLocaleString("pt-BR");
+            let fatorPotenciaTotal = Math.round(
+              parseFloat(resposta[i].fator_potencia_total)
+            ).toLocaleString("pt-BR");
 
             // Mantendo a potência reativa atrasada sem alteração
             let potenciaReativaAtrasada = resposta[i].potencia_reativa_atrasada;
@@ -390,13 +430,18 @@ function listarGraphAdiantado(fkEmpresa) {
 
           for (let i = 0; i < 7; i++) {
             // Formatando o fator de potência total
-            let fatorPotenciaTotal = Math.round(parseFloat(resposta[i].fator_potencia_total)).toLocaleString("pt-BR");
+            let fatorPotenciaTotal = Math.round(
+              parseFloat(resposta[i].fator_potencia_total)
+            ).toLocaleString("pt-BR");
 
             // Mantendo a potência reativa atrasada sem alteração
-            let potenciaReativaAdiantado = resposta[i].potencia_reativa_adiantada;
+            let potenciaReativaAdiantado =
+              resposta[i].potencia_reativa_adiantada;
 
             // Adicionando os valores ao gráfico
-            optionsEnergiaAdiantada.series[0].data.push(potenciaReativaAdiantado);
+            optionsEnergiaAdiantada.series[0].data.push(
+              potenciaReativaAdiantado
+            );
             optionsEnergiaAdiantada.series[1].data.push(fatorPotenciaTotal);
           }
 
@@ -426,8 +471,12 @@ function listarGraphConsumo(fkEmpresa) {
 
           for (let i = 0; i < resposta.length; i++) {
             // Convertendo os valores de consumo para números
-            let consumo7dias = Math.round(parseFloat(resposta[i].consumo_ultimos_7_dias)).toLocaleString("pt-BR");
-            let previsaoConsumo = Math.round(parseFloat(resposta[i].previsao_consumo_proximo_dia)).toLocaleString("pt-BR");
+            let consumo7dias = Math.round(
+              parseFloat(resposta[i].consumo_ultimos_7_dias)
+            ).toLocaleString("pt-BR");
+            let previsaoConsumo = Math.round(
+              parseFloat(resposta[i].previsao_consumo_proximo_dia)
+            ).toLocaleString("pt-BR");
             // Adicionando os valores ao gráfico
             optionsConsumoPrevisao.series[0].data.push(consumo7dias);
             optionsConsumoPrevisao.series[1].data.push(previsaoConsumo);
@@ -449,28 +498,48 @@ function listarGraphConsumo(fkEmpresa) {
 }
 
 function listarQualidade(fkEmpresa) {
-  emissao_7dias = document.getElementById("emissao_7dias");
-  emissao_proximos_7dias = document.getElementById("emissao_proximos_7dias");
+  const emissao_7dias = document.getElementById("emissao_7dias");
+  const emissao_proximos_7dias = document.getElementById(
+    "emissao_proximos_7dias"
+  );
 
-  consumo_7dias = document.getElementById("consumo_7dias");
-  consumo_proximos_7dias = document.getElementById("consumo_proximos_7dias");
+  const consumo_7dias = document.getElementById("consumo_7dias");
+  const consumo_proximos_7dias = document.getElementById(
+    "consumo_proximos_7dias"
+  );
 
-  potencia_adiantada_7dias = document.getElementById("potencia_adiantada_7dias");
-  potencia_atrasada_7dias = document.getElementById("potencia_atrasada_7dias");
+  const potencia_adiantada_7dias = document.getElementById(
+    "potencia_adiantada_7dias"
+  );
+  const potencia_atrasada_7dias = document.getElementById(
+    "potencia_atrasada_7dias"
+  );
 
   fetch(`/dashboard/listarQualidade/${fkEmpresa}`)
     .then(function (response) {
       if (response.ok) {
         response.json().then(function (resposta) {
           console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-          emissao_7dias.textContent = parseFloat(resposta[0].emissao_tco2_ultimos_7_dias).toFixed(2);
-          emissao_proximos_7dias.textContent = parseFloat(resposta[0].previsao_emissao_proxima_semana).toFixed(2);
+          emissao_7dias.textContent = parseFloat(
+            resposta[0].emissao_tco2_ultimos_7_dias
+          ).toFixed(2);
+          emissao_proximos_7dias.textContent = parseFloat(
+            resposta[0].previsao_emissao_proxima_semana
+          ).toFixed(2);
 
-          consumo_7dias.textContent = Math.round(parseFloat(resposta[0].consumo_ultimos_7_dias)).toLocaleString("pt-BR");
-          consumo_proximos_7dias.textContent = Math.round(parseFloat(resposta[0].previsao_consumo_proxima_semana)).toLocaleString("pt-BR");
+          consumo_7dias.textContent = Math.round(
+            parseFloat(resposta[0].consumo_ultimos_7_dias)
+          ).toLocaleString("pt-BR");
+          consumo_proximos_7dias.textContent = Math.round(
+            parseFloat(resposta[0].previsao_consumo_proxima_semana)
+          ).toLocaleString("pt-BR");
 
-          potencia_adiantada_7dias.textContent = Math.round(parseFloat(resposta[0].potencia_reativa_adiantada_ultimos_7_dias)).toLocaleString("pt-BR");
-          potencia_atrasada_7dias.textContent = Math.round(parseFloat(resposta[0].potencia_reativa_atrasada_ultimos_7_dias)).toLocaleString("pt-BR");
+          potencia_adiantada_7dias.textContent = Math.round(
+            parseFloat(resposta[0].potencia_reativa_adiantada_ultimos_7_dias)
+          ).toLocaleString("pt-BR");
+          potencia_atrasada_7dias.textContent = Math.round(
+            parseFloat(resposta[0].potencia_reativa_atrasada_ultimos_7_dias)
+          ).toLocaleString("pt-BR");
         });
       } else {
         console.log("Nenhum valor encontrado ou ocorreu algum erro na API!");
@@ -484,13 +553,13 @@ function listarQualidade(fkEmpresa) {
 
   return false;
 }
-
 function listarMetricas(fkEmpresa) {
-  fetch(`/dashboard/listarVisaoEnergetica/${fkEmpresa}`)
+  fetch(`/dashboard/listarMetricas/${fkEmpresa}`)
     .then(function (response) {
       if (response.ok) {
         response.json().then(function (resposta) {
           console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+          sessionStorage.METRICAS_EMPRESA = JSON.stringify(resposta[0]);
         });
       } else {
         console.log("Nenhum valor encontrado ou ocorreu algum erro na API!");
@@ -504,3 +573,99 @@ function listarMetricas(fkEmpresa) {
 
   return false;
 }
+
+const p_meta_emissao = document.getElementById("p_meta_emissao");
+const p_meta_consumo = document.getElementById("p_meta_consumo");
+
+const metricas = JSON.parse(sessionStorage.getItem("METRICAS_EMPRESA"));
+
+p_meta_emissao.textContent = metricas.co2;
+p_meta_consumo.textContent = metricas.consumo;
+
+tippy("#infoTooltip", {
+  content: `
+      <div>
+          <strong>Limites definidos Σ:</strong><br><br>
+          <ul>
+              <li>Σ - Emissão CO2 anual: ${metricas.co2}</li>
+              <li>Σ - Consumo de energia no mês: ${metricas.consumo}</li>
+              <li>Σ - Potência Reativa Adiantada Semanal: ${metricas.reativa_adiantada}</li>
+              <li>Σ - Potência Reativa Atrasada Semanal: ${metricas.reativa_atrasada}</li>
+              <li>Σ - Fator de Potência Adiantado Diário: ${metricas.fator_adiantada}</li>
+              <li>Σ - Fator de Potência Atrasado Diário: ${metricas.fator_atrasado}</li>
+          </ul>
+      </div>
+  `,
+  allowHTML: true, // Enable HTML content
+  theme: "custom",
+  animation: "scale",
+  interactive: true, // Allow interaction with the tooltip
+  placement: "right", // Change position
+  arrow: true,
+  maxWidth: 250, // Max width of the tooltip
+});
+
+const m_atrasada = document.getElementById("m_atrasada");
+const m_adiantada = document.getElementById("m_adiantada");
+const m_tendencia = document.getElementById("m_tendencia");
+const m_consumo = document.getElementById("m_consumo");
+
+// ----------------------------------------------------------------------
+// Visão energética -----------------------------------------------------
+// ----------------------------------------------------------------------
+
+// Emissão Anual
+
+const kpis_emissao = document.querySelectorAll(".emissao_ano");
+
+const visaoEmissao = JSON.parse(sessionStorage.getItem("EMISSAO_ANUAL"));
+const metaEmissao = metricas.co2;
+const porcentagemEmissao = metaEmissao / 100;
+
+if (visaoEmissao.media_emissao * 12 > metaEmissao) {
+  kpis_emissao[0].classList.toggle("critico");
+} else if (visaoEmissao.media_emissao * 12 >= porcentagemEmissao * 80) {
+  kpis_emissao[0].classList.toggle("alerta");
+}
+
+if (visaoEmissao.emissao_co2 > metaEmissao) {
+  kpis_emissao[1].classList.toggle("critico");
+} else if (visaoEmissao.emissao_co2 * 12 >= porcentagemEmissao * 80) {
+  kpis_emissao[1].classList.toggle("alerta");
+}
+
+if (visaoEmissao.meta_emissao >= metaEmissao) {
+  kpis_emissao[2].classList.toggle("critico");
+} else if (visaoEmissao.meta_emissao * 12 >= porcentagemEmissao * 80) {
+  kpis_emissao[2].classList.toggle("alerta");
+}
+
+// Consumo mensal
+
+const kpis_consumo = document.querySelectorAll(".consumo_mes");
+
+const visaoConsumo = JSON.parse(sessionStorage.getItem("CONSUMO_MENSAL"));
+const metaConsumo = metricas.consumo;
+const porcentagemConsumo = metaConsumo / 100;
+
+if (visaoConsumo.media_consumo > metaConsumo) {
+  kpis_emissao[0].classList.toggle("critico");
+} else if (visaoEmissao.media_consumo >= porcentagemEmissao * 80) {
+  kpis_emissao[0].classList.toggle("alerta");
+}
+
+if (visaoConsumo.consumo_ano > metaConsumo) {
+  kpis_emissao[1].classList.toggle("critico");
+} else if (visaoEmissao.consumo_ano >= porcentagemEmissao * 80) {
+  kpis_emissao[1].classList.toggle("alerta");
+}
+
+if (visaoConsumo.meta_consumo > metaConsumo) {
+  kpis_emissao[2].classList.toggle("critico");
+} else if (visaoEmissao.meta_consumo >= porcentagemEmissao * 80) {
+  kpis_emissao[2].classList.toggle("alerta");
+}
+
+// ----------------------------------------------------------------------
+// Detalhamento Semanal -------------------------------------------------
+// ----------------------------------------------------------------------

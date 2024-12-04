@@ -155,9 +155,10 @@ main {
   width: 90%;
   height: 5rem;
   box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
-  border-left: solid red;
+  border-left: solid;
   border-width: 7px;
   transition: all 0.3s;
+  border-color: #3d9a00;
 }
 
 .aviso {
@@ -200,12 +201,8 @@ main {
   }
 }
 
-.bom {
-  border-color: #3d9a00;
-}
-
 .critico {
-  border-color: #f62626;
+  border-color: #f62626 !important;
   /* color: #f62626; */
 }
 
@@ -339,7 +336,7 @@ div#graph_ener_atr {
 
 .title-graph {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-between;
   width: 100%;
   padding-bottom: 0.5rem;
@@ -358,5 +355,9 @@ div#graph_ener_atr {
     width: 20%;
     justify-content: flex-end;
     gap: 0.3rem;
+  }
+  & img {
+    width: 24px;
+    height: 24px;
   }
 }
