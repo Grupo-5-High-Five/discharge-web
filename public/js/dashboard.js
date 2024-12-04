@@ -1,8 +1,5 @@
 // Função permissionamento
 
-// Nome usuário
-
-const id = document.getElementById("name_user");
 const user = sessionStorage.getItem("NOME_USUARIO");
 const cargo = sessionStorage.getItem("CARGO_USUARIO");
 
@@ -253,7 +250,7 @@ function atualizarGraph() {
 
   setTimeout(() => {
     atualizarGraph();
-  }, 120000); // 2 minutos
+  }, 10000); // 2 minutos
 }
 
 function listarVisaoEnergetica(fkEmpresa) {
