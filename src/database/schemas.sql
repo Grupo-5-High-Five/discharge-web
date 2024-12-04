@@ -124,3 +124,18 @@ VALUES ('João Pedro', 'joao.pedro@steelforge.com', '12345678910', 'eletricista'
 	   ('Giovanna Beltrão', 'giovanna.beltrao@steelforge.com', '12355678910', 'eletricista', '123', 'ativo', 1),
 	   ('Pedro Jesus', 'pedro.jesus@steelforge.com', '12345671910', 'financeiro', '123', 'ativo', 1),
        ('Gustavo Luz', 'gustavo.luz@steelforge.com', '98765432100', 'admin', '123', 'ativo', 1);
+
+INSERT INTO anotacoes (texto, fkfuncionario) \
+VALUES ("Não esquecer de verificar com a Giovanna os relatórios de Potência Reativa", 1),
+       ("Verificar parâmetros de Consumo de Energia", 1),
+       ("Não esquecer de orientar Isaías do itens a comprar para manutenção de equipamento", 1),
+       ("URGENTE: Olhar detalhamento semanal da energia com Pedro", 1),
+       ("Não esquecer de verificar com Gustavo Luz do permissionamento", 1),
+       ("Entrar em contato com a diretoria para rever métricas de Emissão", 1),
+
+INSERT INTO anotacoes (texto, fkfuncionario, fkempresa) 
+VALUES ("João preciso da lista de equipamentos necessários para compra", 2, 1),
+       ("Isaías consegue me fornecer um relatório do Status financeiro", 3, 1),
+       ("Giovanna entre em contato comigo, precisamos discutir sobre as medidas", 4, 1),
+       ("João não esqueça de abordar comigo a questão do gráfico de tendência", 4, 1),
+       ("Preciso de um relatório do consumo da Semana até Sexta-feira", 5, 1),
