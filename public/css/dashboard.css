@@ -157,8 +157,20 @@ main {
   box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
   border-left: solid;
   border-width: 7px;
+  border-color: white;
   transition: all 0.3s;
-  border-color: #3d9a00;
+}
+
+.red {
+  color: #f62626;
+}
+
+.yellow {
+  color: #f2ae2e;
+}
+
+.green {
+  color: #3d9a00;
 }
 
 .aviso {
@@ -199,15 +211,6 @@ main {
       font-size: 16px;
     }
   }
-}
-
-.critico {
-  border-color: #f62626 !important;
-  /* color: #f62626; */
-}
-
-.alerta {
-  border-color: #f2ae2e;
 }
 
 .titulo-kpi {
