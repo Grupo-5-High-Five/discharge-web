@@ -117,6 +117,7 @@ SELECT
     fkempresa,
     fkempresa,
     fkempresa,
+    fkempresa,
   ]);
 }
 
