@@ -1,13 +1,15 @@
 var database = require("../database/config");
 
 function listar(fkfuncionario, fkempresa) {
-  console.log("ACESSEI O ANOTACAO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
+  console.log(
+    "ACESSEI O ANOTACAO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()"
+  );
   var instrucaoSql = `
         SELECT a.id, a.texto, a.fkfuncionario, f.nome, a.fkempresa, a.dt_criacao 
           FROM anotacoes a
           INNER JOIN funcionario f
           ON a.fkfuncionario = f.id
-        WHERE a.fkfuncionario = 1 OR a.fkempresa = 1
+        WHERE a.fkfuncionario = ? OR a.fkempresa = ?
         ORDER BY a.dt_criacao desc;
     `;
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -15,7 +17,9 @@ function listar(fkfuncionario, fkempresa) {
 }
 
 function publicar(texto, fkfuncionario, fkempresa) {
-  console.log("ACESSEI O ANOTACAO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function publicar()");
+  console.log(
+    "ACESSEI O ANOTACAO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function publicar()"
+  );
   var instrucaoSql = `
         INSERT INTO anotacoes (texto, fkfuncionario, fkempresa) VALUES
         (?, ?, ${fkempresa});
@@ -25,7 +29,9 @@ function publicar(texto, fkfuncionario, fkempresa) {
 }
 
 function editar(id, texto) {
-  console.log("ACESSEI O ANOTACAO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function editar() ");
+  console.log(
+    "ACESSEI O ANOTACAO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function editar() "
+  );
   var instrucaoSql = `
       UPDATE anotacoes 
       SET texto = ?
@@ -36,7 +42,9 @@ function editar(id, texto) {
 }
 
 function deletar(ListId) {
-  console.log("ACESSEI O ANOTACAO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletar()");
+  console.log(
+    "ACESSEI O ANOTACAO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletar()"
+  );
   var instrucaoSql = `
         DELETE FROM anotacoes WHERE id IN (?);
     `;
