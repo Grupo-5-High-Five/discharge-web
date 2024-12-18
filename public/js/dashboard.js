@@ -626,11 +626,10 @@ function atualizarCores() {
 
   // Emissão Anual
 
+  const porcentagemEmissao = metaEmissao / 100;
+  const kpis_emissao = document.querySelectorAll(".emissao_ano");
+
   if (metaEmissao != 0) {
-    const kpis_emissao = document.querySelectorAll(".emissao_ano");
-
-    const porcentagemEmissao = metaEmissao / 100;
-
     if (visaoEmissao.media_emissao * 12 > metaEmissao) {
       kpis_emissao[0].style.borderColor = RED;
     } else if (visaoEmissao.media_emissao * 12 >= porcentagemEmissao * 80) {
@@ -658,11 +657,10 @@ function atualizarCores() {
 
   // Consumo mensal
 
+  const porcentagemConsumo = metaConsumo / 100;
+  const kpis_consumo = document.querySelectorAll(".consumo_mes");
+
   if (metaConsumo != 0) {
-    const kpis_consumo = document.querySelectorAll(".consumo_mes");
-
-    const porcentagemConsumo = metaConsumo / 100;
-
     if (visaoConsumo.media_consumo > metaConsumo) {
       kpis_consumo[0].style.borderColor = "#f62626";
     } else if (visaoConsumo.media_consumo >= porcentagemConsumo * 80) {
@@ -696,9 +694,9 @@ function atualizarCores() {
 
   // Previsão emissão
 
-  if (metaEmissao != 0) {
-    const kpis_prev_emissao = document.querySelectorAll(".prev_emissao");
+  const kpis_prev_emissao = document.querySelectorAll(".prev_emissao");
 
+  if (metaEmissao != 0) {
     if (qualidade.emissao_7dias > metaEmissao / 12 / 4) {
       kpis_prev_emissao[0].style.borderColor = "#f62626";
     } else if (qualidade.emissao_7dias >= (porcentagemEmissao / 12 / 4) * 80) {
@@ -718,9 +716,9 @@ function atualizarCores() {
 
   // Previsão consumo
 
-  if (metaConsumo != 0) {
-    const kpis_prev_consumo = document.querySelectorAll(".prev_consumo");
+  const kpis_prev_consumo = document.querySelectorAll(".prev_consumo");
 
+  if (metaConsumo != 0) {
     if (qualidade.consumo_7dias > metaConsumo / 4) {
       kpis_prev_consumo[0].style.borderColor = "#f62626";
     } else if (qualidade.consumo_7dias >= (porcentagemConsumo / 4) * 80) {
