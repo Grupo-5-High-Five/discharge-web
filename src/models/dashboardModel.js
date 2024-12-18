@@ -25,33 +25,24 @@ SELECT
         leitura
      WHERE 
         fkempresa = ?
-        AND DATE_FORMAT(dt, '%Y') = (
-            SELECT 
-                MAX(DATE_FORMAT(dt, '%Y'))
-            FROM 
-                leitura
-            WHERE 
-                fkempresa = ?
-        )) AS emissao_ano,
+        AND YEAR(dt) = (SELECT YEAR(MAX(dt)) FROM leitura WHERE fkempresa = ?)
+    ) AS emissao_ano,
 
-    -- Meta de emissão (metricaAnual / 100 * emissão de tCO2 ano atual)
+    -- Meta de emissão (% da métrica anual atingida)
     IFNULL(
         (SELECT 
             ROUND((emissao_atual / metricaAnual) * 100, 3)
          FROM (
             SELECT 
                 SUM(emissao) AS emissao_atual,
-                (SELECT 
-                    co2_maximo_anual
-                 FROM 
-                    metrica 
-                 WHERE 
-                    fkempresa = ?) AS metricaAnual
+                (SELECT co2_maximo_anual 
+                 FROM metrica 
+                 WHERE fkempresa = ?) AS metricaAnual
             FROM 
                 leitura
             WHERE 
                 fkempresa = ?
-                AND YEAR(dt) = (SELECT MAX(YEAR(dt)) FROM leitura WHERE fkempresa = ?)
+                AND YEAR(dt) = (SELECT YEAR(MAX(dt)) FROM leitura WHERE fkempresa = ?)
          ) AS emissoes_anuais),
         0
     ) AS meta_emissao,
@@ -78,37 +69,55 @@ SELECT
         leitura
      WHERE 
         fkempresa = ?
-        AND DATE_FORMAT(dt, '%Y') = (
+        AND DATE_FORMAT(dt, '%Y-%m') = (
             SELECT 
-                MAX(DATE_FORMAT(dt, '%Y'))
+                DATE_FORMAT(MAX(dt), '%Y-%m')
             FROM 
                 leitura
             WHERE 
                 fkempresa = ?
-        )) AS consumo_ano,
+        )
+    ) AS consumo_ano,
 
-    -- Meta de consumo (metricaAnual / 100 * Consumo de energia mês atual)
+    -- Meta de consumo (% da métrica mensal atingida)
     IFNULL(
         (SELECT 
             ROUND((SUM(l.consumo) / m.consumo_maximo_mensal) * 100, 3)
          FROM 
             leitura l
          JOIN 
-            empresa e ON e.id = l.fkempresa
-         JOIN 
-            metrica m ON e.id = m.fkempresa
+            metrica m ON l.fkempresa = m.fkempresa
          WHERE 
             l.fkempresa = ?
+            AND DATE_FORMAT(l.dt, '%Y-%m') = (
+                SELECT DATE_FORMAT(MAX(dt), '%Y-%m') 
+                FROM leitura 
+                WHERE fkempresa = ?
+            )
          GROUP BY 
-            DATE_FORMAT(l.dt, '%Y-%m'), m.consumo_maximo_mensal
-         ORDER BY 
-            DATE_FORMAT(l.dt, '%Y-%m') DESC
-         LIMIT 1), 
+            m.consumo_maximo_mensal
+        ), 
         0
     ) AS meta_consumo,
-    (SELECT YEAR(MAX(dt)) FROM leitura WHERE fkempresa = ?) as ano_atual;
+
+    -- Ano atual
+    (SELECT YEAR(MAX(dt)) 
+     FROM leitura 
+     WHERE fkempresa = ?) AS ano_atual;
       `;
-  return database.executar(instrucaoSql, [fkempresa, fkempresa, fkempresa, fkempresa, fkempresa, fkempresa, fkempresa, fkempresa, fkempresa, fkempresa, fkempresa]);
+  return database.executar(instrucaoSql, [
+    fkempresa,
+    fkempresa,
+    fkempresa,
+    fkempresa,
+    fkempresa,
+    fkempresa,
+    fkempresa,
+    fkempresa,
+    fkempresa,
+    fkempresa,
+    fkempresa,
+  ]);
 }
 
 function listarGraphTendencia(fkempresa) {
@@ -147,7 +156,12 @@ function listarGraphTendencia(fkempresa) {
           ) l2
           ON l1.mes = l2.mes;
         `;
-  return database.executar(instrucaoSql, [fkempresa, fkempresa, fkempresa, fkempresa]);
+  return database.executar(instrucaoSql, [
+    fkempresa,
+    fkempresa,
+    fkempresa,
+    fkempresa,
+  ]);
 }
 
 function listarGraphAtrasado(fkempresa) {
@@ -367,7 +381,18 @@ function listarQualidade(fkempresa) {
             fkempresa = ?
     ) as mes_atual;
             `;
-  return database.executar(instrucaoSql, [fkempresa, fkempresa, fkempresa, fkempresa, fkempresa, fkempresa, fkempresa, fkempresa, fkempresa, fkempresa]);
+  return database.executar(instrucaoSql, [
+    fkempresa,
+    fkempresa,
+    fkempresa,
+    fkempresa,
+    fkempresa,
+    fkempresa,
+    fkempresa,
+    fkempresa,
+    fkempresa,
+    fkempresa,
+  ]);
 }
 
 function listarMetricas(fkempresa) {
